@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "capabilities": [
+    {
+      "id": "ux.research",
+      "primary": "tevra.design-research",
+      "supporting": [],
+      "stage": 1,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "visual.direction",
+      "primary": "tevra.design-direction",
+      "supporting": [
+        "tevra.design-research"
+      ],
+      "stage": 2,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "design.tokens",
+      "primary": "tevra.design-system",
+      "supporting": [],
+      "stage": 3,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "frontend.implementation",
+      "primary": "tevra.ui-builder",
+      "supporting": [
+        "tevra.frontend-review"
+      ],
+      "stage": 4,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "ui.redesign",
+      "primary": "tevra.ui-redesign",
+      "supporting": [],
+      "stage": 5,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "responsive.design",
+      "primary": "tevra.responsive-design",
+      "supporting": [],
+      "stage": 6,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "interaction.motion",
+      "primary": "tevra.interaction-motion",
+      "supporting": [],
+      "stage": 7,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "visual.regression",
+      "primary": "tevra.visual-review",
+      "supporting": [],
+      "stage": 8,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "primary": "tevra.accessibility-qa",
+      "supporting": [],
+      "stage": 9,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "performance",
+      "primary": "tevra.performance-qa",
+      "supporting": [],
+      "stage": 10,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "browser.testing",
+      "primary": "tevra.browser-testing",
+      "supporting": [],
+      "stage": 11,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "frontend.review",
+      "primary": "tevra.frontend-review",
+      "supporting": [],
+      "stage": 12,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
+      "id": "component.architecture",
+      "primary": "tevra.frontend-review",
+      "supporting": [
+        "tevra.ui-builder"
+      ],
+      "stage": 4,
+      "constraints": [
+        "existing-framework"
+      ],
+      "validation": [
+        "source-evidence"
+      ]
+    },
+    {
+      "id": "seo",
+      "primary": null,
+      "supporting": [],
+      "stage": 10,
+      "constraints": [
+        "not-automated"
+      ],
+      "validation": [
+        "manual-review-required"
+      ]
+    }
+  ]
+}

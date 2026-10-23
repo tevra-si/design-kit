@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "quick",
+        "standard",
+        "full"
+      ]
+    },
+    "contextRevision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "createdAt": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time"
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "maxSteps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "maxMinutes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1440
+        },
+        "maxRefinements": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        }
+      },
+      "required": [
+        "maxSteps",
+        "maxMinutes",
+        "maxRefinements"
+      ]
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "skill": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            },
+            "minItems": 0
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "running",
+              "awaiting-approval",
+              "passed",
+              "failed",
+              "skipped",
+              "blocked"
+            ]
+          },
+          "attempts": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 11
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "skill",
+          "dependsOn",
+          "status",
+          "attempts",
+          "evidence"
+        ]
+      },
+      "minItems": 1
+    },
+    "approvalRequired": {
+      "type": "boolean"
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contextVersion": {
+      "const": "2.0"
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "request",
+    "mode",
+    "contextRevision",
+    "createdAt",
+    "budget",
+    "steps",
+    "approvalRequired",
+    "approvedBy",
+    "contextVersion"
+  ]
+}

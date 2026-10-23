@@ -1,0 +1,6 @@
+{
+  "name": "@tevra/filesystem",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module"
+}

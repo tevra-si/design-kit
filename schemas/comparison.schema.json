@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time"
+    },
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ratio": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "differentPixels": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 40000000
+          },
+          "sizeMismatch": {
+            "type": "boolean"
+          },
+          "diff": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "ratio",
+          "differentPixels",
+          "sizeMismatch",
+          "diff",
+          "passed"
+        ]
+      },
+      "minItems": 1
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "hierarchy",
+              "typography",
+              "layout",
+              "consistency",
+              "responsive",
+              "accessibility",
+              "interaction",
+              "performance"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "deterministic",
+              "heuristic",
+              "ai",
+              "human"
+            ]
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "unverified"
+            ]
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "issue": {
+            "type": "string"
+          },
+          "component": {
+            "type": "string"
+          },
+          "correction": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "kind",
+          "status",
+          "severity",
+          "evidence",
+          "issue",
+          "component",
+          "correction"
+        ]
+      },
+      "minItems": 1
+    },
+    "currentManifestHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "settingsHash": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "version",
+    "createdAt",
+    "comparisons",
+    "checks",
+    "currentManifestHash",
+    "settingsHash"
+  ]
+}

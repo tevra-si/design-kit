@@ -1,0 +1,3 @@
+# Focused implementation guide
+
+Primitive tokens encode raw scales; semantic tokens express text, surface, danger and focus roles; component tokens represent justified local variants. The portable context keeps aliases such as {primitive.color.brand}. Exports reject missing/cyclic aliases and unsafe CSS values. Responsive tokens may use clamp() with readable minimums; component layouts should adapt to content and containers. A generated foundation is not approval to migrate shared components. Tailwind uses @import "tailwindcss" and @theme inline; write complete static utility names. See official Tailwind theme docs for the installed version.

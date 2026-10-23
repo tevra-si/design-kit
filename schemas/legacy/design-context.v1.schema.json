@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tevra.dev/schemas/design-context.schema.json",
+  "title": "Tevra Design Context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "project", "experience", "direction", "tokens", "qualityBar"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "project": { "type": "object", "additionalProperties": false, "required": ["name", "productType", "goal", "audience"], "properties": {
+      "name": { "type": "string", "minLength": 1 }, "productType": { "type": "string", "minLength": 1 }, "goal": { "type": "string", "minLength": 1 },
+      "audience": { "type": "array", "items": { "type": "string" }, "minItems": 1 }, "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+    }},
+    "experience": { "type": "object", "additionalProperties": false, "required": ["platform", "primaryFlow", "states"], "properties": {
+      "platform": { "enum": ["web", "mobile-web", "ios", "android", "desktop", "multi-platform"] },
+      "primaryFlow": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+      "states": { "type": "array", "items": { "enum": ["loading", "empty", "error", "success", "disabled", "offline"] } },
+      "accessibilityTarget": { "type": "string" }
+    }},
+    "direction": { "type": "object", "additionalProperties": false, "required": ["concept", "principles", "references", "avoid"], "properties": {
+      "concept": { "type": "string", "minLength": 1 }, "principles": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+      "references": { "type": "array", "items": { "type": "string", "format": "uri-reference" } }, "avoid": { "type": "array", "items": { "type": "string" } }
+    }},
+    "tokens": { "type": "object", "additionalProperties": false, "required": ["color", "typography", "spacing", "shape", "motion"], "properties": {
+      "color": { "$ref": "#/$defs/tokenMap" }, "typography": { "$ref": "#/$defs/tokenMap" }, "spacing": { "$ref": "#/$defs/tokenMap" }, "shape": { "$ref": "#/$defs/tokenMap" }, "motion": { "$ref": "#/$defs/tokenMap" }
+    }},
+    "qualityBar": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "constraints": { "type": "array", "items": { "type": "string" } }, "decisions": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "tokenMap": { "type": "object", "additionalProperties": { "type": "string" }, "minProperties": 1 },
+    "evidence": { "type": "object", "additionalProperties": false, "required": ["claim", "source", "confidence"], "properties": {
+      "claim": { "type": "string" }, "source": { "type": "string" }, "confidence": { "enum": ["observed", "reported", "inferred", "unknown"] }
+    }}
+  }
+}

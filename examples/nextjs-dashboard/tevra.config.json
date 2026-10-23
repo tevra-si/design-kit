@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "baseURL": "http://127.0.0.1:4173",
+  "permittedOrigins": [
+    "http://127.0.0.1:4173"
+  ],
+  "viewports": [
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "laptop",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "routes": [
+    {
+      "name": "tasks",
+      "path": "/",
+      "states": [
+        {
+          "name": "default",
+          "actions": [],
+          "masks": []
+        },
+        {
+          "name": "added",
+          "actions": [
+            {
+              "type": "fill",
+              "selector": "#task-title",
+              "value": "Review design evidence"
+            },
+            {
+              "type": "click",
+              "selector": ".primary-button"
+            }
+          ],
+          "masks": [],
+          "waitFor": ".task-list li:nth-child(4)"
+        },
+        {
+          "name": "error",
+          "actions": [
+            {
+              "type": "fill",
+              "selector": "#task-title",
+              "value": "x"
+            },
+            {
+              "type": "click",
+              "selector": ".primary-button"
+            }
+          ],
+          "masks": [],
+          "waitFor": "#task-error"
+        }
+      ]
+    }
+  ],
+  "browser": {},
+  "timeoutMs": 15000,
+  "thresholds": {
+    "diffRatio": 0.01,
+    "pixelSensitivity": 0.1,
+    "minScore": 75
+  },
+  "weights": {
+    "hierarchy": 15,
+    "typography": 10,
+    "layout": 15,
+    "consistency": 15,
+    "responsive": 15,
+    "accessibility": 15,
+    "interaction": 10,
+    "performance": 5
+  },
+  "requiredChecks": [
+    "visual-diff",
+    "axe",
+    "overflow",
+    "functional-tests"
+  ],
+  "maxRefinements": 2,
+  "readySelector": "html[data-tevra-ready=\"true\"]"
+}

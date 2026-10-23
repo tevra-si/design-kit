@@ -1,0 +1,13 @@
+[
+  {
+    "id": "functional-tests",
+    "category": "interaction",
+    "kind": "deterministic",
+    "status": "unverified",
+    "severity": "critical",
+    "evidence": [],
+    "issue": "Run real project behavior tests before marking this check passed.",
+    "component": "target task",
+    "correction": "Attach the actual test log."
+  }
+]

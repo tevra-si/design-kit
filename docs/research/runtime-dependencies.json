@@ -1,0 +1,2561 @@
+{
+  "generatedAt": "2026-10-23T04:52:31.439Z",
+  "scope": "installed runtime dependency manifests; not legal clearance or vulnerability scanning",
+  "packages": [
+    {
+      "name": "@formatjs/ecma402-abstract",
+      "version": "2.3.6",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": "git@github.com:formatjs/formatjs.git"
+    },
+    {
+      "name": "@formatjs/fast-memoize",
+      "version": "2.2.7",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": "formatjs/formatjs.git"
+    },
+    {
+      "name": "@formatjs/icu-messageformat-parser",
+      "version": "2.11.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/formatjs/formatjs.git",
+        "directory": "packages/icu-messageformat-parser"
+      }
+    },
+    {
+      "name": "@formatjs/icu-skeleton-parser",
+      "version": "1.8.16",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/formatjs/formatjs.git",
+        "directory": "packages/icu-skeleton-parser"
+      }
+    },
+    {
+      "name": "@formatjs/intl-localematcher",
+      "version": "0.6.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": "formatjs/formatjs.git"
+    },
+    {
+      "name": "@opentelemetry/api",
+      "version": "1.9.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/api-logs",
+      "version": "0.57.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/context-async-hooks",
+      "version": "1.30.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/core",
+      "version": "1.30.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/instrumentation",
+      "version": "0.57.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/open-telemetry/opentelemetry-js.git"
+      }
+    },
+    {
+      "name": "@opentelemetry/instrumentation-amqplib",
+      "version": "0.46.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-connect",
+      "version": "0.43.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-dataloader",
+      "version": "0.16.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-express",
+      "version": "0.47.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-fs",
+      "version": "0.19.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-generic-pool",
+      "version": "0.43.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-graphql",
+      "version": "0.47.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-hapi",
+      "version": "0.45.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-http",
+      "version": "0.57.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-ioredis",
+      "version": "0.47.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-kafkajs",
+      "version": "0.7.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-knex",
+      "version": "0.44.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-koa",
+      "version": "0.47.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-lru-memoizer",
+      "version": "0.44.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mongodb",
+      "version": "0.52.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mongoose",
+      "version": "0.46.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mysql",
+      "version": "0.45.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-mysql2",
+      "version": "0.45.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-pg",
+      "version": "0.51.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-redis-4",
+      "version": "0.46.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-tedious",
+      "version": "0.18.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/instrumentation-undici",
+      "version": "0.10.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/redis-common",
+      "version": "0.36.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@opentelemetry/resources",
+      "version": "1.30.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/sdk-trace-base",
+      "version": "1.30.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/semantic-conventions",
+      "version": "1.28.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/semantic-conventions",
+      "version": "1.43.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js"
+    },
+    {
+      "name": "@opentelemetry/sql-common",
+      "version": "0.40.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "open-telemetry/opentelemetry-js-contrib"
+    },
+    {
+      "name": "@paulirish/trace_engine",
+      "version": "0.0.61",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": null
+    },
+    {
+      "name": "@prisma/instrumentation",
+      "version": "6.11.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/prisma/prisma.git",
+        "directory": "packages/instrumentation"
+      }
+    },
+    {
+      "name": "@puppeteer/browsers",
+      "version": "2.13.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/puppeteer/puppeteer/tree/main/packages/browsers"
+      }
+    },
+    {
+      "name": "@sentry/core",
+      "version": "9.47.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/getsentry/sentry-javascript.git"
+    },
+    {
+      "name": "@sentry/node",
+      "version": "9.47.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/getsentry/sentry-javascript.git"
+    },
+    {
+      "name": "@sentry/node-core",
+      "version": "9.47.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/getsentry/sentry-javascript.git"
+    },
+    {
+      "name": "@sentry/opentelemetry",
+      "version": "9.47.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/getsentry/sentry-javascript.git"
+    },
+    {
+      "name": "@tootallnate/quickjs-emscripten",
+      "version": "0.23.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/justjake/quickjs-emscripten"
+      }
+    },
+    {
+      "name": "@types/connect",
+      "version": "3.4.38",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/connect"
+      }
+    },
+    {
+      "name": "@types/mysql",
+      "version": "2.15.26",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/mysql"
+      }
+    },
+    {
+      "name": "@types/node",
+      "version": "22.20.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/node"
+      }
+    },
+    {
+      "name": "@types/pg",
+      "version": "8.6.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/pg"
+      }
+    },
+    {
+      "name": "@types/pg-pool",
+      "version": "2.0.6",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/pg-pool"
+      }
+    },
+    {
+      "name": "@types/shimmer",
+      "version": "1.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/shimmer"
+      }
+    },
+    {
+      "name": "@types/tedious",
+      "version": "4.0.14",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/tedious"
+      }
+    },
+    {
+      "name": "acorn",
+      "version": "8.19.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/acornjs/acorn.git"
+      }
+    },
+    {
+      "name": "acorn-import-attributes",
+      "version": "1.9.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/xtuc/acorn-import-attributes"
+      }
+    },
+    {
+      "name": "agent-base",
+      "version": "7.1.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/agent-base"
+      }
+    },
+    {
+      "name": "ajv",
+      "version": "8.20.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "ajv-validator/ajv"
+    },
+    {
+      "name": "ansi-colors",
+      "version": "4.1.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "doowb/ansi-colors"
+    },
+    {
+      "name": "ansi-regex",
+      "version": "5.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "chalk/ansi-regex"
+    },
+    {
+      "name": "ansi-styles",
+      "version": "4.3.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "chalk/ansi-styles"
+    },
+    {
+      "name": "ast-types",
+      "version": "0.13.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/benjamn/ast-types.git"
+      }
+    },
+    {
+      "name": "atomically",
+      "version": "2.1.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "github:fabiospampinato/atomically"
+    },
+    {
+      "name": "axe-core",
+      "version": "4.11.0",
+      "license": "MPL-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dequelabs/axe-core.git"
+      }
+    },
+    {
+      "name": "b4a",
+      "version": "1.9.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/b4a.git"
+      }
+    },
+    {
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/juliangruber/balanced-match.git"
+      }
+    },
+    {
+      "name": "bare-events",
+      "version": "2.9.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/bare-events.git"
+      }
+    },
+    {
+      "name": "bare-fs",
+      "version": "4.8.4",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/bare-fs.git"
+      }
+    },
+    {
+      "name": "bare-path",
+      "version": "3.1.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license",
+        "NOTICE"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/bare-path.git"
+      }
+    },
+    {
+      "name": "bare-stream",
+      "version": "2.13.4",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/bare-stream.git"
+      }
+    },
+    {
+      "name": "bare-url",
+      "version": "2.5.5",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/bare-url.git"
+      }
+    },
+    {
+      "name": "basic-ftp",
+      "version": "5.3.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.txt"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/patrickjuchli/basic-ftp.git"
+      }
+    },
+    {
+      "name": "brace-expansion",
+      "version": "2.1.7",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/juliangruber/brace-expansion.git"
+      }
+    },
+    {
+      "name": "buffer-crc32",
+      "version": "0.2.13",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/brianloveswords/buffer-crc32.git"
+      }
+    },
+    {
+      "name": "chrome-launcher",
+      "version": "1.2.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GoogleChrome/chrome-launcher.git"
+      }
+    },
+    {
+      "name": "chromium-bidi",
+      "version": "14.0.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/GoogleChromeLabs/chromium-bidi.git"
+      }
+    },
+    {
+      "name": "cjs-module-lexer",
+      "version": "1.4.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs/cjs-module-lexer.git"
+      }
+    },
+    {
+      "name": "cliui",
+      "version": "8.0.1",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.txt"
+      ],
+      "repository": "yargs/cliui"
+    },
+    {
+      "name": "color-convert",
+      "version": "2.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "Qix-/color-convert"
+    },
+    {
+      "name": "color-name",
+      "version": "1.1.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git@github.com:colorjs/color-name.git"
+      }
+    },
+    {
+      "name": "configstore",
+      "version": "7.1.0",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/configstore"
+    },
+    {
+      "name": "csp_evaluator",
+      "version": "1.1.5",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/google/csp-evaluator"
+      }
+    },
+    {
+      "name": "data-uri-to-buffer",
+      "version": "6.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/data-uri-to-buffer"
+      }
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/debug-js/debug.git"
+      }
+    },
+    {
+      "name": "decimal.js",
+      "version": "10.6.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/MikeMcl/decimal.js.git"
+      }
+    },
+    {
+      "name": "define-lazy-prop",
+      "version": "2.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/define-lazy-prop"
+    },
+    {
+      "name": "degenerator",
+      "version": "5.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/degenerator"
+      }
+    },
+    {
+      "name": "devtools-protocol",
+      "version": "0.0.1527314",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "https://github.com/ChromeDevTools/devtools-protocol"
+    },
+    {
+      "name": "devtools-protocol",
+      "version": "0.0.1608973",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "https://github.com/ChromeDevTools/devtools-protocol"
+    },
+    {
+      "name": "dot-prop",
+      "version": "9.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/dot-prop"
+    },
+    {
+      "name": "emoji-regex",
+      "version": "8.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/mathiasbynens/emoji-regex.git"
+      }
+    },
+    {
+      "name": "end-of-stream",
+      "version": "1.4.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/mafintosh/end-of-stream.git"
+      }
+    },
+    {
+      "name": "enquirer",
+      "version": "2.4.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "enquirer/enquirer"
+    },
+    {
+      "name": "es-errors",
+      "version": "1.3.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ljharb/es-errors.git"
+      }
+    },
+    {
+      "name": "escalade",
+      "version": "3.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "lukeed/escalade"
+    },
+    {
+      "name": "escape-string-regexp",
+      "version": "4.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/escape-string-regexp"
+    },
+    {
+      "name": "escodegen",
+      "version": "2.1.0",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "http://github.com/estools/escodegen.git"
+      }
+    },
+    {
+      "name": "esprima",
+      "version": "4.0.1",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/jquery/esprima.git"
+      }
+    },
+    {
+      "name": "estraverse",
+      "version": "5.3.0",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "http://github.com/estools/estraverse.git"
+      }
+    },
+    {
+      "name": "esutils",
+      "version": "2.0.3",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "http://github.com/estools/esutils.git"
+      }
+    },
+    {
+      "name": "events-universal",
+      "version": "1.0.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/events-universal.git"
+      }
+    },
+    {
+      "name": "extract-zip",
+      "version": "2.0.1",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "maxogden/extract-zip"
+    },
+    {
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/epoberezkin/fast-deep-equal.git"
+      }
+    },
+    {
+      "name": "fast-fifo",
+      "version": "1.3.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/mafintosh/fast-fifo.git"
+      }
+    },
+    {
+      "name": "fast-uri",
+      "version": "3.1.9",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fastify/fast-uri.git"
+      }
+    },
+    {
+      "name": "fd-slicer",
+      "version": "1.1.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/andrewrk/node-fd-slicer.git"
+      }
+    },
+    {
+      "name": "forwarded-parse",
+      "version": "2.1.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "lpinca/forwarded-parse"
+    },
+    {
+      "name": "function-bind",
+      "version": "1.1.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/Raynos/function-bind.git"
+      }
+    },
+    {
+      "name": "get-caller-file",
+      "version": "2.0.5",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/stefanpenner/get-caller-file.git"
+      }
+    },
+    {
+      "name": "get-stream",
+      "version": "5.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/get-stream"
+    },
+    {
+      "name": "get-uri",
+      "version": "6.0.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/get-uri"
+      }
+    },
+    {
+      "name": "graceful-fs",
+      "version": "4.2.11",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/isaacs/node-graceful-fs"
+      }
+    },
+    {
+      "name": "hasown",
+      "version": "2.0.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/inspect-js/hasOwn.git"
+      }
+    },
+    {
+      "name": "http-link-header",
+      "version": "1.1.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://codeberg.org/jhermsmeier/node-http-link-header.git"
+      }
+    },
+    {
+      "name": "http-proxy-agent",
+      "version": "7.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/http-proxy-agent"
+      }
+    },
+    {
+      "name": "https-proxy-agent",
+      "version": "7.0.6",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/https-proxy-agent"
+      }
+    },
+    {
+      "name": "image-ssim",
+      "version": "0.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "darosh/image-ssim-js"
+    },
+    {
+      "name": "import-in-the-middle",
+      "version": "1.15.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license",
+        "NOTICE"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/nodejs/import-in-the-middle.git"
+      }
+    },
+    {
+      "name": "intl-messageformat",
+      "version": "10.7.18",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": "git@github.com:formatjs/formatjs.git"
+    },
+    {
+      "name": "ip-address",
+      "version": "10.7.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/beaugunderson/ip-address.git"
+      }
+    },
+    {
+      "name": "is-core-module",
+      "version": "2.17.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/inspect-js/is-core-module.git"
+      }
+    },
+    {
+      "name": "is-docker",
+      "version": "2.2.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/is-docker"
+    },
+    {
+      "name": "is-fullwidth-code-point",
+      "version": "3.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/is-fullwidth-code-point"
+    },
+    {
+      "name": "is-wsl",
+      "version": "2.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/is-wsl"
+    },
+    {
+      "name": "jpeg-js",
+      "version": "0.4.4",
+      "license": "BSD-3-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/eugeneware/jpeg-js"
+      }
+    },
+    {
+      "name": "js-library-detector",
+      "version": "6.7.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/johnmichel/Library-Detector-for-Chrome.git"
+      }
+    },
+    {
+      "name": "json-schema-traverse",
+      "version": "1.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/epoberezkin/json-schema-traverse.git"
+      }
+    },
+    {
+      "name": "legacy-javascript",
+      "version": "0.0.3",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": "GoogleChrome/lighthouse"
+    },
+    {
+      "name": "lighthouse",
+      "version": "13.0.3",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "GoogleChrome/lighthouse"
+    },
+    {
+      "name": "lighthouse-logger",
+      "version": "2.0.2",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "https://github.com/GoogleChrome/lighthouse.git"
+    },
+    {
+      "name": "lighthouse-stack-packs",
+      "version": "1.12.3",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "GoogleChrome/lighthouse-stack-packs"
+    },
+    {
+      "name": "lodash-es",
+      "version": "4.18.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "lodash/lodash"
+    },
+    {
+      "name": "lookup-closest-locale",
+      "version": "6.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": "format-message/format-message"
+    },
+    {
+      "name": "lru-cache",
+      "version": "7.18.3",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/isaacs/node-lru-cache.git"
+    },
+    {
+      "name": "marky",
+      "version": "1.3.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nolanlawson/marky.git"
+      }
+    },
+    {
+      "name": "minimatch",
+      "version": "9.0.9",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/isaacs/minimatch.git"
+      }
+    },
+    {
+      "name": "mitt",
+      "version": "3.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "developit/mitt"
+    },
+    {
+      "name": "module-details-from-path",
+      "version": "1.0.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/watson/module-details-from-path.git"
+      }
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": "vercel/ms"
+    },
+    {
+      "name": "netmask",
+      "version": "2.1.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/rs/node-netmask.git"
+      }
+    },
+    {
+      "name": "once",
+      "version": "1.4.0",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/isaacs/once"
+      }
+    },
+    {
+      "name": "open",
+      "version": "8.4.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/open"
+    },
+    {
+      "name": "pac-proxy-agent",
+      "version": "7.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/pac-proxy-agent"
+      }
+    },
+    {
+      "name": "pac-resolver",
+      "version": "7.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/pac-resolver"
+      }
+    },
+    {
+      "name": "path-parse",
+      "version": "1.0.7",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/jbgutierrez/path-parse.git"
+      }
+    },
+    {
+      "name": "pend",
+      "version": "1.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/andrewrk/node-pend.git"
+      }
+    },
+    {
+      "name": "pg-int8",
+      "version": "1.0.1",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/charmander/pg-int8"
+      }
+    },
+    {
+      "name": "pg-protocol",
+      "version": "1.16.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/brianc/node-postgres.git",
+        "directory": "packages/pg-protocol"
+      }
+    },
+    {
+      "name": "pg-types",
+      "version": "2.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/brianc/node-pg-types.git"
+      }
+    },
+    {
+      "name": "pixelmatch",
+      "version": "8.0.0",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mapbox/pixelmatch.git"
+      }
+    },
+    {
+      "name": "playwright",
+      "version": "1.63.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license",
+        "NOTICE"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/microsoft/playwright.git"
+      }
+    },
+    {
+      "name": "playwright-core",
+      "version": "1.63.0",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license",
+        "NOTICE"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/microsoft/playwright.git"
+      }
+    },
+    {
+      "name": "pngjs",
+      "version": "7.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/pngjs/pngjs.git"
+      }
+    },
+    {
+      "name": "postgres-array",
+      "version": "2.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "bendrucker/postgres-array"
+    },
+    {
+      "name": "postgres-bytea",
+      "version": "1.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "bendrucker/postgres-bytea"
+    },
+    {
+      "name": "postgres-date",
+      "version": "1.0.7",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "bendrucker/postgres-date"
+    },
+    {
+      "name": "postgres-interval",
+      "version": "1.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "bendrucker/postgres-interval"
+    },
+    {
+      "name": "progress",
+      "version": "2.0.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/visionmedia/node-progress"
+      }
+    },
+    {
+      "name": "proxy-agent",
+      "version": "6.5.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/proxy-agent"
+      }
+    },
+    {
+      "name": "proxy-from-env",
+      "version": "1.1.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/Rob--W/proxy-from-env.git"
+      }
+    },
+    {
+      "name": "pump",
+      "version": "3.0.4",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/mafintosh/pump.git"
+    },
+    {
+      "name": "puppeteer-core",
+      "version": "24.43.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/puppeteer/puppeteer/tree/main/packages/puppeteer-core"
+      }
+    },
+    {
+      "name": "require-directory",
+      "version": "2.1.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/troygoode/node-require-directory.git"
+      }
+    },
+    {
+      "name": "require-from-string",
+      "version": "2.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "floatdrop/require-from-string"
+    },
+    {
+      "name": "require-in-the-middle",
+      "version": "7.5.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs/require-in-the-middle.git"
+      }
+    },
+    {
+      "name": "resolve",
+      "version": "1.22.13",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "ssh://github.com/browserify/resolve.git"
+      }
+    },
+    {
+      "name": "robots-parser",
+      "version": "3.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.md"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/samclarke/robots-parser.git"
+      }
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npm/node-semver.git"
+      }
+    },
+    {
+      "name": "shimmer",
+      "version": "1.2.1",
+      "license": "BSD-2-Clause",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/othiym23/shimmer.git"
+      }
+    },
+    {
+      "name": "smart-buffer",
+      "version": "4.2.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/JoshGlazebrook/smart-buffer.git"
+      }
+    },
+    {
+      "name": "socks",
+      "version": "2.8.10",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JoshGlazebrook/socks.git"
+      }
+    },
+    {
+      "name": "socks-proxy-agent",
+      "version": "8.0.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/TooTallNate/proxy-agents.git",
+        "directory": "packages/socks-proxy-agent"
+      }
+    },
+    {
+      "name": "speedline-core",
+      "version": "1.4.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": "https://github.com/paulirish/speedline"
+    },
+    {
+      "name": "streamx",
+      "version": "2.28.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/mafintosh/streamx.git"
+      }
+    },
+    {
+      "name": "string-width",
+      "version": "4.2.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/string-width"
+    },
+    {
+      "name": "strip-ansi",
+      "version": "6.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "chalk/strip-ansi"
+    },
+    {
+      "name": "stubborn-fs",
+      "version": "2.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "github:fabiospampinato/stubborn-fs"
+    },
+    {
+      "name": "stubborn-utils",
+      "version": "1.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "github:fabiospampinato/stubborn-utils"
+    },
+    {
+      "name": "supports-preserve-symlinks-flag",
+      "version": "1.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/inspect-js/node-supports-preserve-symlinks-flag.git"
+      }
+    },
+    {
+      "name": "tar-fs",
+      "version": "3.1.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/mafintosh/tar-fs.git"
+      }
+    },
+    {
+      "name": "tar-stream",
+      "version": "3.2.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mafintosh/tar-stream.git"
+      }
+    },
+    {
+      "name": "teex",
+      "version": "1.0.1",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/mafintosh/teex.git"
+      }
+    },
+    {
+      "name": "tevra-design-kit",
+      "version": "2.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": null
+    },
+    {
+      "name": "text-decoder",
+      "version": "1.2.7",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/holepunchto/text-decoder.git"
+      }
+    },
+    {
+      "name": "third-party-web",
+      "version": "0.30.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/patrickhulce/third-party-web.git"
+      }
+    },
+    {
+      "name": "third-party-web",
+      "version": "0.27.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/patrickhulce/third-party-web.git"
+      }
+    },
+    {
+      "name": "tldts-core",
+      "version": "7.4.19",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/remusao/tldts.git"
+      }
+    },
+    {
+      "name": "tldts-icann",
+      "version": "7.4.19",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/remusao/tldts.git"
+      }
+    },
+    {
+      "name": "tslib",
+      "version": "2.8.1",
+      "license": "0BSD",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.txt"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/tslib.git"
+      }
+    },
+    {
+      "name": "type-fest",
+      "version": "4.41.0",
+      "license": "(MIT OR CC0-1.0)",
+      "status": "manifest-declared",
+      "notices": [],
+      "repository": "sindresorhus/type-fest"
+    },
+    {
+      "name": "typed-query-selector",
+      "version": "2.12.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "g-plane/typed-query-selector"
+    },
+    {
+      "name": "undici-types",
+      "version": "6.21.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodejs/undici.git"
+      }
+    },
+    {
+      "name": "webdriver-bidi-protocol",
+      "version": "0.4.1",
+      "license": "Apache-2.0",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GoogleChromeLabs/webdriver-bidi-protocol.git"
+      }
+    },
+    {
+      "name": "when-exit",
+      "version": "2.1.5",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "github:fabiospampinato/when-exit"
+    },
+    {
+      "name": "wrap-ansi",
+      "version": "7.0.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "chalk/wrap-ansi"
+    },
+    {
+      "name": "wrappy",
+      "version": "1.0.2",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/npm/wrappy"
+      }
+    },
+    {
+      "name": "ws",
+      "version": "8.22.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/websockets/ws.git"
+      }
+    },
+    {
+      "name": "ws",
+      "version": "7.5.13",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "websockets/ws"
+    },
+    {
+      "name": "xdg-basedir",
+      "version": "5.1.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "sindresorhus/xdg-basedir"
+    },
+    {
+      "name": "xtend",
+      "version": "4.0.2",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "git://github.com/Raynos/xtend.git"
+    },
+    {
+      "name": "y18n",
+      "version": "5.0.8",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "yargs/y18n"
+    },
+    {
+      "name": "yaml",
+      "version": "2.8.1",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": "github:eemeli/yaml"
+    },
+    {
+      "name": "yargs",
+      "version": "17.7.3",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/yargs/yargs.git"
+      }
+    },
+    {
+      "name": "yargs-parser",
+      "version": "21.1.1",
+      "license": "ISC",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE.txt"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/yargs/yargs-parser.git"
+      }
+    },
+    {
+      "name": "yauzl",
+      "version": "2.10.0",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/thejoshwolfe/yauzl.git"
+      }
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "license": "MIT",
+      "status": "manifest-declared",
+      "notices": [
+        "LICENSE",
+        "license"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/colinhacks/zod.git"
+      }
+    }
+  ]
+}

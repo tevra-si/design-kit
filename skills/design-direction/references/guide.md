@@ -1,0 +1,3 @@
+# Focused implementation guide
+
+Variance 1–3 favors familiar composition, 4–7 allows stronger hierarchy and product-specific arrangement, 8–10 permits experimental composition with explicit usability checks. Motion 1–3 uses state feedback, 4–7 adds purposeful transitions, 8–10 needs a documented task benefit and reduced-motion equivalent. Density 1–3 favors reading, 4–7 mixed work, 8–10 dense comparison; maintain legibility and touch usability. Controls never override accessibility, approved brand or project constraints. Record why a rejected direction failed the user task. Use real assets only; a URL is not permission to reuse.

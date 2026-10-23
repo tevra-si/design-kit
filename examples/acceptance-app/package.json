@@ -1,0 +1,11 @@
+{
+  "name": "@tevra/acceptance-app",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node ../shared/serve.mjs build 4175",
+    "build:before": "node build.mjs before"
+  }
+}

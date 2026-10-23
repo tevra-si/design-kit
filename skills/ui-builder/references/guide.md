@@ -1,0 +1,3 @@
+# Focused implementation guide
+
+React/Next.js: keep interactive boundaries small and preserve server/client ownership; do not cache or memoize without evidence. SvelteKit: preserve SSR-safe state and server/client separation. Vue: keep props/emits contracts and effect cleanup. React Native/Expo: use native accessibility roles, safe areas and platform reduced-motion APIs. Every framework needs cancellation, intentional UI states and semantic labels. Read only the matching framework reference supplied with the installed skill. Never claim production readiness from source review or a passing build alone.

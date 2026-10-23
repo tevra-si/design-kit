@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "baseURL": {
+      "type": "string",
+      "minLength": 1
+    },
+    "permittedOrigins": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "viewports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 240,
+            "maximum": 7680
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 240,
+            "maximum": 4320
+          }
+        },
+        "required": [
+          "name",
+          "width",
+          "height"
+        ]
+      },
+      "minItems": 1
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]*$"
+                },
+                "actions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "click",
+                          "fill",
+                          "press",
+                          "check",
+                          "expect-visible",
+                          "expect-hidden",
+                          "expect-text",
+                          "expect-checked"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "selector"
+                    ]
+                  },
+                  "minItems": 0
+                },
+                "masks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 0
+                },
+                "waitFor": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "name",
+                "actions",
+                "masks"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "states"
+        ]
+      },
+      "minItems": 1
+    },
+    "browser": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "enum": [
+            "chromium",
+            "chrome",
+            "chrome-beta",
+            "chrome-dev",
+            "chrome-canary",
+            "msedge",
+            "msedge-beta",
+            "msedge-dev",
+            "msedge-canary"
+          ]
+        },
+        "executablePath": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": []
+    },
+    "timeoutMs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 120000
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "diffRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "pixelSensitivity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "minScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "diffRatio",
+        "pixelSensitivity",
+        "minScore"
+      ]
+    },
+    "weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hierarchy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "typography": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "layout": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "consistency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "responsive": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "accessibility": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "interaction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "performance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "functional": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "hierarchy",
+        "typography",
+        "layout",
+        "consistency",
+        "responsive",
+        "accessibility",
+        "interaction",
+        "performance"
+      ]
+    },
+    "requiredChecks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "maxRefinements": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "colorScheme": {
+      "enum": [
+        "light",
+        "dark",
+        "no-preference"
+      ]
+    },
+    "reducedMotion": {
+      "enum": [
+        "reduce",
+        "no-preference"
+      ]
+    },
+    "readySelector": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "version",
+    "baseURL",
+    "permittedOrigins",
+    "viewports",
+    "routes",
+    "browser",
+    "timeoutMs",
+    "thresholds",
+    "weights",
+    "requiredChecks",
+    "maxRefinements"
+  ]
+}

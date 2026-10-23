@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "taskId": "pricing-card",
+  "objective": "Improve pricing hierarchy while preserving purchase behavior",
+  "skill": "ui-builder",
+  "contextVersion": "2.0",
+  "contextRevision": 0,
+  "owner": "frontend-agent",
+  "files": [
+    "src/components/PricingCard.tsx"
+  ],
+  "inputs": [
+    "redesign-plan.md"
+  ],
+  "constraints": [
+    "Preserve plan identifiers and purchase action"
+  ],
+  "outputs": [
+    "src/components/PricingCard.tsx"
+  ],
+  "acceptance": [
+    "Purchase behavior and keyboard operation remain working"
+  ],
+  "evidence": [],
+  "status": "pending",
+  "error": null
+}

@@ -1,0 +1,651 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tevra Design Context registry",
+  "oneOf": [
+    {
+      "title": "Tevra Design Context",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "project",
+        "experience",
+        "direction",
+        "tokens",
+        "qualityBar"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "project": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "productType",
+            "goal",
+            "audience"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productType": {
+              "type": "string",
+              "minLength": 1
+            },
+            "goal": {
+              "type": "string",
+              "minLength": 1
+            },
+            "audience": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/evidence"
+              }
+            }
+          }
+        },
+        "experience": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "platform",
+            "primaryFlow",
+            "states"
+          ],
+          "properties": {
+            "platform": {
+              "enum": [
+                "web",
+                "mobile-web",
+                "ios",
+                "android",
+                "desktop",
+                "multi-platform"
+              ]
+            },
+            "primaryFlow": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "states": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "loading",
+                  "empty",
+                  "error",
+                  "success",
+                  "disabled",
+                  "offline"
+                ]
+              }
+            },
+            "accessibilityTarget": {
+              "type": "string"
+            }
+          }
+        },
+        "direction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "concept",
+            "principles",
+            "references",
+            "avoid"
+          ],
+          "properties": {
+            "concept": {
+              "type": "string",
+              "minLength": 1
+            },
+            "principles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "references": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri-reference"
+              }
+            },
+            "avoid": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "color",
+            "typography",
+            "spacing",
+            "shape",
+            "motion"
+          ],
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/tokenMap"
+            },
+            "typography": {
+              "$ref": "#/$defs/tokenMap"
+            },
+            "spacing": {
+              "$ref": "#/$defs/tokenMap"
+            },
+            "shape": {
+              "$ref": "#/$defs/tokenMap"
+            },
+            "motion": {
+              "$ref": "#/$defs/tokenMap"
+            }
+          }
+        },
+        "qualityBar": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "$defs": {
+        "tokenMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "minProperties": 1
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "claim",
+            "source",
+            "confidence"
+          ],
+          "properties": {
+            "claim": {
+              "type": "string"
+            },
+            "source": {
+              "type": "string"
+            },
+            "confidence": {
+              "enum": [
+                "observed",
+                "reported",
+                "inferred",
+                "unknown"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": "2.0"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "project": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "framework": {
+              "enum": [
+                "react",
+                "nextjs",
+                "sveltekit",
+                "vue",
+                "react-native",
+                "expo",
+                "html",
+                "unknown"
+              ]
+            },
+            "styling": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "framework",
+            "styling"
+          ]
+        },
+        "design": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "variance": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "motionIntensity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "visualDensity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "theme": {
+              "enum": [
+                "light",
+                "dark",
+                "system"
+              ]
+            },
+            "brandPersonality": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "variance",
+            "motionIntensity",
+            "visualDensity",
+            "theme",
+            "brandPersonality"
+          ]
+        },
+        "tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "primitive": {
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "semantic": {
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "component": {
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "themes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "propertyNames": {
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "responsive": {
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "primitive",
+            "semantic",
+            "component",
+            "themes",
+            "responsive"
+          ]
+        },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "preserveBrand": {
+              "type": "boolean"
+            },
+            "preserveFunctionality": {
+              "type": "boolean"
+            },
+            "accessibilityTarget": {
+              "const": "WCAG_2_2_AA"
+            },
+            "approvedScope": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "preserveBrand",
+            "preserveFunctionality",
+            "accessibilityTarget",
+            "approvedScope"
+          ]
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "approved": {
+                "type": "boolean"
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "approved",
+              "owner"
+            ]
+          },
+          "minItems": 0
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "claim": {
+                "type": "string",
+                "minLength": 1
+              },
+              "confidence": {
+                "enum": [
+                  "observed",
+                  "reported",
+                  "inferred",
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "source",
+              "claim",
+              "confidence"
+            ]
+          },
+          "minItems": 0
+        },
+        "brand": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "assets",
+            "rules"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "assets": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "rules": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "approvedDirection": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "approved": {
+              "type": "boolean"
+            },
+            "owner": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "description",
+            "approved",
+            "owner"
+          ]
+        },
+        "responsiveRequirements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "knownRegressions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "description",
+              "evidence",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "status": {
+                "enum": [
+                  "open",
+                  "resolved"
+                ]
+              }
+            }
+          }
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "sourceId",
+              "revision",
+              "artifact"
+            ],
+            "properties": {
+              "sourceId": {
+                "type": "string",
+                "minLength": 1
+              },
+              "revision": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "version",
+        "revision",
+        "owner",
+        "project",
+        "design",
+        "tokens",
+        "constraints",
+        "decisions",
+        "assumptions",
+        "evidence"
+      ]
+    }
+  ],
+  "$defs": {
+    "tokenMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "minProperties": 1
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim",
+        "source",
+        "confidence"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "confidence": {
+          "enum": [
+            "observed",
+            "reported",
+            "inferred",
+            "unknown"
+          ]
+        }
+      }
+    }
+  }
+}
