@@ -1,0 +1,7 @@
+{
+  "name": "tevra",
+  "version": "2.0.0",
+  "description": "Twelve portable design and frontend QA skills: research, direction, design system, UI build, redesign, responsive, motion, visual review, accessibility, performance, browser testing and code review.",
+  "author": { "name": "Tevra" },
+  "license": "MIT"
+}

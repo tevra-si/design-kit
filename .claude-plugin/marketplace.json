@@ -1,0 +1,14 @@
+{
+  "name": "tevra",
+  "owner": {
+    "name": "Tevra"
+  },
+  "plugins": [
+    {
+      "name": "tevra",
+      "source": "./",
+      "description": "Design research, UI building, accessibility, visual review and performance QA skills."
+    }
+  ],
+  "description": "Tevra design and frontend QA skills for Claude Code."
+}

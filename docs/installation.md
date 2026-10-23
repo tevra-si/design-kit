@@ -18,6 +18,15 @@ tevra-design help
 
 No registry publication is assumed. The package includes compiled engines, nine skills, focused references, schemas and adapter documentation. Runnable examples are in the full repository ZIP.
 
+## Claude Code plugin (recommended for Claude Code)
+
+```
+/plugin marketplace add tevra-si/design-kit
+/plugin install tevra@tevra
+```
+
+Skills are namespaced as `/tevra:<skill>`, which avoids conflicts with existing project skills. The `claude` installer target below copies skills into `.claude/skills/` unnamespaced and refuses to overwrite a same-named skill.
+
 ## Agent adapters
 
 | Agent | Project destination | Discovery/invocation |

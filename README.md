@@ -21,6 +21,15 @@ A set of **12 Agent Skills**, a TypeScript CLI and local QA tools for Codex, Cla
 
 Each skill has a SKILL.md, contract, workflow, references, validation, error handling and examples. Detailed instructions load only when needed. Registry version 1 supports extensions and deterministic capability selection by priority/dependency/conflict.
 
+## Claude Code plugin
+
+```
+/plugin marketplace add tevra-si/design-kit
+/plugin install tevra@tevra
+```
+
+Skills are then invoked with the plugin namespace, for example `/tevra:ui-builder` or `/tevra:design-system`, so they never collide with project skills of the same name. Other agents use the installer below.
+
 ## Install and use
 
 Requires Node as specified by `engines` in package.json, pnpm 11 and a browser for render checks.
