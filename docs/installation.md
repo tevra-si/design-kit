@@ -16,7 +16,7 @@ npm install --global /tmp/tevra-design-kit.tgz
 tevra-design help
 ```
 
-No registry publication is assumed. The package includes compiled engines, nine skills, focused references, schemas and adapter documentation. Runnable examples are in the full repository ZIP.
+No registry publication is assumed. The package includes compiled engines, twelve skills, focused references, schemas and adapter documentation. Runnable examples are in the full repository ZIP.
 
 ## Claude Code plugin (recommended for Claude Code)
 
