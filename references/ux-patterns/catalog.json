@@ -1,0 +1,221 @@
+[
+  {
+    "id": "upstream-active-navigation",
+    "category": "ux",
+    "tags": [
+      "navigation",
+      "active",
+      "current",
+      "điều hướng"
+    ],
+    "recommendation": "Indicate the current location beyond color alone.",
+    "source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/src/ui-ux-pro-max/data/ux-guidelines.csv",
+    "confidence": "reported",
+    "license": "MIT"
+  },
+  {
+    "id": "upstream-reduced-motion",
+    "category": "motion",
+    "tags": [
+      "animation",
+      "motion",
+      "reduced",
+      "chuyển động"
+    ],
+    "recommendation": "Respect reduced-motion preferences while retaining feedback.",
+    "source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/src/ui-ux-pro-max/data/ux-guidelines.csv",
+    "confidence": "reported",
+    "license": "MIT"
+  },
+  {
+    "id": "upstream-loading-feedback",
+    "category": "ux",
+    "tags": [
+      "loading",
+      "async",
+      "feedback",
+      "đang tải"
+    ],
+    "recommendation": "Show progress feedback while work is pending.",
+    "source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/src/ui-ux-pro-max/data/ux-guidelines.csv",
+    "confidence": "reported",
+    "license": "MIT"
+  },
+  {
+    "id": "form-recovery",
+    "category": "ux",
+    "tags": [
+      "form",
+      "error",
+      "validation",
+      "mobile",
+      "biểu mẫu",
+      "lỗi"
+    ],
+    "recommendation": "Keep entered values, associate errors with fields, and focus a meaningful summary after failed submission.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "commerce-choice",
+    "category": "product",
+    "tags": [
+      "commerce",
+      "pricing",
+      "card",
+      "checkout",
+      "thanh toán"
+    ],
+    "recommendation": "Present comparable plan terms and a clear purchase action while preserving currency and selected identifiers.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "dashboard-decisions",
+    "category": "product",
+    "tags": [
+      "dashboard",
+      "analytics",
+      "chart",
+      "table",
+      "bảng"
+    ],
+    "recommendation": "Prioritize the decision users make from the data; provide an accessible tabular alternative to essential charts.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "collaboration-status",
+    "category": "product",
+    "tags": [
+      "collaboration",
+      "editor",
+      "save",
+      "conflict"
+    ],
+    "recommendation": "Distinguish saved, pending and conflicted changes and provide recovery without discarding work.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "editorial-reading",
+    "category": "typography",
+    "tags": [
+      "content",
+      "reading",
+      "serif",
+      "editorial",
+      "font"
+    ],
+    "recommendation": "Use a readable body face with deliberate measure and hierarchy; add a characterful heading face only when it serves the brand.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "interface-type",
+    "category": "typography",
+    "tags": [
+      "dashboard",
+      "sans",
+      "typography",
+      "numbers",
+      "font"
+    ],
+    "recommendation": "Prefer legible UI type and tabular numerals for comparison; validate Vietnamese glyphs and text scaling.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "semantic-color",
+    "category": "color",
+    "tags": [
+      "palette",
+      "light",
+      "dark",
+      "contrast",
+      "color",
+      "màu"
+    ],
+    "recommendation": "Assign semantic text, surface, focus and danger roles before choosing accent colors; test actual contrast pairs in both themes.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "brand-expression",
+    "category": "color",
+    "tags": [
+      "brand",
+      "warm",
+      "professional",
+      "palette"
+    ],
+    "recommendation": "Keep established brand roles and spend the accent on meaningful actions rather than unrelated decoration.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "responsive-comparison",
+    "category": "layout",
+    "tags": [
+      "responsive",
+      "mobile",
+      "table",
+      "overflow",
+      "di động"
+    ],
+    "recommendation": "Preserve meaningful table comparison with intentional scrolling and a visible affordance; do not clip columns to hide overflow.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "dense-workspace",
+    "category": "layout",
+    "tags": [
+      "density",
+      "dashboard",
+      "spacing",
+      "grid"
+    ],
+    "recommendation": "Group by task and frequency, preserve keyboard order and keep important actions readable at narrow widths.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "health-sensitive",
+    "category": "industry",
+    "tags": [
+      "health",
+      "insurance",
+      "medical",
+      "bảo hiểm"
+    ],
+    "recommendation": "Use understandable language and confirmation for consequential choices; domain accuracy needs an authoritative subject-matter source.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  },
+  {
+    "id": "financial-status",
+    "category": "industry",
+    "tags": [
+      "finance",
+      "bank",
+      "money",
+      "currency"
+    ],
+    "recommendation": "Preserve formatting, transaction state and error recovery; never imply a transfer completed before confirmation.",
+    "source": "Tevra original",
+    "confidence": "inferred",
+    "license": "MIT"
+  }
+]

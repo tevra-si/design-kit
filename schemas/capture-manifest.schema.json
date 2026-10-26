@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "kind": {
+      "enum": [
+        "baseline",
+        "current"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "minLength": 1,
+      "format": "date-time"
+    },
+    "configHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contextRevision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "browserVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "route": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "viewport": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "width": {
+                "type": "integer",
+                "minimum": 240,
+                "maximum": 7680
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 240,
+                "maximum": 4320
+              }
+            },
+            "required": [
+              "name",
+              "width",
+              "height"
+            ]
+          },
+          "file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "masks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "overflow": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "smallTargets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "axeViolations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "impact": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "targets": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 0
+                },
+                "help": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "impact",
+                "targets",
+                "help"
+              ]
+            },
+            "minItems": 0
+          },
+          "incompleteRules": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "pageErrors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0
+          },
+          "imageHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "consoleErrors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "networkErrors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "assertions": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "route",
+          "state",
+          "viewport",
+          "file",
+          "masks",
+          "overflow",
+          "smallTargets",
+          "axeViolations",
+          "incompleteRules",
+          "pageErrors",
+          "imageHash"
+        ]
+      },
+      "minItems": 1
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "version",
+    "kind",
+    "createdAt",
+    "configHash",
+    "contextRevision",
+    "browserVersion",
+    "entries",
+    "runId"
+  ]
+}

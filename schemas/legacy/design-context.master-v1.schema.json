@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "project",
+    "design",
+    "tokens",
+    "constraints",
+    "decisions"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.0"
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "framework": {
+          "enum": [
+            "react",
+            "nextjs",
+            "sveltekit",
+            "vue",
+            "react-native",
+            "expo",
+            "html",
+            "unknown"
+          ]
+        },
+        "styling": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "framework",
+        "styling"
+      ]
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "motionIntensity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "visualDensity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "theme": {
+          "enum": [
+            "light",
+            "dark",
+            "system"
+          ]
+        },
+        "brandPersonality": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "variance",
+        "motionIntensity",
+        "visualDensity",
+        "theme",
+        "brandPersonality"
+      ]
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "colors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "typography": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "radii": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "shadows": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "motion": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "colors",
+        "typography",
+        "spacing",
+        "radii",
+        "shadows"
+      ]
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preserveBrand": {
+          "type": "boolean"
+        },
+        "preserveFunctionality": {
+          "type": "boolean"
+        },
+        "accessibilityTarget": {
+          "const": "WCAG_2_2_AA"
+        }
+      },
+      "required": [
+        "preserveBrand",
+        "preserveFunctionality",
+        "accessibilityTarget"
+      ]
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

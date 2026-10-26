@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": {
+    "name": "Harbor Tasks",
+    "productType": "Personal task planning web app",
+    "goal": "Help a busy person capture and complete today's important tasks.",
+    "audience": ["People coordinating work and personal tasks across a busy day"],
+    "evidence": [
+      { "claim": "The main action is adding a task.", "source": "Example product brief", "confidence": "reported" },
+      { "claim": "A compact daily view should reduce scanning effort.", "source": "Design hypothesis", "confidence": "inferred" }
+    ]
+  },
+  "experience": {
+    "platform": "web",
+    "primaryFlow": ["Open Today", "Add a task", "Mark it complete"],
+    "states": ["loading", "empty", "error", "success", "disabled"],
+    "accessibilityTarget": "Keyboard operable; visible focus; clear labels; verify contrast against WCAG 2.2 AA targets."
+  },
+  "direction": {
+    "concept": "A calm, editorial daily workspace with a clear task-first hierarchy.",
+    "principles": ["Make today's next action obvious", "Keep secondary planning tools visually quiet", "Use color to communicate state"],
+    "references": [],
+    "avoid": ["Decorative gradients behind task content", "Tiny low-contrast metadata", "Dashboard cards without a user task"]
+  },
+  "tokens": {
+    "color": { "canvas": "#F7F6F2", "surface": "#FFFFFF", "ink": "#242722", "muted": "#656B63", "accent": "#376B59", "danger": "#A33D35" },
+    "typography": { "body": "System sans-serif, 16px minimum", "display": "Project heading token or restrained serif" },
+    "spacing": { "base": "4px", "section": "24px", "page": "clamp(16px, 4vw, 40px)" },
+    "shape": { "control": "8px radius", "card": "12px radius" },
+    "motion": { "duration": "160ms", "reducedMotion": "Remove nonessential transitions" }
+  },
+  "qualityBar": ["Primary task can be added and completed with keyboard", "Empty and error states explain a useful next step", "Daily hierarchy remains clear on narrow screens"],
+  "constraints": ["No external image assets required", "Respect existing app stack and routing"],
+  "decisions": ["Use a single-column task list as the primary surface", "Reserve accent color for primary action and completion state"]
+}

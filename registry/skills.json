@@ -1,0 +1,764 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "id": "tevra.design-research",
+      "name": "design-research",
+      "description": "Research product intent, UX patterns, information architecture, typography and color candidates using project evidence and local searchable guidance before designing or redesigning an interface. Use when a UI brief, user need, product category or current-screen problem is unclear and needs evidence before design or redesign.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ux.research"
+      ],
+      "activation": {
+        "intents": [
+          "research"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "design-research-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/design-research/SKILL.md"
+    },
+    {
+      "id": "tevra.design-direction",
+      "name": "design-direction",
+      "description": "Choose and document a distinctive, implementable visual direction from a brief, research or screenshot while preserving the active project design system. Use before substantial new UI or a redesign, or when turning a screenshot or brief into a visual direction.",
+      "version": "1.0.0",
+      "capabilities": [
+        "visual.direction"
+      ],
+      "activation": {
+        "intents": [
+          "direct"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "design-direction-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/design-direction/SKILL.md"
+    },
+    {
+      "id": "tevra.design-system",
+      "name": "design-system",
+      "description": "Generate, extract or extend layered design tokens and documented component variants, reusing existing project systems and exporting portable CSS variables or Tailwind CSS adapters. Use when creating, extracting or extending tokens, themes, dark mode or component variants, or exporting them to CSS or Tailwind.",
+      "version": "1.0.0",
+      "capabilities": [
+        "design.tokens"
+      ],
+      "activation": {
+        "intents": [
+          "tokens"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "design-system-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/design-system/SKILL.md"
+    },
+    {
+      "id": "tevra.ui-builder",
+      "name": "ui-builder",
+      "description": "Implement functional React, Next.js, SvelteKit, Vue or React Native/Expo interfaces using approved project components and tokens, including real state handling and accessible interactions. Use when building or changing a real screen, component, route or form against an approved direction or existing conventions.",
+      "version": "1.0.0",
+      "capabilities": [
+        "frontend.implementation"
+      ],
+      "activation": {
+        "intents": [
+          "build-ui"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "ui-builder-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "inspiration",
+        "references": [
+          "vercel-agent-skills",
+          "taste-skill"
+        ]
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/ui-builder/SKILL.md"
+    },
+    {
+      "id": "tevra.ui-redesign",
+      "name": "ui-redesign",
+      "description": "Audit and improve an existing component or screen while preserving behavior, product identity and scoped public contracts, with conservative, balanced or transformative modes. Use when asked to improve, restyle, polish or fix the look of an existing screen or component without breaking its behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ui.redesign"
+      ],
+      "activation": {
+        "intents": [
+          "redesign"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "ui-redesign-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/ui-redesign/SKILL.md"
+    },
+    {
+      "id": "tevra.responsive-design",
+      "name": "responsive-design",
+      "description": "Adapt layouts, navigation, typography and interactions across configurable viewports, containers, orientation and safe areas, detecting overflow and preserving usability. Use for mobile/tablet layout bugs, horizontal overflow, breakpoints, container queries, safe areas or navigation that breaks at some widths.",
+      "version": "1.0.0",
+      "capabilities": [
+        "responsive.design"
+      ],
+      "activation": {
+        "intents": [
+          "responsive"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "responsive-design-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/responsive-design/SKILL.md"
+    },
+    {
+      "id": "tevra.interaction-motion",
+      "name": "interaction-motion",
+      "description": "Design and implement purposeful hover, press, loading, transition, gesture and spring feedback with accessible reduced-motion alternatives and minimal dependencies. Use when adding or fixing hover/press feedback, loading or success transitions, animations, gestures or reduced-motion behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "interaction.motion"
+      ],
+      "activation": {
+        "intents": [
+          "motion"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "interaction-motion-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 5,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/interaction-motion/SKILL.md"
+    },
+    {
+      "id": "tevra.visual-review",
+      "name": "visual-review",
+      "description": "Review real rendered web interfaces using Playwright screenshots, baseline/diff evidence, overflow checks and an evidence-based rubric, with bounded targeted refinement. Use after a rendered UI change, or when asked to compare screenshots, approve baselines or score visual quality.",
+      "version": "1.0.0",
+      "capabilities": [
+        "visual.regression"
+      ],
+      "activation": {
+        "intents": [
+          "visual-review"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "visual-review-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": [
+          "playwright"
+        ]
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 10,
+        "contextTokens": 1500
+      },
+      "requiredTools": [
+        "browser"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/visual-review/SKILL.md"
+    },
+    {
+      "id": "tevra.accessibility-qa",
+      "name": "accessibility-qa",
+      "description": "Run axe-based WCAG 2.2 AA-oriented web checks and inspect keyboard, focus, names, labels, contrast, targets and reduced motion while recording manual and native verification limits. Use when asked to check accessibility, WCAG, a11y, keyboard or focus behavior, screen-reader labels or contrast.",
+      "version": "1.0.0",
+      "capabilities": [
+        "accessibility"
+      ],
+      "activation": {
+        "intents": [
+          "accessibility"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "accessibility-qa-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 10,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/accessibility-qa/SKILL.md"
+    },
+    {
+      "id": "tevra.performance-qa",
+      "name": "performance-qa",
+      "description": "Measure loading and rendering performance when asked to audit speed, Core Web Vitals, or a performance regression. Use when a page feels slow or when asked about Lighthouse, LCP, CLS, TBT or a performance regression.",
+      "version": "1.0.0",
+      "capabilities": [
+        "performance"
+      ],
+      "activation": {
+        "intents": [
+          "performance"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "performance-qa-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": [
+          "web-quality-skills"
+        ]
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 10,
+        "contextTokens": 1500
+      },
+      "requiredTools": [
+        "browser"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/performance-qa/SKILL.md"
+    },
+    {
+      "id": "tevra.browser-testing",
+      "name": "browser-testing",
+      "description": "Test real frontend user interactions, keyboard flows, forms, dialogs or regressions with Playwright. Use when asked for e2e or browser tests, or to verify a UI flow actually works in a real browser.",
+      "version": "1.0.0",
+      "capabilities": [
+        "browser.testing"
+      ],
+      "activation": {
+        "intents": [
+          "browser-test"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "browser-testing-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": [
+          "playwright"
+        ]
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 10,
+        "contextTokens": 1500
+      },
+      "requiredTools": [
+        "browser"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/browser-testing/SKILL.md"
+    },
+    {
+      "id": "tevra.frontend-review",
+      "name": "frontend-review",
+      "description": "Review frontend source for framework correctness, component composition, state ownership, type safety, security or maintainability. Use when asked to review frontend code or a frontend diff before merge.",
+      "version": "1.0.0",
+      "capabilities": [
+        "frontend.review",
+        "component.architecture"
+      ],
+      "activation": {
+        "intents": [
+          "source-review"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "frontend-review-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": [
+          "vercel-agent-skills"
+        ]
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 10,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/frontend-review/SKILL.md"
+    }
+  ]
+}

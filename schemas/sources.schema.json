@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "sources"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "repository",
+          "revision",
+          "inspectedRef",
+          "inspectedAt",
+          "declaredLicense",
+          "revisionStatus",
+          "license",
+          "licenseStatus",
+          "copyright",
+          "reuse",
+          "inspectedPaths",
+          "evidence",
+          "excludedAssets",
+          "limitations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "repository": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "inspectedRef": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inspectedAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "declaredLicense": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revisionStatus": {
+            "enum": [
+              "content-verified",
+              "discovered-content-unavailable"
+            ]
+          },
+          "license": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "licenseStatus": {
+            "enum": [
+              "metadata-only",
+              "root-text-verified-on-main"
+            ]
+          },
+          "copyright": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reuse": {
+            "enum": [
+              "inspiration",
+              "adapted",
+              "dependency",
+              "vendored",
+              "integration"
+            ]
+          },
+          "inspectedPaths": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "excludedAssets": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

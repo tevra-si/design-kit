@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "taste-skill",
+      "repository": "https://github.com/Leonxlnx/taste-skill",
+      "revision": "98565e65bc3274ddf6eb0838734341714057178b",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "98565e65bc3274ddf6eb0838734341714057178b",
+      "inspectedAt": "2026-10-23",
+      "license": "MIT",
+      "licenseStatus": "root-text-verified-on-main",
+      "declaredLicense": "MIT",
+      "copyright": "Copyright (c) 2026 Leonxlnx",
+      "reuse": "inspiration",
+      "inspectedPaths": [
+        "skills/taste-skill/SKILL.md",
+        "LICENSE"
+      ],
+      "evidence": [
+        "https://github.com/Leonxlnx/taste-skill/commits/main/",
+        "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/LICENSE"
+      ],
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "limitations": [
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored."
+      ]
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "revision": "0720614e6e4e2c190f68ff4ab0a71faa0fa70b4a",
+      "revisionStatus": "discovered-content-unavailable",
+      "inspectedRef": "main",
+      "inspectedAt": "2026-10-23",
+      "license": "MIT",
+      "licenseStatus": "root-text-verified-on-main",
+      "declaredLicense": "MIT",
+      "copyright": "Copyright (c) 2024 Next Level Builder",
+      "reuse": "adapted",
+      "inspectedPaths": [
+        "src/ui-ux-pro-max/scripts/core.py",
+        "LICENSE"
+      ],
+      "evidence": [
+        "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/commits/main/",
+        "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/main/LICENSE"
+      ],
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "limitations": [
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
+        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+      ]
+    },
+    {
+      "id": "vercel-agent-skills",
+      "repository": "https://github.com/vercel-labs/agent-skills",
+      "revision": "050e24cd7b2d54cef2e9f2f6a39da152dd70fbb5",
+      "revisionStatus": "discovered-content-unavailable",
+      "inspectedRef": "main",
+      "inspectedAt": "2026-10-23",
+      "license": null,
+      "licenseStatus": "metadata-only",
+      "declaredLicense": "MIT",
+      "copyright": null,
+      "reuse": "inspiration",
+      "inspectedPaths": [
+        "skills/react-best-practices/SKILL.md",
+        "LICENSE"
+      ],
+      "evidence": [
+        "https://github.com/vercel-labs/agent-skills/commits/main/",
+        "https://raw.githubusercontent.com/vercel-labs/agent-skills/main/skills/react-best-practices/SKILL.md"
+      ],
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "limitations": [
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
+        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+      ]
+    },
+    {
+      "id": "web-quality-skills",
+      "repository": "https://github.com/addyosmani/web-quality-skills",
+      "revision": "c3cd7e0443125c55237d50105cdc8454e9e8f83d",
+      "revisionStatus": "discovered-content-unavailable",
+      "inspectedRef": "main",
+      "inspectedAt": "2026-10-23",
+      "license": "MIT",
+      "licenseStatus": "root-text-verified-on-main",
+      "declaredLicense": "MIT",
+      "copyright": "Copyright (c) 2026 Addy Osmani",
+      "reuse": "inspiration",
+      "inspectedPaths": [
+        "skills/performance/SKILL.md",
+        "LICENSE"
+      ],
+      "evidence": [
+        "https://github.com/addyosmani/web-quality-skills/commits/main/",
+        "https://raw.githubusercontent.com/addyosmani/web-quality-skills/main/LICENSE"
+      ],
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "limitations": [
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
+        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+      ]
+    },
+    {
+      "id": "playwright",
+      "repository": "https://github.com/microsoft/playwright",
+      "revision": "14c2dcf1ec955532aa861ecd039b23b9acc53a97",
+      "revisionStatus": "discovered-content-unavailable",
+      "inspectedRef": "main",
+      "inspectedAt": "2026-10-23",
+      "license": "Apache-2.0",
+      "licenseStatus": "root-text-verified-on-main",
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (c) Microsoft Corporation",
+      "reuse": "dependency",
+      "inspectedPaths": [
+        "packages/playwright/package.json",
+        "LICENSE"
+      ],
+      "evidence": [
+        "https://github.com/microsoft/playwright/commits/main/",
+        "https://raw.githubusercontent.com/microsoft/playwright/main/LICENSE"
+      ],
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "limitations": [
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
+        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+node_modules/
+dist/
+.pnpm-store/
+.tevra/
+.next/
+.svelte-kit/
+examples/*/out/
+examples/*/build/
+*.tsbuildinfo
+design-kit.zip
+node_modules
+.codegraph/
+.claude/
+.cursor/

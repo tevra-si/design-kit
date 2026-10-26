@@ -1,0 +1,58 @@
+{
+  "name": "tevra-design-kit",
+  "version": "1.0.0",
+  "description": "Portable design agent skills and evidence-based local quality tools",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "tevra-design": "dist/packages/cli/src/index.js"
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "packageManager": "pnpm@11.1.3",
+  "files": [
+    "dist/packages",
+    "SKILL.md",
+    "skills",
+    "references",
+    "schemas",
+    "adapters",
+    "templates",
+    "rubrics",
+    "LICENSE",
+    "PROVENANCE.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs",
+    "registry"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test tests/unit/*.test.ts tests/integration/*.test.ts",
+    "test:e2e": "pnpm build && node --test dist/tests/e2e/*.test.js",
+    "test:legacy": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "test:structure": "node --import tsx --test tests/structure/*.test.ts",
+    "skills:check": "node --import tsx packages/cli/src/index.ts skills check",
+    "tevra-design": "node dist/packages/cli/src/index.js",
+    "prepack": "pnpm build",
+    "test:examples": "node --test tests/examples/*.test.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "axe-core": "4.11.0",
+    "pixelmatch": "8.0.0",
+    "playwright": "1.63.0",
+    "pngjs": "7.0.0",
+    "yaml": "2.8.1",
+    "lighthouse": "13.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "@types/pngjs": "6.0.5",
+    "@types/jsdom": "^27.0.0",
+    "jsdom": "30.1.2",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,3 @@
+# Focused implementation guide
+
+axe tags include wcag2a, wcag2aa, wcag21a, wcag21aa and wcag22aa. Some criteria need human judgment or assistive technology. Do not label a page WCAG compliant from an automated report. Touch measurements, focus geometry and overflow are heuristic signals. Contrast failures require actual foreground/background evidence; overlays/gradients may need manual evaluation. Keep error text associated with fields, preserve entered values and announce results without moving focus unnecessarily. Include reading order, meaningful alternatives and understandable recovery in manual review.

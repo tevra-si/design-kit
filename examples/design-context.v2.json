@@ -1,0 +1,103 @@
+{
+  "version": "2.0",
+  "revision": 0,
+  "owner": "example-owner",
+  "project": {
+    "name": "Tevra task workspace",
+    "framework": "nextjs",
+    "styling": "css"
+  },
+  "design": {
+    "variance": 5,
+    "motionIntensity": 3,
+    "visualDensity": 5,
+    "theme": "system",
+    "brandPersonality": [
+      "clear",
+      "calm",
+      "practical"
+    ]
+  },
+  "tokens": {
+    "primitive": {
+      "color.brand": "#175a44",
+      "color.ink": "#17231e",
+      "color.paper": "#fbfcf9",
+      "color.white": "#ffffff",
+      "space.1": "0.25rem",
+      "space.2": "0.5rem",
+      "space.3": "0.75rem",
+      "space.4": "1rem",
+      "space.6": "1.5rem",
+      "space.8": "2rem",
+      "radius.control": "0.5rem",
+      "type.body": "1rem",
+      "type.title": "clamp(1.75rem, 3vw, 2.75rem)",
+      "motion.feedback": "160ms",
+      "motion.enter": "240ms",
+      "motion.ease": "cubic-bezier(0.2, 0, 0, 1)",
+      "shadow.panel": "0 2px 12px rgb(0 0 0 / 0.08)"
+    },
+    "semantic": {
+      "color.accent": "{primitive.color.brand}",
+      "color.on-accent": "#ffffff",
+      "color.text": "{primitive.color.ink}",
+      "color.canvas": "{primitive.color.paper}",
+      "color.surface": "{primitive.color.white}",
+      "color.focus": "#145bb5",
+      "color.danger": "#b42318",
+      "type.body": "{primitive.type.body}",
+      "type.heading": "{primitive.type.title}"
+    },
+    "component": {
+      "button.radius": "{primitive.radius.control}",
+      "button.padding": "{primitive.space.3}",
+      "button.primary.background": "{semantic.color.accent}",
+      "button.primary.text": "{semantic.color.on-accent}",
+      "button.disabled.opacity": "0.6",
+      "panel.shadow": "{primitive.shadow.panel}"
+    },
+    "themes": {
+      "light": {
+        "color.text": "#17231e",
+        "color.canvas": "#fbfcf9",
+        "color.surface": "#ffffff",
+        "color.accent": "#175a44",
+        "color.on-accent": "#ffffff"
+      },
+      "dark": {
+        "color.text": "#e8f0eb",
+        "color.canvas": "#111a16",
+        "color.surface": "#1b2922",
+        "color.accent": "#88d4af",
+        "color.on-accent": "#111a16",
+        "color.focus": "#9fc6ff",
+        "color.danger": "#ffb4ab"
+      }
+    },
+    "responsive": {
+      "breakpoint.tablet": "48rem",
+      "breakpoint.desktop": "80rem",
+      "content.max": "76rem",
+      "type.title": "clamp(1.75rem, 3vw, 2.75rem)"
+    }
+  },
+  "constraints": {
+    "preserveBrand": true,
+    "preserveFunctionality": true,
+    "accessibilityTarget": "WCAG_2_2_AA",
+    "approvedScope": []
+  },
+  "decisions": [
+    {
+      "id": "direction",
+      "description": "Prioritize task clarity and existing behavior; this example direction is not an approval for another project.",
+      "approved": false,
+      "owner": "example-owner"
+    }
+  ],
+  "assumptions": [
+    "Inspect the existing design system before proposing tokens."
+  ],
+  "evidence": []
+}
