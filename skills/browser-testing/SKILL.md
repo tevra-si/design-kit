@@ -3,7 +3,7 @@ name: browser-testing
 description: Test real frontend user interactions, keyboard flows, forms, dialogs or regressions with Playwright. Use when asked for e2e or browser tests, or to verify a UI flow actually works in a real browser.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 # Browser Testing
 

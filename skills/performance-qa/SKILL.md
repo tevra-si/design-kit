@@ -3,7 +3,7 @@ name: performance-qa
 description: Measure loading and rendering performance when asked to audit speed, Core Web Vitals, or a performance regression. Use when a page feels slow or when asked about Lighthouse, LCP, CLS, TBT or a performance regression.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 # Performance QA
 

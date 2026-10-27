@@ -2,16 +2,24 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 1.0.1 — 2026-10-27
 
-- Demo images rendered from a real run, plugin icon and `pnpm demo:assets`.
-- Published to npm as `tevra-design-kit`; `npx tevra-design-kit` runs the CLI.
-- Updated package description (takes effect with the next npm release).
-- Fixed: CI failed on a clean install because pnpm 11 blocks esbuild's build script unless it is allowed in `pnpm-workspace.yaml`.
-- GitHub Actions CI for typecheck, unit, integration, structure, example and end-to-end browser tests.
-- `claude plugin eval` suite comparing Claude with and without the plugin.
-- accessibility-qa and responsive-design descriptions rewritten around user intent; in the eval suite they now activate in 3 of 3 runs instead of 0 and 1.
-- Fixed: the example static server served `.mjs` files with the wrong MIME type, so the acceptance app did not start in a browser.
+### Added
+
+- README hero and quality-report images rendered from a real run, a social preview image and the plugin icon. `pnpm demo:assets` regenerates them.
+- GitHub Actions CI: typecheck, unit, integration, structure, example builds, end-to-end browser tests and an npm pack check.
+- `claude plugin eval` suite that compares Claude with and without the plugin, including a case where no skill should fire.
+- npm package metadata. The CLI is available as `tevra-design-kit` on npm (`npx tevra-design-kit`).
+
+### Changed
+
+- `accessibility-qa` and `responsive-design` descriptions are rewritten around the requests people actually make. In the eval suite they now activate in 3 of 3 runs, up from 0 and 1.
+- Package description updated.
+
+### Fixed
+
+- Clean installs failed under pnpm 11 because esbuild's build script was not allowed in `pnpm-workspace.yaml`.
+- The example static server served `.mjs` files with the wrong MIME type, so the acceptance app did not start in a browser.
 
 ## 1.0.0 — 2026-10-26
 

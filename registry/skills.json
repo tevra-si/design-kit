@@ -5,7 +5,7 @@
       "id": "tevra.design-research",
       "name": "design-research",
       "description": "Research product intent, UX patterns, information architecture, typography and color candidates using project evidence and local searchable guidance before designing or redesigning an interface. Use when a UI brief, user need, product category or current-screen problem is unclear and needs evidence before design or redesign.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "ux.research"
       ],
@@ -67,7 +67,7 @@
       "id": "tevra.design-direction",
       "name": "design-direction",
       "description": "Choose and document a distinctive, implementable visual direction from a brief, research or screenshot while preserving the active project design system. Use before substantial new UI or a redesign, or when turning a screenshot or brief into a visual direction.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "visual.direction"
       ],
@@ -129,7 +129,7 @@
       "id": "tevra.design-system",
       "name": "design-system",
       "description": "Generate, extract or extend layered design tokens and documented component variants, reusing existing project systems and exporting portable CSS variables or Tailwind CSS adapters. Use when creating, extracting or extending tokens, themes, dark mode or component variants, or exporting them to CSS or Tailwind.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "design.tokens"
       ],
@@ -191,7 +191,7 @@
       "id": "tevra.ui-builder",
       "name": "ui-builder",
       "description": "Implement functional React, Next.js, SvelteKit, Vue or React Native/Expo interfaces using approved project components and tokens, including real state handling and accessible interactions. Use when building or changing a real screen, component, route or form against an approved direction or existing conventions.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "frontend.implementation"
       ],
@@ -256,7 +256,7 @@
       "id": "tevra.ui-redesign",
       "name": "ui-redesign",
       "description": "Audit and improve an existing component or screen while preserving behavior, product identity and scoped public contracts, with conservative, balanced or transformative modes. Use when asked to improve, restyle, polish or fix the look of an existing screen or component without breaking its behavior.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "ui.redesign"
       ],
@@ -318,7 +318,7 @@
       "id": "tevra.responsive-design",
       "name": "responsive-design",
       "description": "Fix and verify layouts across phone, tablet and desktop widths, including horizontal scrolling, overflow, breakpoints, container queries, wide tables, navigation on small screens and safe areas. Use whenever a page scrolls sideways, breaks or looks wrong on mobile or at a specific width, or when making a layout responsive.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "responsive.design"
       ],
@@ -380,7 +380,7 @@
       "id": "tevra.interaction-motion",
       "name": "interaction-motion",
       "description": "Design and implement purposeful hover, press, loading, transition, gesture and spring feedback with accessible reduced-motion alternatives and minimal dependencies. Use when adding or fixing hover/press feedback, loading or success transitions, animations, gestures or reduced-motion behavior.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "interaction.motion"
       ],
@@ -442,7 +442,7 @@
       "id": "tevra.visual-review",
       "name": "visual-review",
       "description": "Review real rendered web interfaces using Playwright screenshots, baseline/diff evidence, overflow checks and an evidence-based rubric, with bounded targeted refinement. Use after a rendered UI change, or when asked to compare screenshots, approve baselines or score visual quality.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "visual.regression"
       ],
@@ -507,7 +507,7 @@
       "id": "tevra.accessibility-qa",
       "name": "accessibility-qa",
       "description": "Review and test web UI accessibility against WCAG 2.2 AA, covering code or rendered pages, forms, dialogs, keyboard and focus, labels, error messages, contrast and reduced motion, with axe where a browser is available. Use whenever someone asks whether a component, form or page is accessible or ready to ship, mentions a11y, WCAG, screen readers, keyboard navigation, focus, labels or color contrast, including when reviewing a code snippet.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "accessibility"
       ],
@@ -569,7 +569,7 @@
       "id": "tevra.performance-qa",
       "name": "performance-qa",
       "description": "Measure loading and rendering performance when asked to audit speed, Core Web Vitals, or a performance regression. Use when a page feels slow or when asked about Lighthouse, LCP, CLS, TBT or a performance regression.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "performance"
       ],
@@ -634,7 +634,7 @@
       "id": "tevra.browser-testing",
       "name": "browser-testing",
       "description": "Test real frontend user interactions, keyboard flows, forms, dialogs or regressions with Playwright. Use when asked for e2e or browser tests, or to verify a UI flow actually works in a real browser.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "browser.testing"
       ],
@@ -699,7 +699,7 @@
       "id": "tevra.frontend-review",
       "name": "frontend-review",
       "description": "Review frontend source for framework correctness, component composition, state ownership, type safety, security or maintainability. Use when asked to review frontend code or a frontend diff before merge.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "capabilities": [
         "frontend.review",
         "component.architecture"
