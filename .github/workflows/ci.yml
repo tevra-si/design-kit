@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm skills:check
+      - run: pnpm test:legacy
+      - run: pnpm test:examples
+
+      - name: Build example apps
+        run: |
+          pnpm --filter @tevra/example-nextjs build
+          pnpm --filter @tevra/example-sveltekit build
+          pnpm --filter @tevra/acceptance-app build
+      - run: pnpm test:structure
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: End-to-end browser tests
+        run: pnpm test:e2e
+
+      - name: Package dry run
+        run: npm pack --dry-run

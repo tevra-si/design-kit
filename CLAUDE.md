@@ -57,4 +57,5 @@ Boundaries that shape changes:
 - Tests are `node:test` in `tests/{unit,integration,structure,e2e,examples}`; Python tests are `tests/test_*.py`.
 - Write all repository content (docs, README, skills, comments, commit messages) in English. Vietnamese keywords in `packages/core/src/router.ts` and `references/ux-patterns/catalog.json` are intentional: they match Vietnamese user requests.
 - Do not commit internal material: progress notes, verification logs, audits, `.tevra/`, machine paths or personal data. Docs describe the product, not the development process.
-- Tevra content is MIT; borrowed concepts/records carry notices in `PROVENANCE.md` and `THIRD_PARTY_NOTICES.md`. Don't add fonts, images or large datasets.
+- Tevra content is MIT; borrowed concepts/records carry notices in `PROVENANCE.md` and `THIRD_PARTY_NOTICES.md`. Don't add third-party fonts, images or large datasets. Original images in `docs/assets/` and `.claude-plugin/icon.png` come from a real run via `pnpm demo:assets`; never hand-edit or mock them.
+- `evals/` holds `claude plugin eval` cases (with/without-plugin comparison); `evals/results/` is gitignored. CI is `.github/workflows/ci.yml`.

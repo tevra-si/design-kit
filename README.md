@@ -6,11 +6,14 @@ Tevra gives your coding agent twelve focused skills for researching, building, r
 
 Works with **Claude Code, Codex, Cursor, Kiro, Gemini CLI, GitHub Copilot, OpenCode and Windsurf**.
 
-![version 1.0.0](https://img.shields.io/badge/version-1.0.0-175a44) ![license MIT](https://img.shields.io/badge/license-MIT-blue) ![node](https://img.shields.io/badge/node-22%20%7C%2024%20%7C%2026-339933)
+[![CI](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml) ![version 1.0.0](https://img.shields.io/badge/version-1.0.0-175a44) ![license MIT](https://img.shields.io/badge/license-MIT-blue) ![node](https://img.shields.io/badge/node-22%20%7C%2024%20%7C%2026-339933)
+
+![A real Tevra run: approved baseline, the changed pricing section, the pixel diff and the checks that blocked delivery](docs/assets/hero.png)
 
 ---
 
 - [Why Tevra](#why-tevra)
+- [See it in action](#see-it-in-action)
 - [The skills](#the-skills)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -27,6 +30,24 @@ Works with **Claude Code, Codex, Cursor, Kiro, Gemini CLI, GitHub Copilot, OpenC
 - **Humans stay in charge.** Baselines, transformative redesigns and brand changes need an explicit, recorded approval.
 - **Local and private.** Everything lives in the project's `.tevra/` folder. Nothing is uploaded, committed or sent to a model by the CLI.
 - **Agent-agnostic.** Plain Markdown skills in the open Agent Skills format, installable into eight agents.
+
+## See it in action
+
+The image above is a real run on the bundled [acceptance app](examples/acceptance-app/README.md): a pricing redesign captured across 3 states × 4 viewports. Every behavior, axe, console, network, overflow and touch-target check passed, yet delivery is blocked because 3–7% of pixels changed and nobody has approved the new look. Reproduce it yourself:
+
+```sh
+pnpm --filter @tevra/acceptance-app build:before && pnpm --filter @tevra/acceptance-app start   # terminal 1
+tevra-design init --root examples/acceptance-app --yes --skip-skills                            # terminal 2
+tevra-design capture --root examples/acceptance-app --kind baseline --approve-baseline
+pnpm --filter @tevra/acceptance-app build                                                       # apply the redesign
+tevra-design capture --root examples/acceptance-app
+tevra-design compare --root examples/acceptance-app
+tevra-design report  --root examples/acceptance-app                                             # FAIL: visual-diff
+```
+
+Every finding links to its evidence in the HTML report:
+
+<img src="docs/assets/report.png" alt="Tevra HTML quality report listing passed checks and the failed visual diff with links to evidence" width="720">
 
 ## The skills
 
@@ -74,6 +95,16 @@ Open a **new** session (skills load at startup) and type `/tevra` to see them. S
 ### B. CLI and skills for any agent
 
 **1. Install the CLI**
+
+From npm:
+
+```sh
+npx tevra-design-kit help                    # run without installing
+npm install --global tevra-design-kit        # or install the `tevra-design` command
+npx playwright install chromium              # browser for screenshots and axe
+```
+
+Or from source:
 
 ```sh
 git clone git@github.com:tevra-si/design-kit.git
@@ -190,7 +221,8 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | | Update | Uninstall |
 | --- | --- | --- |
 | Plugin | `claude plugin marketplace update tevra` then `claude plugin update tevra@tevra` | `claude plugin uninstall tevra@tevra` and `claude plugin marketplace remove tevra` |
-| CLI | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
+| CLI from npm | `npm install --global tevra-design-kit@latest` | `npm uninstall --global tevra-design-kit` |
+| CLI from source | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
 | Project skills | Move the old Tevra skill folders aside, then `tevra-design skills install --agents <agent>` | Delete the Tevra skill folders and, if unwanted, `.tevra/` |
 
 ## Troubleshooting

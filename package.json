@@ -4,6 +4,30 @@
   "description": "Portable design agent skills and evidence-based local quality tools",
   "type": "module",
   "license": "MIT",
+  "author": "Tevra",
+  "homepage": "https://github.com/tevra-si/design-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tevra-si/design-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tevra-si/design-kit/issues"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "cursor",
+    "ai-agents",
+    "design-system",
+    "accessibility",
+    "axe",
+    "visual-regression",
+    "playwright",
+    "lighthouse",
+    "frontend",
+    "qa"
+  ],
   "bin": {
     "tevra-design": "dist/packages/cli/src/index.js"
   },
@@ -24,7 +48,8 @@
     "PROVENANCE.md",
     "THIRD_PARTY_NOTICES.md",
     "docs",
-    "registry"
+    "registry",
+    "!docs/assets"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -36,7 +61,8 @@
     "skills:check": "node --import tsx packages/cli/src/index.ts skills check",
     "tevra-design": "node dist/packages/cli/src/index.js",
     "prepack": "pnpm build",
-    "test:examples": "node --test tests/examples/*.test.mjs"
+    "test:examples": "node --test tests/examples/*.test.mjs",
+    "demo:assets": "node scripts/render-demo-assets.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0",
@@ -54,5 +80,8 @@
     "jsdom": "30.1.2",
     "tsx": "4.23.15",
     "typescript": "6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

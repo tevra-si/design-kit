@@ -1,6 +1,6 @@
 ---
 name: accessibility-qa
-description: Run axe-based WCAG 2.2 AA-oriented web checks and inspect keyboard, focus, names, labels, contrast, targets and reduced motion while recording manual and native verification limits. Use when asked to check accessibility, WCAG, a11y, keyboard or focus behavior, screen-reader labels or contrast.
+description: Review and test web UI accessibility against WCAG 2.2 AA, covering code or rendered pages, forms, dialogs, keyboard and focus, labels, error messages, contrast and reduced motion, with axe where a browser is available. Use whenever someone asks whether a component, form or page is accessible or ready to ship, mentions a11y, WCAG, screen readers, keyboard navigation, focus, labels or color contrast, including when reviewing a code snippet.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
 ---
@@ -9,7 +9,7 @@ compatibility: Compatible coding agent; Tevra CLI and local browser needed only 
 
 ## Activation criteria
 
-Run axe-based WCAG 2.2 AA-oriented web checks and inspect keyboard, focus, names, labels, contrast, targets and reduced motion while recording manual and native verification limits.
+Review and test web UI accessibility against WCAG 2.2 AA, covering code or rendered pages, forms, dialogs, keyboard and focus, labels, error messages, contrast and reduced motion, with axe where a browser is available. Use whenever someone asks whether a component, form or page is accessible or ready to ship, mentions a11y, WCAG, screen readers, keyboard navigation, focus, labels or color contrast, including when reviewing a code snippet.
 
 ## Inputs and outputs
 

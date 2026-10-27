@@ -29,6 +29,26 @@ pnpm --filter @tevra/example-sveltekit build
 pnpm --filter @tevra/acceptance-app build
 ```
 
+CI (`.github/workflows/ci.yml`) runs all of the above on every push and pull request.
+
+## Measuring skill impact
+
+`evals/` holds cases for `claude plugin eval`. Each run compares Claude with and without the plugin on the same prompt and reports the score delta.
+
+```sh
+claude plugin eval . --runs 3 --no-publish --max-cost-usd 5
+```
+
+Add a case when you change a skill's behavior: a realistic `prompt.md` and `graders/*.md` that describe observable outcomes. Results go to `evals/results/` (gitignored). Single runs are noisy; report deltas only from several runs.
+
+## Demo images
+
+`docs/assets/` and `.claude-plugin/icon.png` are rendered from a real run, never mocked. Reproduce the before/after run from the README ("See it in action"), then:
+
+```sh
+pnpm demo:assets
+```
+
 ## Editing skills
 
 - `skills/` is the only source of truth. `.claude/` and `.cursor/` in this repository are local installs and are gitignored; refresh them with `tevra-design skills install`.
@@ -48,7 +68,8 @@ pnpm --filter @tevra/acceptance-app build
 
 ## Before a release
 
-- Bump `version` in `package.json`, `.claude-plugin/plugin.json`, `registry/skills.json` and the skill frontmatter together, and add a [changelog](../CHANGELOG.md) entry.
+- Bump `version` in `package.json`, `packages/*/package.json`, `examples/*/package.json`, `.claude-plugin/plugin.json`, `registry/skills.json` and the skill frontmatter together, and add a [changelog](../CHANGELOG.md) entry.
+- Check the npm contents with `npm pack --dry-run`, then publish with `npm publish`.
 - Run every check above, plus `pnpm audit` and `pnpm licenses list`.
 - Install the plugin and each adapter in a fresh project and confirm the skills load.
 - Report any check you could not run as unverified, not as passing.

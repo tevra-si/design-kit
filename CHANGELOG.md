@@ -2,6 +2,15 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+- Demo images rendered from a real run, plugin icon and `pnpm demo:assets`.
+- npm package metadata; `npx tevra-design-kit` runs the CLI.
+- GitHub Actions CI for typecheck, unit, integration, structure, example and end-to-end browser tests.
+- `claude plugin eval` suite comparing Claude with and without the plugin.
+- accessibility-qa and responsive-design descriptions rewritten around user intent; in the eval suite they now activate in 3 of 3 runs instead of 0 and 1.
+- Fixed: the example static server served `.mjs` files with the wrong MIME type, so the acceptance app did not start in a browser.
+
 ## 1.0.0 — 2026-10-26
 
 First release.

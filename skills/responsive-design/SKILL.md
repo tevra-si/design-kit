@@ -1,6 +1,6 @@
 ---
 name: responsive-design
-description: Adapt layouts, navigation, typography and interactions across configurable viewports, containers, orientation and safe areas, detecting overflow and preserving usability. Use for mobile/tablet layout bugs, horizontal overflow, breakpoints, container queries, safe areas or navigation that breaks at some widths.
+description: Fix and verify layouts across phone, tablet and desktop widths, including horizontal scrolling, overflow, breakpoints, container queries, wide tables, navigation on small screens and safe areas. Use whenever a page scrolls sideways, breaks or looks wrong on mobile or at a specific width, or when making a layout responsive.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
 ---
@@ -9,7 +9,7 @@ compatibility: Compatible coding agent; Tevra CLI and local browser needed only 
 
 ## Activation criteria
 
-Adapt layouts, navigation, typography and interactions across configurable viewports, containers, orientation and safe areas, detecting overflow and preserving usability.
+Fix and verify layouts across phone, tablet and desktop widths, including horizontal scrolling, overflow, breakpoints, container queries, wide tables, navigation on small screens and safe areas. Use whenever a page scrolls sideways, breaks or looks wrong on mobile or at a specific width, or when making a layout responsive.
 
 ## Inputs and outputs
 

@@ -317,7 +317,7 @@
     {
       "id": "tevra.responsive-design",
       "name": "responsive-design",
-      "description": "Adapt layouts, navigation, typography and interactions across configurable viewports, containers, orientation and safe areas, detecting overflow and preserving usability. Use for mobile/tablet layout bugs, horizontal overflow, breakpoints, container queries, safe areas or navigation that breaks at some widths.",
+      "description": "Fix and verify layouts across phone, tablet and desktop widths, including horizontal scrolling, overflow, breakpoints, container queries, wide tables, navigation on small screens and safe areas. Use whenever a page scrolls sideways, breaks or looks wrong on mobile or at a specific width, or when making a layout responsive.",
       "version": "1.0.0",
       "capabilities": [
         "responsive.design"
@@ -506,7 +506,7 @@
     {
       "id": "tevra.accessibility-qa",
       "name": "accessibility-qa",
-      "description": "Run axe-based WCAG 2.2 AA-oriented web checks and inspect keyboard, focus, names, labels, contrast, targets and reduced motion while recording manual and native verification limits. Use when asked to check accessibility, WCAG, a11y, keyboard or focus behavior, screen-reader labels or contrast.",
+      "description": "Review and test web UI accessibility against WCAG 2.2 AA, covering code or rendered pages, forms, dialogs, keyboard and focus, labels, error messages, contrast and reduced motion, with axe where a browser is available. Use whenever someone asks whether a component, form or page is accessible or ready to ship, mentions a11y, WCAG, screen readers, keyboard navigation, focus, labels or color contrast, including when reviewing a code snippet.",
       "version": "1.0.0",
       "capabilities": [
         "accessibility"
