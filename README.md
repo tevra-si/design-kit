@@ -72,7 +72,6 @@ Agents pick skills automatically from your request. Bigger requests chain severa
 
 | Needed for | Requirement |
 | --- | --- |
-| Everything | Git and read access to `tevra-si/design-kit` |
 | CLI | Node `^22.22.2`, `^24.15.0` or `>=26`, and pnpm 11 |
 | Screenshots, axe, Lighthouse | A Chromium-based browser Playwright can launch |
 | Claude Code plugin | Claude Code with plugin support (`claude plugin --help` lists the commands) |
@@ -96,18 +95,8 @@ Open a **new** session (skills load at startup) and type `/tevra` to see them. S
 
 **1. Install the CLI**
 
-From npm:
-
 ```sh
-npx tevra-design-kit help                    # run without installing
-npm install --global tevra-design-kit        # or install the `tevra-design` command
-npx playwright install chromium              # browser for screenshots and axe
-```
-
-Or from source:
-
-```sh
-git clone git@github.com:tevra-si/design-kit.git
+git clone https://github.com/tevra-si/design-kit.git
 cd design-kit
 pnpm install
 pnpm build
@@ -221,8 +210,7 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | | Update | Uninstall |
 | --- | --- | --- |
 | Plugin | `claude plugin marketplace update tevra` then `claude plugin update tevra@tevra` | `claude plugin uninstall tevra@tevra` and `claude plugin marketplace remove tevra` |
-| CLI from npm | `npm install --global tevra-design-kit@latest` | `npm uninstall --global tevra-design-kit` |
-| CLI from source | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
+| CLI | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
 | Project skills | Move the old Tevra skill folders aside, then `tevra-design skills install --agents <agent>` | Delete the Tevra skill folders and, if unwanted, `.tevra/` |
 
 ## Troubleshooting
@@ -232,7 +220,6 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | A skill like `/ui-builder` does not appear | The skills are in another agent's folder, or the session started before the install. Use the plugin, or `--agents claude`, then open a new session |
 | `Installation conflict; preserve local file` | A skill with the same name already exists (for example `design-system`). Use the plugin, or move the existing folder aside |
 | `Marketplace file not found` | Pull the latest `main`; the repository root must contain `.claude-plugin/marketplace.json` |
-| `Permission denied` when cloning | Your Git identity cannot read `tevra-si/design-kit`. Use an SSH key or token for an account with access |
 | `Unknown agent` | Use one of `codex, claude, cursor, kiro, gemini, copilot, opencode, windsurf` |
 | `doctor` fails or the browser cannot launch | Run `pnpm exec playwright install chromium` in the design-kit clone. Some sandboxes block browsers or local servers; Tevra reports the error instead of faking results |
 | Screenshots show the sign-in page | The route needs a login; see [Configure a project](#configure-a-project) |

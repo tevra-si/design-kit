@@ -3,3 +3,5 @@ packages:
   - examples/*
 overrides:
   '@opentelemetry/api': 1.9.0
+allowBuilds:
+  esbuild: true
