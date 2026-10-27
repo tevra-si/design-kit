@@ -2,7 +2,7 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 1.1.0 — 2026-10-27
 
 ### Changed
 

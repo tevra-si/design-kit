@@ -1,6 +1,6 @@
 {
   "name": "@tevra/example-sveltekit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": { "build": "svelte-kit sync && vite build", "dev": "vite --host 127.0.0.1 --port 4174", "start": "node ../shared/serve.mjs build 4174", "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json" },

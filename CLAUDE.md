@@ -50,7 +50,7 @@ Boundaries that shape changes:
 
 - `skills/` is the source of truth; keep `registry/skills.json` names and descriptions in sync. Install targets per agent are `agentDirectories` in `packages/core/src/install.ts`; each has a note under `adapters/`. Local installs under `.claude/` and `.cursor/` are gitignored; refresh with `tevra-design skills install`.
 - Each skill folder is self-contained with its own references. Shared material lives in `references/`, `schemas/`, `templates/`, `rubrics/`.
-- Product version (currently 1.0.1) appears in `package.json`, `packages/*/package.json`, `examples/*/package.json`, `.claude-plugin/plugin.json`, `registry/skills.json` and skill frontmatter; bump them together and update `CHANGELOG.md`.
+- Product version (currently 1.1.0) appears in `package.json`, `packages/*/package.json`, `examples/*/package.json`, `.claude-plugin/plugin.json`, `registry/skills.json` and skill frontmatter; bump them together and update `CHANGELOG.md`.
 
 ## Conventions
 

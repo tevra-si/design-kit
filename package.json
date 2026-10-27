@@ -1,6 +1,6 @@
 {
   "name": "tevra-design-kit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Design and frontend QA skills for coding agents, with a CLI for screenshots, pixel diffs, axe and Lighthouse evidence",
   "type": "module",
   "license": "MIT",

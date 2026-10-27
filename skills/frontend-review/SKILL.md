@@ -3,7 +3,7 @@ name: frontend-review
 description: Review frontend source for framework correctness, component composition, state ownership, type safety, security or maintainability. Use when asked to review frontend code or a frontend diff before merge.
 license: MIT
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 # Frontend Review
 

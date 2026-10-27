@@ -6,7 +6,7 @@ Tevra gives your coding agent twelve focused skills for researching, building, r
 
 Works with **Claude Code, Codex, Cursor, Kiro, Gemini CLI, GitHub Copilot, OpenCode and Windsurf**.
 
-[![CI](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml) ![version 1.0.1](https://img.shields.io/badge/version-1.0.1-175a44) ![license MIT](https://img.shields.io/badge/license-MIT-blue) ![node](https://img.shields.io/badge/node-22%20%7C%2024%20%7C%2026-339933)
+[![CI](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/tevra-si/design-kit/actions/workflows/ci.yml) ![version 1.1.0](https://img.shields.io/badge/version-1.1.0-175a44) ![license MIT](https://img.shields.io/badge/license-MIT-blue) ![node](https://img.shields.io/badge/node-22%20%7C%2024%20%7C%2026-339933)
 
 ![A real Tevra run: approved baseline, the changed pricing section, the pixel diff and the checks that blocked delivery](docs/assets/hero.png)
 
