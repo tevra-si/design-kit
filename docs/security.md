@@ -27,6 +27,13 @@ Tevra treats everything it reads as data, never as instructions: external refere
 - Lighthouse may load every resource origin a page requests once `--allow-network` is given. Only audit apps whose third-party requests you have reviewed.
 - Automated browser checks do not certify screen-reader behavior, native apps or full WCAG conformance.
 
+## Dependencies
+
+- The published package has six runtime dependencies (Ajv, axe-core, pixelmatch, Playwright, pngjs, YAML) plus Lighthouse as an optional peer dependency, which keeps a default install small and free of Lighthouse's large transitive tree.
+- Versions are pinned exactly and `pnpm-lock.yaml` is committed, so builds are reproducible.
+- CI runs `pnpm audit --prod` on every change (informational) and Dependabot opens weekly update pull requests.
+- Lighthouse is only ever resolved from where Tevra itself is installed. Tevra never executes code from the `node_modules` of the project being audited.
+
 ## Before a release
 
 ```sh

@@ -28,6 +28,9 @@ jobs:
           python-version: '3.12'
 
       - run: pnpm install --frozen-lockfile
+      - name: Dependency audit (runtime, informational)
+        run: pnpm audit --prod
+        continue-on-error: true
       - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test

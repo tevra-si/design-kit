@@ -38,6 +38,7 @@ pnpm workspaces under `packages/*` and `examples/*`. Dependencies point one way:
 - `design-context`: versioned JSON Schema (Ajv) validation, explicit non-destructive migration to context format 2.0, revisions. Legacy schemas under `schemas/legacy/` are kept for migration. The context `version: '2.0'` is a data format, not the product version; do not change it.
 - `registry` owns skill metadata and deterministic capability ownership; `core/router.ts` maps requests to capabilities.
 - `quality-engine`: a failed required check or critical blocker prevents delivery regardless of score.
+- `performance-qa`: runs Lighthouse as a subprocess. `lighthouse` is an optional peer dependency (and a devDependency here) resolved only from Tevra's own install location; keep it out of `dependencies`.
 - `visual-testing`: Playwright capture, axe, overflow/touch-target heuristics, PNG diff. Baselines are approved explicitly and never overwritten by comparison.
 
 Boundaries that shape changes:

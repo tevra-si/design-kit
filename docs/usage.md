@@ -82,7 +82,7 @@ Comparison fails when the configuration, screenshot set, browser version or cont
 
 **Baselines are protected.** They are created only with `--approve-baseline` and never overwritten by `compare`. To replace one, archive the baseline folder yourself after review, then capture again.
 
-**Performance** runs Lighthouse in a separate browser. `--allow-network` is required because the page may load third-party resources; review those origins first. Results are lab metrics (LCP, CLS, TBT) and do not represent real-user data such as INP.
+**Performance** runs Lighthouse in a separate browser. Lighthouse is an optional dependency: install it next to Tevra first (`npm install --save-dev lighthouse`, or `npm install --global lighthouse`). It is already present in a source clone. `--allow-network` is required because the page may load third-party resources; review those origins first. Results are lab metrics (LCP, CLS, TBT) and do not represent real-user data such as INP.
 
 ## Adding your own evidence
 

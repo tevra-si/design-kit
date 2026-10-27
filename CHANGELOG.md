@@ -2,6 +2,17 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Changed
+
+- `lighthouse` is now an optional peer dependency instead of a runtime dependency. A default `npm install tevra-design-kit` pulls 12 packages instead of about 212 and reports no known vulnerabilities. `tevra-design test performance` stops with an install hint when Lighthouse is missing. Install it with `npm install --save-dev lighthouse` next to Tevra (or globally).
+- Updated `yaml` to 2.9.1, fixing a published advisory in the 2.8 series.
+
+### Added
+
+- Dependabot for npm and GitHub Actions, and an informational runtime `pnpm audit` step in CI.
+
 ## 1.0.1 — 2026-10-27
 
 ### Added

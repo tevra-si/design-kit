@@ -1,7 +1,6 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { createRequire } from 'node:module';
 import { access, mkdir, readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { chromium } from 'playwright';
@@ -11,6 +10,12 @@ import { redact, safePath, withLock, writeAtomic, writeJSON } from '../../filesy
 export interface PerformanceBudgets { lcpMs: number; cls: number; tbtMs: number }
 export interface PerformanceMetrics { lcpMs: number; cls: number; tbtMs: number }
 export const defaultBudgets: PerformanceBudgets = { lcpMs: 2500, cls: 0.1, tbtMs: 200 };
+const lighthouseMissing = 'Lighthouse is not installed. It is an optional dependency: run `npm install --save-dev lighthouse` next to tevra-design-kit (or `npm install --global lighthouse` for a global install) and retry';
+// Resolved only from where Tevra is installed, never from the audited project's node_modules.
+export function resolveLighthouseCli(from: string = import.meta.url): string {
+  try { return createRequire(from).resolve('lighthouse/cli/index.js'); }
+  catch (error) { if (error instanceof Error && 'code' in error && error.code === 'MODULE_NOT_FOUND') throw new Error(lighthouseMissing, { cause: error }); throw error; }
+}
 function record(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
 export function extractMetrics(input: unknown): PerformanceMetrics {
   if (!record(input) || !record(input.audits)) throw new Error('Invalid Lighthouse report: missing audits');
@@ -35,6 +40,7 @@ export async function auditPerformance(root: string, config: Config, revision: n
 }): Promise<{ metrics: PerformanceMetrics; checks: Check[]; report: string; html: string }> {
   if (!options.allowNetwork) throw new Error('Lighthouse loads the target and its resources; review the application and pass --allow-network explicitly');
   if (config.browser.executablePath && !options.allowCustomBrowser) throw new Error('Custom browser requires --allow-custom-browser');
+  const cli = resolveLighthouseCli();
   const budgets = options.budgets ?? defaultBudgets;
   for (const value of Object.values(budgets)) if (!Number.isFinite(value) || value < 0) throw new Error('Invalid performance budgets');
   const target = new URL(config.baseURL);
@@ -48,7 +54,6 @@ export async function auditPerformance(root: string, config: Config, revision: n
     const report = `${directory}/lighthouse.report.json`; const html = `${directory}/lighthouse.report.html`;
     await writeJSON(root, '.tevra/artifacts/performance/attempt.json', { status: 'running', id, contextRevision: revision });
     try {
-      const cli = resolve(dirname(fileURLToPath(import.meta.resolve('lighthouse'))), '../cli/index.js');
       await promisify(execFile)(process.execPath, [cli, target.href, '--only-categories=performance', '--output=json', '--output=html', `--output-path=${output}`, '--chrome-flags=--headless', '--quiet', '--enable-error-reporting=false'], {
         cwd: root, env: { ...process.env, CHROME_PATH: executable }, timeout: 120000, maxBuffer: 1024 * 1024, windowsHide: true
       });

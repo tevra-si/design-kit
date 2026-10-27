@@ -73,7 +73,8 @@ Agents pick skills automatically from your request. Bigger requests chain severa
 | Needed for | Requirement |
 | --- | --- |
 | CLI | Node `^22.22.2`, `^24.15.0` or `>=26`, and pnpm 11 |
-| Screenshots, axe, Lighthouse | A Chromium-based browser Playwright can launch |
+| Screenshots, axe | A Chromium-based browser Playwright can launch |
+| Lighthouse metrics (optional) | `lighthouse` installed next to Tevra, see [step 1](#b-cli-and-skills-for-any-agent) |
 | Claude Code plugin | Claude Code with plugin support (`claude plugin --help` lists the commands) |
 
 ## Installation
@@ -101,9 +102,12 @@ From npm:
 npx tevra-design-kit help                    # run without installing
 npm install --global tevra-design-kit        # or install the `tevra-design` command
 npx playwright install chromium              # browser for screenshots and axe
+npm install --global lighthouse              # optional, only for `test performance`
 ```
 
-Or from source:
+Lighthouse is optional so a default install stays small (about 12 packages). Install it next to Tevra, locally with `npm install --save-dev lighthouse` or globally as above.
+
+Or from source (Lighthouse is included):
 
 ```sh
 git clone https://github.com/tevra-si/design-kit.git
@@ -234,6 +238,7 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | `Unknown agent` | Use one of `codex, claude, cursor, kiro, gemini, copilot, opencode, windsurf` |
 | `doctor` fails or the browser cannot launch | Run `pnpm exec playwright install chromium` in the design-kit clone. Some sandboxes block browsers or local servers; Tevra reports the error instead of faking results |
 | Screenshots show the sign-in page | The route needs a login; see [Configure a project](#configure-a-project) |
+| `Lighthouse is not installed` | `test performance` needs the optional `lighthouse` package: `npm install --save-dev lighthouse` next to Tevra, or `npm install --global lighthouse` |
 | Capture refuses a URL | Add its origin to `permittedOrigins` |
 | `Mask matches no elements` | Every mask selector must exist on the page; fix or remove it |
 | `Write lock unavailable` | Another Tevra command is running, or one crashed. Remove the stale `.tevra/*.lock` file |

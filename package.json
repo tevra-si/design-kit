@@ -70,8 +70,7 @@
     "pixelmatch": "8.0.0",
     "playwright": "1.63.0",
     "pngjs": "7.0.0",
-    "yaml": "2.8.1",
-    "lighthouse": "13.0.3"
+    "yaml": "2.9.1"
   },
   "devDependencies": {
     "@types/node": "22.20.5",
@@ -79,7 +78,16 @@
     "@types/jsdom": "^27.0.0",
     "jsdom": "30.1.2",
     "tsx": "4.23.15",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "lighthouse": "13.0.3"
+  },
+  "peerDependencies": {
+    "lighthouse": ">=13.0.0 <14"
+  },
+  "peerDependenciesMeta": {
+    "lighthouse": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

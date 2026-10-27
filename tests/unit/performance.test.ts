@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { extractMetrics, performanceChecks, defaultBudgets, auditPerformance } from '../../packages/performance-qa/src/index.js';
+import { extractMetrics, performanceChecks, defaultBudgets, auditPerformance, resolveLighthouseCli } from '../../packages/performance-qa/src/index.js';
 import { defaultConfig } from '../../packages/core/src/config.js';
 import { htmlReport } from '../../packages/quality-engine/src/html.js';
 import { evaluateQuality } from '../../packages/quality-engine/src/index.js';
@@ -27,4 +27,9 @@ test('HTML report escapes untrusted text and links only local evidence', () => {
   assert.ok(!html.includes('<script>')); assert.ok(html.includes('&lt;script&gt;'));
   assert.ok(!html.includes('href="../../javascript')); assert.ok(!html.includes('href="../../../secret'));
   assert.ok(html.includes('src="../../.tevra/a.png"'));
+});
+
+test('missing Lighthouse gives an actionable install message and is resolved from the Tevra install', async () => {
+  assert.throws(() => resolveLighthouseCli('/nonexistent/tevra/package.json'), /optional dependency.*npm install --save-dev lighthouse/u);
+  assert.match(resolveLighthouseCli(), /lighthouse[\\/]cli[\\/]index\.js$/u);
 });

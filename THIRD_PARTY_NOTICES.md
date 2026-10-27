@@ -14,7 +14,7 @@ Taste Skill (MIT, Copyright (c) 2026 Leonxlnx) and Web Quality Skills (MIT, Copy
 | YAML | ISC |
 | Playwright | Apache-2.0 (its NOTICE credits Microsoft Corporation and Puppeteer-derived code) |
 | axe-core | MPL-2.0 |
-| Lighthouse | Apache-2.0 |
+| Lighthouse (optional peer dependency) | Apache-2.0 |
 | pngjs | MIT |
 | pixelmatch | ISC |
 
