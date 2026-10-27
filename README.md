@@ -95,6 +95,16 @@ Open a **new** session (skills load at startup) and type `/tevra` to see them. S
 
 **1. Install the CLI**
 
+From npm:
+
+```sh
+npx tevra-design-kit help                    # run without installing
+npm install --global tevra-design-kit        # or install the `tevra-design` command
+npx playwright install chromium              # browser for screenshots and axe
+```
+
+Or from source:
+
 ```sh
 git clone https://github.com/tevra-si/design-kit.git
 cd design-kit
@@ -210,7 +220,8 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | | Update | Uninstall |
 | --- | --- | --- |
 | Plugin | `claude plugin marketplace update tevra` then `claude plugin update tevra@tevra` | `claude plugin uninstall tevra@tevra` and `claude plugin marketplace remove tevra` |
-| CLI | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
+| CLI from npm | `npm install --global tevra-design-kit@latest` | `npm uninstall --global tevra-design-kit` |
+| CLI from source | `git pull && pnpm install && pnpm build` in your clone | `npm unlink -g tevra-design-kit` |
 | Project skills | Move the old Tevra skill folders aside, then `tevra-design skills install --agents <agent>` | Delete the Tevra skill folders and, if unwanted, `.tevra/` |
 
 ## Troubleshooting

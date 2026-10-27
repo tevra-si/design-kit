@@ -5,7 +5,8 @@ All notable changes to Tevra Design Kit are documented here. The project follows
 ## Unreleased
 
 - Demo images rendered from a real run, plugin icon and `pnpm demo:assets`.
-- npm package metadata, ready for the first npm release.
+- Published to npm as `tevra-design-kit`; `npx tevra-design-kit` runs the CLI.
+- Updated package description (takes effect with the next npm release).
 - Fixed: CI failed on a clean install because pnpm 11 blocks esbuild's build script unless it is allowed in `pnpm-workspace.yaml`.
 - GitHub Actions CI for typecheck, unit, integration, structure, example and end-to-end browser tests.
 - `claude plugin eval` suite comparing Claude with and without the plugin.
