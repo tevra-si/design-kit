@@ -79,7 +79,7 @@
     "jsdom": "30.1.2",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
-    "lighthouse": "13.0.3"
+    "lighthouse": "13.6.0"
   },
   "peerDependencies": {
     "lighthouse": ">=13.0.0 <14"
