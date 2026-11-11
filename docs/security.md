@@ -12,6 +12,7 @@ Tevra treats everything it reads as data, never as instructions: external refere
 | Skill installation | Every destination is preflighted and rechecked; changed files are never overwritten | Adapter integration tests |
 | Browser executable | Channels from a closed list; a custom path needs `--allow-custom-browser` | Custom executable regression test |
 | Browser network | Only configured origins load; requests and WebSockets are intercepted; fresh context; downloads and service workers blocked | E2E browser tests |
+| Sign-in state | Optional `storageState` is confined to `.tevra/auth/*.json`, read only by the browser and never written to evidence | Config unit test, signed-in E2E test |
 | Browser actions | Closed vocabulary (`click`, `fill`, `press`, `check`, `expect-*`); no scripts in config | Config schema |
 | Lighthouse | Subprocess with an argument array, no shell; network access only with `--allow-network` | Performance unit tests |
 | PNG input | Header and dimension budget checked before decoding | Invalid and oversized PNG tests |

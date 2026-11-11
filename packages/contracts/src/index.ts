@@ -27,7 +27,7 @@ export interface Config {
   version: 1; baseURL: string; permittedOrigins: string[]; viewports: Viewport[]; routes: VisualRoute[];
   browser: { channel?: string; executablePath?: string }; timeoutMs: number;
   colorScheme?: 'light' | 'dark' | 'no-preference'; reducedMotion?: 'reduce' | 'no-preference';
-  readySelector?: string;
+  readySelector?: string; storageState?: string;
   thresholds: { diffRatio: number; pixelSensitivity: number; minScore: number };
   weights: Record<Exclude<Category, 'functional'>, number> & { functional?: number }; requiredChecks: string[]; maxRefinements: number;
 }

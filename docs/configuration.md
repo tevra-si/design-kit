@@ -56,6 +56,7 @@
 | `states[].masks` | CSS/Playwright selectors hidden in screenshots. Each must match at least one element or capture fails |
 | `states[].waitFor` | Selector that must be visible before capture |
 | `readySelector` | Optional marker awaited before any action, useful for client-side hydration |
+| `storageState` | Optional saved sign-in state for pages behind a login, as `.tevra/auth/<name>.json` (see [Pages behind a login](#pages-behind-a-login)) |
 | `colorScheme` | `light` (default), `dark` or `no-preference` |
 | `reducedMotion` | `reduce` (default, for repeatable captures) or `no-preference` |
 | `browser` | `channel` (for example `chrome`, `msedge`) or `executablePath` |
@@ -88,7 +89,25 @@ Selectors are Playwright locators, so `button:has-text('Save')` works. `test bro
 - Never put real passwords, tokens or customer data in `value`. Use sample data.
 - Mask anything private that can appear on screen (names, emails, ID numbers, plate numbers). Text redaction in reports cannot detect arbitrary personal data inside images.
 - Reports redact URL query strings and common secret patterns.
-- The kit's browser starts without cookies or storage, so pages behind a login redirect to your sign-in page. Test those pages with an agent that uses an already signed-in browser, or point Tevra at a test environment with public routes.
+- The kit's browser starts without cookies or storage unless `storageState` is set.
+
+## Pages behind a login
+
+Sign in once with a test account and save the browser's cookies and storage, then point `storageState` at the file:
+
+```sh
+npx playwright codegen http://localhost:3000 --save-storage=.tevra/auth/state.json
+```
+
+```json
+{ "storageState": ".tevra/auth/state.json" }
+```
+
+- The file holds live session cookies. It must stay under `.tevra/auth/`, which your `.gitignore` already covers through `.tevra/`. Never commit or share it, and use a test account, not a real customer or production account.
+- Tevra loads the file into every capture and never copies its contents into manifests, reports or logs. Screenshots of signed-in pages can still show private data, so mask it.
+- Sessions expire. An expired session usually renders the sign-in page with HTTP 200, so add a `readySelector` or `waitFor` that only exists when signed in; capture then fails instead of recording the wrong page. Save the state again to recover.
+- A baseline and the capture compared against it must use the same `storageState`.
+- `test performance` (Lighthouse) does not use the saved state.
 
 ## Design controls
 

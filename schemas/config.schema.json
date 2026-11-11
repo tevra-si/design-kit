@@ -279,6 +279,10 @@
     "readySelector": {
       "type": "string",
       "minLength": 1
+    },
+    "storageState": {
+      "type": "string",
+      "pattern": "^\\.tevra/auth/[a-z0-9][a-z0-9-]*\\.json$"
     }
   },
   "required": [

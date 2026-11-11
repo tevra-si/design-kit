@@ -186,7 +186,7 @@ Start your app, then tell Tevra where it runs and which screens matter in `.tevr
 
 Keep the other fields `init` generated (viewports, thresholds, weights). Only `permittedOrigins` may be loaded. `masks` hide private or changing content in screenshots. Never put real credentials or customer data in actions. Full reference: [configuration](docs/configuration.md).
 
-> **Pages behind a login.** The CLI's browser starts signed out. Check those pages by asking your agent to use an already signed-in browser, and keep the CLI for public pages, test environments and CI.
+> **Pages behind a login.** The CLI's browser starts signed out. Save a test account's session once with `npx playwright codegen <url> --save-storage=.tevra/auth/state.json` and set `"storageState": ".tevra/auth/state.json"`. See [pages behind a login](docs/configuration.md#pages-behind-a-login).
 
 ## Quick tour
 
@@ -237,7 +237,8 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | `Marketplace file not found` | Pull the latest `main`; the repository root must contain `.claude-plugin/marketplace.json` |
 | `Unknown agent` | Use one of `codex, claude, cursor, kiro, gemini, copilot, opencode, windsurf` |
 | `doctor` fails or the browser cannot launch | Run `pnpm exec playwright install chromium` in the design-kit clone. Some sandboxes block browsers or local servers; Tevra reports the error instead of faking results |
-| Screenshots show the sign-in page | The route needs a login; see [Configure a project](#configure-a-project) |
+| Screenshots show the sign-in page | The route needs a login, or the saved session expired; see [Configure a project](#configure-a-project) |
+| `Sign-in state not found` | The `storageState` file is missing; save it again with `playwright codegen --save-storage` |
 | `Lighthouse is not installed` | `test performance` needs the optional `lighthouse` package: `npm install --save-dev lighthouse` next to Tevra, or `npm install --global lighthouse` |
 | Capture refuses a URL | Add its origin to `permittedOrigins` |
 | `Mask matches no elements` | Every mask selector must exist on the page; fix or remove it |

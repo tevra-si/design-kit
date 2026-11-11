@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { validateConfig, defaultConfig } from '../../packages/core/src/config.js';
 import { captureChecks } from '../../packages/visual-testing/src/checks.js';
+import { configHash } from '../../packages/visual-testing/src/capture.js';
 import type { CaptureManifest } from '../../packages/visual-testing/src/types.js';
 
 test('browser assertions are validated and console/network failures remain separate evidence', () => {
@@ -17,4 +18,12 @@ test('browser assertions are validated and console/network failures remain separ
   assert.equal(checks.find(check => check.id === 'functional-tests')?.status, 'unverified');
   const entry = manifest.entries[0]; assert.ok(entry); entry.assertions = 1;
   checks = captureChecks(manifest); assert.equal(checks.find(check => check.id === 'functional-tests')?.status, 'passed');
+});
+
+test('storageState is confined to .tevra/auth and changes the config hash', () => {
+  const signedOut = structuredClone(defaultConfig);
+  const signedIn = { ...signedOut, storageState: '.tevra/auth/state.json' };
+  assert.ok(validateConfig(signedIn));
+  for (const storageState of ['../state.json', '/tmp/state.json', 'auth/state.json', '.tevra/auth/../config.json', '.tevra/auth/state.txt']) assert.throws(() => validateConfig({ ...signedOut, storageState }));
+  assert.notEqual(configHash(signedOut), configHash(signedIn));
 });

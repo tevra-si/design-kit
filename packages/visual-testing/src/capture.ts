@@ -9,7 +9,7 @@ import type { CaptureManifest } from './types.js';
 declare global { interface Window { axe: typeof axe } }
 
 export function configHash(config: Config): string {
-  return createHash('sha256').update(JSON.stringify({ baseURL: config.baseURL, origins: config.permittedOrigins, browser: config.browser, viewports: config.viewports, routes: config.routes, readySelector: config.readySelector, colorScheme: config.colorScheme ?? 'light', reducedMotion: config.reducedMotion ?? 'reduce' })).digest('hex');
+  return createHash('sha256').update(JSON.stringify({ baseURL: config.baseURL, origins: config.permittedOrigins, browser: config.browser, viewports: config.viewports, routes: config.routes, readySelector: config.readySelector, colorScheme: config.colorScheme ?? 'light', reducedMotion: config.reducedMotion ?? 'reduce', storageState: config.storageState })).digest('hex');
 }
 export function manifestHash(manifest: CaptureManifest): string { return createHash('sha256').update(JSON.stringify(manifest)).digest('hex'); }
 export function comparisonSettingsHash(config: Config): string { return createHash('sha256').update(JSON.stringify({ diffRatio: config.thresholds.diffRatio, pixelSensitivity: config.thresholds.pixelSensitivity })).digest('hex'); }
@@ -24,6 +24,8 @@ export async function capture(root: string, config: Config, kind: CaptureManifes
     const runId = randomUUID();
     await writeJSON(root, `.tevra/artifacts/${kind}/attempt.json`, { status: 'running', runId });
     try {
+      const storageState = config.storageState ? await safePath(root, config.storageState) : undefined;
+      if (storageState) await stat(storageState).catch(error => { throw new Error(`Sign-in state not found: ${config.storageState}`, { cause: error }); });
       const browser = await chromium.launch({ ...config.browser, headless: true, timeout: config.timeoutMs });
       try {
       const manifest: CaptureManifest = { version: 1, kind, runId, createdAt: new Date().toISOString(), configHash: configHash(config), contextRevision: revision, browserVersion: browser.version(), entries: [] };
@@ -31,7 +33,7 @@ export async function capture(root: string, config: Config, kind: CaptureManifes
         const id = `${route.name}--${state.name}--${viewport.name}`;
         const file = `.tevra/artifacts/${kind}/${runId}/${id}.png`;
         const path = await safePath(root, file); await mkdir(await safePath(root, `.tevra/artifacts/${kind}/${runId}`), { recursive: true });
-        const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, reducedMotion: config.reducedMotion ?? 'reduce', colorScheme: config.colorScheme ?? 'light', locale: 'en-US', timezoneId: 'UTC', serviceWorkers: 'block', acceptDownloads: false });
+        const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, reducedMotion: config.reducedMotion ?? 'reduce', colorScheme: config.colorScheme ?? 'light', locale: 'en-US', timezoneId: 'UTC', serviceWorkers: 'block', acceptDownloads: false, ...(storageState ? { storageState } : {}) });
         try {
           await context.routeWebSocket('**/*', socket => {
             const url = new URL(socket.url()); url.protocol = url.protocol === 'wss:' ? 'https:' : 'http:';

@@ -2,6 +2,12 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Added
+
+- `storageState` config field: `capture`, `a11y`, `test browser` and `review` can load a saved sign-in state from `.tevra/auth/<name>.json` to reach pages behind a login. The state is never copied into evidence.
+
 ## 1.1.0 — 2026-10-27
 
 ### Changed
