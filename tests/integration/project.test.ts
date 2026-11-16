@@ -15,9 +15,9 @@ import { transitionPlan } from '../../packages/core/src/workflow.js';
 async function project(t: TestContext): Promise<string> {
   const root = await mkdtemp(resolve(tmpdir(), 'tevra-project-')); t.after(() => rm(root, { recursive: true, force: true })); return root;
 }
-test('every agent adapter installs twelve self-contained skills and preserves unrelated changes', async t => {
+test('every agent adapter installs thirteen self-contained skills and preserves unrelated changes', async t => {
   const root = await project(t); const agents = Object.keys(agentDirectories).filter(isAgent); const written = await installSkills(root, agents); assert.ok(written.length >= 54);
-  for (const directory of Object.values(agentDirectories)) assert.equal((await discoverSkills(resolve(root, directory))).length, 12);
+  for (const directory of Object.values(agentDirectories)) assert.equal((await discoverSkills(resolve(root, directory))).length, 13);
   const local = resolve(root, '.agents/skills/design-research/SKILL.md'); await writeFile(local, 'local user edit');
   await assert.rejects(installSkills(root, ['codex']), /conflict/u); assert.equal(await readFile(local, 'utf8'), 'local user edit');
 });

@@ -39,7 +39,7 @@ const social = `<style>${css}.wrap{padding:64px 72px}h1{font-size:64px}.tag{font
 .chips{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}.chips span{font-size:20px;padding:10px 18px;border-radius:12px;background:#17382d;color:#c9f2da}</style>
 <div class="wrap"><div class="brand"><div class="logo">T</div>Tevra Design Kit</div>
 <h1>Design skills for coding agents.<br><em>With evidence.</em></h1>
-<p class="tag">12 Agent Skills plus a CLI for screenshots, pixel diffs, axe and Lighthouse. Claude Code, Codex, Cursor, Kiro, Gemini CLI, Copilot, OpenCode, Windsurf.</p>
+<p class="tag">13 Agent Skills plus a CLI for screenshots, pixel diffs, axe and Lighthouse. Claude Code, Codex, Cursor, Kiro, Gemini CLI, Copilot, OpenCode, Windsurf.</p>
 <div class="chips"><span>visual regression</span><span>accessibility</span><span>design systems</span><span>performance</span><span>MIT</span></div></div>`;
 const icon = `<style>*{margin:0}body{background:transparent}.i{width:512px;height:512px;border-radius:112px;background:linear-gradient(145deg,#1d6b51,#0f2a21);display:grid;place-items:center;position:relative;overflow:hidden}
 .t{${font}font-weight:850;font-size:330px;color:#f3f6f1;line-height:1;margin-top:-18px}.c{position:absolute;right:58px;bottom:58px;width:132px;height:132px;border-radius:50%;background:#8fe0b4;display:grid;place-items:center;font-size:92px;color:#0f2a21;font-weight:900;${font}}</style>

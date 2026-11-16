@@ -28,7 +28,7 @@ Attach observable evidence to each failed criterion. Report missing app/browser/
 
 ## Handoff
 
-Include objective, input artifacts, context version/revision, constraints, outputs, acceptance criteria, evidence, status and error details. Claim only files actually assigned to this task; stop before overlapping another active owner.
+Include objective, input artifacts, context version/revision, constraints, outputs, acceptance criteria with their `AC-001` style IDs when the plan has them, evidence, status and error details. Claim only files actually assigned to this task; stop before overlapping another active owner.
 
 ## Example
 

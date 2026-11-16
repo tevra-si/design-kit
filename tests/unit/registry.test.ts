@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { loadRegistry, validateBundledProvenance, registryGraph, selectCapabilities, validateRegistry } from '../../packages/registry/src/index.js';
 
-test('registry contains twelve concise discoverable skills with all contracts', async () => {
-  const registry = await loadRegistry(); assert.equal(registry.skills.length, 12);
+test('registry contains thirteen concise discoverable skills with all contracts', async () => {
+  const registry = await loadRegistry(); assert.equal(registry.skills.length, 13);
   await validateBundledProvenance(registry);
   for (const skill of registry.skills) {
     assert.ok((await readFile(skill.entrypoint, 'utf8')).length < 10000);

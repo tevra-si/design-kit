@@ -34,6 +34,9 @@ test('routing rules cover common frontend requests', () => {
   assert.deepEqual(skills('Compare the old and new site after migration'), ['visual-review', 'accessibility-qa']);
   assert.deepEqual(skills('Fix accessibility issues on the checkout form'), ['ui-builder', 'visual-review', 'accessibility-qa']);
   assert.deepEqual(skills('Optimize performance of the landing page'), ['performance-qa']);
+  assert.deepEqual(skills('Fix the Next.js runtime configuration bug', { framework: 'nextjs' }), ['frontend-debugging']);
+  assert.deepEqual(skills('sửa lỗi nút thanh toán'), ['frontend-debugging']);
+  assert.deepEqual(skills('Fix the mobile overflow bug')[0], 'responsive-design');
   assert.deepEqual(skills('cải thiện nút thanh toán'), ['ui-redesign', 'ui-builder', 'visual-review']);
 });
 test('risk selects the smallest safe mode and an explicit mode overrides it', () => {

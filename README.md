@@ -2,7 +2,7 @@
 
 **Design and frontend QA skills for coding agents, with a CLI that proves the work.**
 
-Tevra gives your coding agent twelve focused skills for researching, building, redesigning and reviewing user interfaces, and a local CLI that turns "looks good to me" into evidence: real screenshots, pixel diffs, accessibility results, performance metrics and a quality report that blocks delivery when something critical fails.
+Tevra gives your coding agent thirteen focused skills for researching, building, redesigning and reviewing user interfaces, and a local CLI that turns "looks good to me" into evidence: real screenshots, pixel diffs, accessibility results, performance metrics and a quality report that blocks delivery when something critical fails.
 
 Works with **Claude Code, Codex, Cursor, Kiro, Gemini CLI, GitHub Copilot, OpenCode and Windsurf**.
 
@@ -65,6 +65,7 @@ Every finding links to its evidence in the HTML report:
 | `browser-testing` | Writing or running end-to-end tests of real user flows |
 | `performance-qa` | A page feels slow, or you need Lighthouse, LCP, CLS or TBT |
 | `frontend-review` | Reviewing frontend code or a diff before merge |
+| `frontend-debugging` | A UI is broken, crashes, shows stale data or regressed after a change |
 
 Agents pick skills automatically from your request. Bigger requests chain several skills. For example, "build a new dashboard" runs research → direction → system → builder → responsive → visual review → accessibility.
 

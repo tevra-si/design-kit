@@ -47,7 +47,7 @@ Validate structured context and handoffs with the installed CLI when available. 
 
 ## Handoff
 
-Record task ID, objective, input/output artifact paths, context revision, constraints, file owner, acceptance criteria, validation evidence, status and error details. Claim only the files this task owns. The CLI records a plan; an actual coding agent executes the skill.
+Record task ID, objective, input/output artifact paths, context revision, constraints, file owner, acceptance criteria with their `AC-001` style IDs when the plan has them, validation evidence, status and error details. Claim only the files this task owns. The CLI records a plan; an actual coding agent executes the skill.
 
 ## Usage examples
 

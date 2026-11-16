@@ -21,7 +21,7 @@ test('CLI executes through a package-manager symlink and returns actual discover
   const linked = resolve(root, 'linked-cli.ts'); await symlink(resolve(kitRoot(), 'packages/cli/src/index.ts'), linked);
   const child = spawnSync(process.execPath, ['--import', 'tsx', linked, 'skills', 'list', '--root', root], { cwd: kitRoot(), encoding: 'utf8' });
   assert.equal(child.status, 0, child.stderr); const output: unknown = JSON.parse(child.stdout);
-  assert.ok(Array.isArray(output)); assert.equal(output.length, 12);
+  assert.ok(Array.isArray(output)); assert.equal(output.length, 13);
 });
 test('CLI setup, validation, tokens, memory, routing and strict failures execute through the public entrypoint', async t => {
   const root = await mkdtemp(resolve(tmpdir(), 'tevra-cli-')); t.after(() => rm(root, { recursive: true, force: true }));

@@ -11,6 +11,7 @@
     "screenshot": "screenshots?|ảnh chụp|reference images?",
     "redesign": "redesign|improve|fix|restyle|adjust|tweak|polish|cải thiện|thiết kế lại|sửa",
     "component": "cards?|buttons?|headers?|navigation|forms?|tables?|components?|thẻ|nút|biểu mẫu",
+    "bug": "bugs?|debug\\p{L}*|broken|crash\\p{L}*|not working|lỗi",
     "review": "review|compare|audit|kiểm tra",
     "high-impact": "transformative|shared tokens|brand migration|đổi thương hiệu"
   },
@@ -24,6 +25,7 @@
     { "id": "design-system", "all": ["tokens"], "none": [], "capabilities": ["ux.research", "visual.direction", "design.tokens"] },
     { "id": "screenshot-to-code", "all": ["screenshot"], "none": [], "capabilities": ["visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
     { "id": "accessibility-remediation", "all": ["accessibility", "redesign"], "none": [], "capabilities": ["frontend.implementation", "visual.regression", "accessibility"] },
+    { "id": "debugging", "all": ["bug"], "none": [], "capabilities": ["frontend.debugging"] },
     { "id": "component-redesign", "all": ["redesign", "component"], "none": [], "capabilities": ["ui.redesign", "frontend.implementation", "visual.regression"] },
     { "id": "screen-redesign", "all": ["redesign"], "none": [], "capabilities": ["ui.redesign", "visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
     { "id": "review", "all": ["review"], "none": [], "capabilities": ["visual.regression", "accessibility"] },

@@ -2,7 +2,7 @@
 
 Tevra is two things in one repository:
 
-1. **Twelve Agent Skills** (`skills/<name>/SKILL.md` plus focused references). They are plain Markdown that any agent supporting the [Agent Skills format](https://agentskills.io/specification) can load. They work without the CLI.
+1. **Thirteen Agent Skills** (`skills/<name>/SKILL.md` plus focused references). They are plain Markdown that any agent supporting the [Agent Skills format](https://agentskills.io/specification) can load. They work without the CLI.
 2. **A TypeScript CLI** (`packages/*`) that plans workflows and produces verifiable evidence. It never invokes an LLM; the coding agent does the design and implementation work.
 
 ```
@@ -54,6 +54,7 @@ Dependencies flow one way: `cli` → feature engines (`workflow-engine` → `cor
 | Browser testing | browser-testing | Assertions, console and network errors |
 | Performance | performance-qa | Lighthouse lab artifacts |
 | Code review | frontend-review | File and line findings |
+| Debugging | frontend-debugging | Reproduction, root cause and regression test |
 
 Selection is deterministic: filter by framework, platform and agent; use an explicit override or the highest priority (ties broken by ID); expand dependencies in topological order; reject conflicts visibly. Third parties can add skills through a registry extension file without changing core code.
 

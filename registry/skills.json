@@ -760,6 +760,68 @@
         "scope-preserved"
       ],
       "entrypoint": "skills/frontend-review/SKILL.md"
+    },
+    {
+      "id": "tevra.frontend-debugging",
+      "name": "frontend-debugging",
+      "description": "Find and fix the root cause of a frontend bug by reproducing it in a real browser or test, gathering console, network and rendered-state evidence, adding a regression test and applying the smallest fix. Use when a UI is broken, crashes, shows wrong or stale data, behaves differently between environments, or regressed after a change.",
+      "version": "1.1.0",
+      "capabilities": [
+        "frontend.debugging"
+      ],
+      "activation": {
+        "intents": [
+          "debug"
+        ]
+      },
+      "inputs": [
+        "project-context",
+        "task-scope"
+      ],
+      "outputs": [
+        "frontend-debugging-report"
+      ],
+      "dependencies": [],
+      "conflicts": [],
+      "frameworks": [
+        "react",
+        "nextjs",
+        "sveltekit",
+        "vue",
+        "react-native",
+        "expo",
+        "html"
+      ],
+      "platforms": [
+        "web",
+        "native"
+      ],
+      "agents": [
+        "codex",
+        "claude-code",
+        "cursor",
+        "kiro",
+        "gemini-cli",
+        "github-copilot",
+        "opencode",
+        "windsurf"
+      ],
+      "source": {
+        "type": "original",
+        "references": []
+      },
+      "license": "MIT",
+      "priority": 80,
+      "estimatedCost": {
+        "minutes": 15,
+        "contextTokens": 1500
+      },
+      "requiredTools": [],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ],
+      "entrypoint": "skills/frontend-debugging/SKILL.md"
     }
   ]
 }

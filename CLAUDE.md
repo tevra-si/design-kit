@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 ## What this repo is
 
-Tevra Design Kit: twelve portable Agent Skills (`skills/*/SKILL.md`) plus a local TypeScript CLI (`tevra-design`) that plans work and records evidence. The CLI never drives an agent or a vision model; the agent reads a skill and does the work. The repo is also a Claude Code plugin and marketplace (`.claude-plugin/`), so skills install as `tevra:<skill>`. Read `AGENTS.md` for repository rules shared with other agents.
+Tevra Design Kit: thirteen portable Agent Skills (`skills/*/SKILL.md`) plus a local TypeScript CLI (`tevra-design`) that plans work and records evidence. The CLI never drives an agent or a vision model; the agent reads a skill and does the work. The repo is also a Claude Code plugin and marketplace (`.claude-plugin/`), so skills install as `tevra:<skill>`. Read `AGENTS.md` for repository rules shared with other agents.
 
 ## Commands
 

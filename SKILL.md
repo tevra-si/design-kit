@@ -12,6 +12,7 @@ Inspect the active project instructions and design system. Use the smallest work
 - Existing component: redesign → builder → visual review; add accessibility when interaction changes.
 - Screenshot: direction with visible evidence/assumptions → builder → responsive → visual review.
 - Focused motion, responsive or accessibility task: invoke the relevant independent skill.
+- Broken or regressed UI: debugging with a reproduction, root cause and regression test.
 
 Read only each selected skill's `SKILL.md` and needed references. Use project-scoped context revisions and transparent memory. Preserve user-approved decisions and public contracts. Use handoffs with exclusive file ownership for future agent dispatch. Record human approval for shared system migrations and transformative changes.
 

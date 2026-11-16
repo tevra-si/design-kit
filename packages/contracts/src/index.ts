@@ -1,4 +1,4 @@
-export const skillNames = ['design-research', 'design-direction', 'design-system', 'ui-builder', 'ui-redesign', 'responsive-design', 'interaction-motion', 'visual-review', 'accessibility-qa', 'performance-qa', 'browser-testing', 'frontend-review'] as const;
+export const skillNames = ['design-research', 'design-direction', 'design-system', 'ui-builder', 'ui-redesign', 'responsive-design', 'interaction-motion', 'visual-review', 'accessibility-qa', 'performance-qa', 'browser-testing', 'frontend-review', 'frontend-debugging'] as const;
 export type SkillName = string;
 export type CriterionStatus = 'PASS' | 'FAIL' | 'SKIPPED' | 'BLOCKED' | 'NOT_APPLICABLE';
 // An acceptance criterion carries its stable ID as a prefix: "AC-001: text".

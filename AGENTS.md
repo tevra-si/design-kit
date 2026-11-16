@@ -10,7 +10,7 @@ Use the skills in `skills/` (or their installed copies):
 - `design-direction` before substantial new visual work or a redesign.
 - `design-system` for scoped token and theme work; `ui-builder` to implement the approved direction.
 - `ui-redesign` for existing UI, `responsive-design` for layout adaptation, `interaction-motion` for purposeful feedback.
-- `accessibility-qa`, `browser-testing`, `performance-qa` and `visual-review` for evidence after a rendered change; `frontend-review` before merging source changes.
+- `accessibility-qa`, `browser-testing`, `performance-qa` and `visual-review` for evidence after a rendered change; `frontend-review` before merging source changes; `frontend-debugging` when existing UI is broken or regressed.
 
 Always inspect and prioritize the active project design system. Do not create a parallel set of tokens or components. Project instructions and approved design decisions come before Tevra examples.
 

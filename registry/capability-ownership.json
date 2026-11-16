@@ -162,6 +162,21 @@
       ]
     },
     {
+      "id": "frontend.debugging",
+      "primary": "tevra.frontend-debugging",
+      "supporting": [
+        "tevra.browser-testing"
+      ],
+      "stage": 13,
+      "constraints": [
+        "preserve-approved-scope"
+      ],
+      "validation": [
+        "artifact-evidence",
+        "scope-preserved"
+      ]
+    },
+    {
       "id": "component.architecture",
       "primary": "tevra.frontend-review",
       "supporting": [
