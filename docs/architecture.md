@@ -56,7 +56,7 @@ Dependencies flow one way: `cli` → feature engines (`workflow-engine` → `cor
 | Code review | frontend-review | File and line findings |
 | Debugging | frontend-debugging | Reproduction, root cause and regression test |
 
-Selection is deterministic: filter by framework, platform and agent; use an explicit override or the highest priority (ties broken by ID); expand dependencies in topological order; reject conflicts visibly. Third parties can add skills through a registry extension file without changing core code.
+Requests are matched against ordered rules in `registry/routing.json`. A rule names the capabilities it needs, and the registry resolves each capability to its owner, so adding a rule or a skill needs no router change. Selection is deterministic: filter by framework, platform and agent; use an explicit override or the highest priority (ties broken by ID); expand dependencies in topological order; reject conflicts visibly. Third parties can add skills through a registry extension file without changing core code.
 
 ## Workflow model
 

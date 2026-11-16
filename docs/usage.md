@@ -19,6 +19,8 @@ Ask for the outcome in plain language; the agent picks the matching skill from i
 | Improve an existing component | redesign → builder → visual review |
 | Turn a screenshot into code | direction → builder → responsive → visual review → accessibility |
 | Fix one concern (motion, responsive, accessibility, performance, tests, review) | that skill alone, plus the builder when code changes |
+| Fix a broken or regressed UI | debugging |
+| Fix accessibility problems in existing UI | builder → visual review → accessibility |
 
 Preview the chain before starting:
 
@@ -32,7 +34,9 @@ tevra-design workflow plan "Improve this pricing card" --mode quick
 | `standard` | Default chain with a refinement budget |
 | `full` | Adds accessibility and QA stages (frontend review, browser testing, performance) |
 
-Plans record steps, dependencies, step/time/refinement budgets and the context revision. Work that changes shared tokens or brand, or a transformative redesign, is marked `approvalRequired` and waits for a human.
+Leave out `--mode` and pass `--risk low|medium|high` to let the risk pick the mode (quick, standard, full). The default risk is `medium`. An explicit `--mode` always wins.
+
+Plans record steps, dependencies, step/time/refinement budgets and the context revision. Under `routing` a plan also records the rule that matched, a reason for every selected and excluded skill, and any required tool (browser, Lighthouse) that is not available. Routing rules are data in `registry/routing.json`. Work that changes shared tokens or brand, or a transformative redesign, is marked `approvalRequired` and waits for a human.
 
 ## Research and design data
 
@@ -55,7 +59,7 @@ Start the app first, then configure its origin, routes and states in `.tevra/con
 tevra-design doctor --launch                              # browser can start
 tevra-design capture --kind baseline --approve-baseline   # after a human approves the current screens
 tevra-design capture                                      # current screenshots for every route/state/viewport
-tevra-design compare                                      # pixel diff against the baseline
+tevra-design compare                                      # pixel diff, plus errors and axe violations the baseline did not have
 tevra-design a11y                                         # fresh capture with axe results
 tevra-design report                                       # .tevra/reports/quality.{json,md,html}
 ```
@@ -80,6 +84,8 @@ What each capture records:
 
 Comparison fails when the configuration, screenshot set, browser version or context revision does not match the baseline. Reports refuse stale comparisons or failed captures.
 
+**Comparing two deployments.** Set `baselineURL` in the config to capture the baseline from one deployment and the current screens from `baseURL`, for example before and after a migration. Give a route a `baselinePath` when its path changed. `compare` then reports the pixel diff together with `runtime-regressions` and `accessibility-regressions`: page, console and network errors and axe violations that only the current deployment has. Matching screenshots alone do not show that two versions behave the same.
+
 **Baselines are protected.** They are created only with `--approve-baseline` and never overwritten by `compare`. To replace one, archive the baseline folder yourself after review, then capture again.
 
 **Performance** runs Lighthouse in a separate browser. Lighthouse is an optional dependency: install it next to Tevra first (`npm install --save-dev lighthouse`, or `npm install --global lighthouse`). It is already present in a source clone. `--allow-network` is required because the page may load third-party resources; review those origins first. Results are lab metrics (LCP, CLS, TBT) and do not represent real-user data such as INP.
@@ -95,6 +101,28 @@ tevra-design report --checks review-checks.json
 Checks follow `schemas/checks.schema.json`. Each check names its evidence kind (`deterministic`, `heuristic`, `ai` or `human`) and points to an existing local file as evidence. Add a passing `functional-tests` check only after actually running the behavior tests. The report keeps the four evidence kinds separate.
 
 The default rubric scores eight categories (hierarchy, typography, layout, consistency, responsive, accessibility, functional, performance). A category without evidence stays unscored. A critical failure or a missing required check blocks PASS regardless of the total.
+
+## Acceptance criteria
+
+Give each criterion a stable ID as a prefix and pass them when planning:
+
+```sh
+# criteria.json: ["AC-001: Form submits with valid input", "AC-002: Invalid fields show an announced error"]
+tevra-design workflow plan "Build the signup form" --acceptance criteria.json
+tevra-design report --plan .tevra/plans/PLAN.json --checks review-checks.json --not-applicable AC-005
+```
+
+A check lists the criteria it covers in `criteria`, for example `"criteria": ["AC-001"]`. With `--plan`, the report adds one status per criterion:
+
+| Status | Meaning |
+| --- | --- |
+| `PASS` | Every check covering it passed |
+| `FAIL` | A covering check failed. Blocks the report |
+| `BLOCKED` | A covering check is unverified, for example the browser was unavailable. Counts as missing evidence |
+| `SKIPPED` | No check covers it. Counts as missing evidence |
+| `NOT_APPLICABLE` | Listed in `--not-applicable`. Recorded in the report, not counted against it |
+
+The report itself stays `PASS` or `FAIL`. Plans, handoffs and checks without IDs keep working. In a Spec Kit project the criteria come from the active feature; see [interop](interop.md).
 
 ## Executing a workflow
 

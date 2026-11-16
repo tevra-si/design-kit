@@ -31,6 +31,10 @@ tevra-design skills install --agents opencode --dry-run   # preview without writ
 
 Each skill folder is self-contained and carries its own references. The installer checks every destination first and aborts the whole install if any file differs from the bundled copy, so local edits are never lost.
 
+## Other skill sets
+
+Tevra skills can run next to Spec Kit and general process skills such as Superpowers. See [interop](interop.md).
+
 ## Verifying activation
 
 A successful copy does not prove an agent loaded the skill. Agent trust settings, managed policies and versions can affect loading. After installing, open a new agent session and ask for a small task (for example "check the accessibility of the login page") or list skills in the agent's UI.

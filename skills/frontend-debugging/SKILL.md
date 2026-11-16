@@ -3,7 +3,7 @@ name: frontend-debugging
 description: Find and fix the root cause of a frontend bug by reproducing it in a real browser or test, gathering console, network and rendered-state evidence, adding a regression test and applying the smallest fix. Use when a UI is broken, crashes, shows wrong or stale data, behaves differently between environments, or regressed after a change.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 # Frontend Debugging
 

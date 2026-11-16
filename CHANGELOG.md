@@ -2,6 +2,26 @@
 
 All notable changes to Tevra Design Kit are documented here. The project follows [Semantic Versioning](https://semver.org/).
 
+## 1.2.0 — 2026-11-16
+
+### Added
+
+- `frontend-debugging`, a thirteenth skill: reproduce a frontend bug, gather browser evidence, state the root cause, add a regression test and apply the smallest fix. Requests that mention a bug, crash or broken UI route to it.
+- Acceptance criteria with stable IDs (`AC-001: text`). `workflow plan --acceptance criteria.json` stores them in the plan, checks name the criteria they cover, and `report --plan` adds a per-criterion status (`PASS`, `FAIL`, `SKIPPED`, `BLOCKED`, `NOT_APPLICABLE`). A failed, skipped or blocked criterion fails the report.
+- `workflow plan --risk low|medium|high`. Without `--mode`, the risk level selects quick, standard or full.
+- Plans explain themselves: `routing` records the matched rule, a reason for each selected and excluded skill, and required tools that are unavailable.
+- Comparing two deployments: `baselineURL` in the config and `baselinePath` on a route capture the baseline from another URL. `compare` reports `runtime-regressions` and `accessibility-regressions`, the errors and axe violations that the baseline did not have.
+- Optional Spec Kit interoperability: in a project with an active Spec Kit feature, plans skip research that the spec already covers and import its acceptance scenarios as criteria. Read-only; see `docs/interop.md`.
+- `analyze` reports the declared framework version.
+
+### Changed
+
+- Routing rules are data in `registry/routing.json`, validated by `schemas/routing.schema.json`. Rules name capabilities and the registry resolves their owners.
+- "adjust", "tweak" and "polish" now count as redesign requests, so "Adjust button spacing" plans three steps instead of the seven-step new-interface chain.
+- A request to fix accessibility problems in existing UI plans builder → visual review → accessibility. It previously planned a redesign chain without the accessibility step.
+- `compare` always includes the two regression checks. They are `major` and not required by default, so they appear in reports without blocking a pass on their own.
+- `performance-qa` declares `lighthouse` as a required tool in the registry.
+
 ## 1.1.0 — 2026-10-27
 
 ### Changed

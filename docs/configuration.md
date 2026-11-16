@@ -49,8 +49,10 @@
 | Field | Meaning |
 | --- | --- |
 | `baseURL` | Where the app runs. No credentials, query string or fragment |
+| `baselineURL` | Optional. Where the baseline deployment runs, when it differs from `baseURL`. Same rules as `baseURL`; its origin must be in `permittedOrigins` |
 | `permittedOrigins` | Exact HTTP(S) origins the browser may load. Requests to anything else are blocked; add asset or API origins explicitly |
 | `viewports` | Named width × height profiles. Defaults: 390×844, 768×1024, 1280×800, 1440×900. Add intermediate or landscape sizes your product needs |
+| `routes[].baselinePath` | Optional. The route's path on the baseline when it differs from `path` |
 | `routes[].states` | Named page conditions to capture. Names use lowercase letters, digits and hyphens |
 | `states[].actions` | Steps to reach the state (see below) |
 | `states[].masks` | CSS/Playwright selectors hidden in screenshots. Each must match at least one element or capture fails |

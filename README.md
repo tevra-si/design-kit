@@ -259,6 +259,7 @@ Exit codes: `0` passed, `1` a check failed, `2` input or environment error. See 
 | [Usage](docs/usage.md) | Skills, workflows, capture, reports, context, memory, examples |
 | [Configuration](docs/configuration.md) | Every config field, actions, privacy, design controls, extensions |
 | [Supported agents](docs/agents.md) | Per-agent install paths and activation |
+| [Interop](docs/interop.md) | Working alongside Spec Kit and Superpowers |
 | [Architecture](docs/architecture.md) | Packages, capability ownership, workflow and evidence model |
 | [Security](docs/security.md) | Boundaries, protections and limits |
 | [Contributing](docs/contributing.md) | Development setup, checks and release steps |
