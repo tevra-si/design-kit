@@ -4,6 +4,7 @@ import { loadConfig } from '../../core/src/config.js';
 import { loadContext } from '../../design-context/src/index.js';
 import { validate } from '../../design-context/src/validation.js';
 import { isMissing, readJSON, redact, safePath, writeAtomic, writeJSON } from '../../filesystem/src/index.js';
+import { gitSubject } from '../../quality-engine/src/git-subject.js';
 import { htmlReport } from '../../quality-engine/src/html.js';
 import { evaluateQuality, markdownReport } from '../../quality-engine/src/index.js';
 import { capture, manifestHash, comparisonSettingsHash } from '../../visual-testing/src/capture.js';
@@ -47,7 +48,7 @@ export async function visualCommand(args: Arguments, root: string): Promise<{ re
   for (const check of checks) for (const evidence of check.evidence) if (!(await stat(await safePath(root, evidence))).isFile()) throw new Error(`Evidence must refer to an existing local file: ${evidence}`);
   const acceptance = typeof args.flags.plan === 'string' ? validate<Plan>('plan.schema.json', await readJSON(root, args.flags.plan)).acceptance : undefined;
   if (args.flags['not-applicable'] && !acceptance) throw new Error('--not-applicable requires --plan with acceptance criteria');
-  const report = evaluateQuality(checks, config, context.revision, acceptance ? { acceptance, notApplicable: flag(args, 'not-applicable', '').split(',').filter(Boolean), ...(typeof args.flags.by === 'string' ? { approvedBy: args.flags.by } : {}) } : undefined); const output = flag(args, 'out', '.tevra/reports/quality.md');
+  const report = evaluateQuality(checks, config, context.revision, acceptance ? { acceptance, notApplicable: flag(args, 'not-applicable', '').split(',').filter(Boolean), ...(typeof args.flags.by === 'string' ? { approvedBy: args.flags.by } : {}) } : undefined, (await gitSubject(root)) ?? undefined); const output = flag(args, 'out', '.tevra/reports/quality.md');
   await writeJSON(root, '.tevra/reports/quality.json', JSON.parse(redact(JSON.stringify(report))) as unknown);
   await writeAtomic(root, output, markdownReport(report));
   await writeAtomic(root, '.tevra/reports/quality.html', htmlReport(report));

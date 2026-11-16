@@ -20,7 +20,7 @@ function traceCriteria(checks: Check[], trace: CriteriaTrace): NonNullable<Quali
     return { id, text, status, checks: covering.map(check => check.id), ...(status === 'NOT_APPLICABLE' && approvedBy ? { approvedBy } : {}) };
   });
 }
-export function evaluateQuality(input: unknown, config: Config, contextRevision: number, trace?: CriteriaTrace): QualityReport {
+export function evaluateQuality(input: unknown, config: Config, contextRevision: number, trace?: CriteriaTrace, subject?: NonNullable<QualityReport['subject']>): QualityReport {
   const checks = validate<Check[]>('checks.schema.json', input);
   if (new Set(checks.map(check => check.id)).size !== checks.length) throw new Error('Quality check IDs must be unique');
   for (const check of checks) if (check.status !== 'unverified' && !check.evidence.length) throw new Error(`Executed check requires evidence: ${check.id}`);
@@ -46,7 +46,7 @@ export function evaluateQuality(input: unknown, config: Config, contextRevision:
     version: 1, createdAt: new Date().toISOString(), status: blockers.length || missing.length ? 'FAIL' : 'PASS', score,
     blockers: [...new Set(blockers)], missing: [...new Set(missing)], checks,
     limits: ['AI/human scores are subjective judgments, not objective measurements.', 'Pixel differences measure visual change, not usability.', 'Automated accessibility checks do not establish full WCAG compliance.', 'Unexecuted manual, screen-reader, native and performance checks remain unverified.'], contextRevision,
-    ...(criteria ? { criteria } : {})
+    ...(criteria ? { criteria } : {}), ...(subject ? { subject } : {})
   });
 }
 function cell(value: string): string { return redact(value).replace(/([\\|\[\]()`])/gu, '\\$1').replace(/</gu, '&lt;').replace(/>/gu, '&gt;').replace(/[\r\n]/gu, ' '); }

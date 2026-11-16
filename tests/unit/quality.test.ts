@@ -62,3 +62,9 @@ test('reports redact credentials, query secrets and Markdown table injection', (
   assert.doesNotMatch(output, /password|token=secret/u); assert.match(output, /\\\| injected/u);
   assert.equal(redact('api_key=secret-value'), 'api_key=[REDACTED]');
 });
+test('a report may name the commit it was produced on, and reports without it stay valid', () => {
+  const config = { ...defaultConfig, requiredChecks: [] }; const commit = 'a'.repeat(40);
+  assert.deepEqual(evaluateQuality(scored(), config, 3, undefined, { commit, branch: 'main' }).subject, { commit, branch: 'main' });
+  assert.equal(evaluateQuality(scored(), config, 3).subject, undefined);
+  assert.throws(() => evaluateQuality(scored(), config, 3, undefined, { commit: 'main' }));
+});

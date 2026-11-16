@@ -54,6 +54,7 @@ export interface QualityReport {
   blockers: string[]; missing: string[]; checks: Check[];
   limits: string[]; contextRevision: number;
   criteria?: { id: string; text: string; status: CriterionStatus; checks: string[]; approvedBy?: string }[];
+  subject?: { commit: string; branch?: string };
 }
 export interface Handoff {
   version: 1; taskId: string; objective: string; skill: SkillName; contextVersion: '2.0'; contextRevision: number;
