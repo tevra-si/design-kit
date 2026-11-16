@@ -25,7 +25,7 @@ tevra-design doctor [--launch]
 tevra-design analyze
 tevra-design skills list|check|validate|graph [--registry extension.json]
 tevra-design skills inspect <name> [--registry extension.json]
-tevra-design skills install --agents codex,claude,cursor,kiro,gemini,copilot,opencode,windsurf [--dry-run]
+tevra-design skills install --agents codex,claude,cursor,kiro,gemini,copilot,opencode,windsurf [--dry-run --prefix tevra-]
 tevra-design validate [design-context.json]
 tevra-design context show|validate
 tevra-design context migrate <legacy.json> [--out .tevra/migrated-context.json --owner name]
@@ -73,7 +73,7 @@ export async function run(argv: string[]): Promise<number> {
         result = { valid: true, count: registry.skills.length };
       } else result = registry.skills;
     } else if (args.command === 'skills check') result = await discoverSkills(resolve(kitRoot(), 'skills'));
-    else if (args.command === 'skills install') result = await installSkills(root, agents(flag(args, 'agents', 'codex')), args.flags['dry-run'] === true);
+    else if (args.command === 'skills install') result = await installSkills(root, agents(flag(args, 'agents', 'codex')), args.flags['dry-run'] === true, flag(args, 'prefix', ''));
     else if (args.command === 'search') result = await searchPatterns(args.positional.join(' '), typeof args.flags.category === 'string' ? args.flags.category : undefined, numeric(args, 'limit', 5));
     else if (args.command === 'test performance') {
       const outcome = await auditPerformance(root, await loadConfig(root), (await loadContext(root)).revision, {

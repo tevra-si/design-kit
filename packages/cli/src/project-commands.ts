@@ -1,4 +1,4 @@
-import { access } from 'node:fs/promises';
+import { access, readdir } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { chromium } from 'playwright';
@@ -27,6 +27,10 @@ export function browserExecutable(config: Config): string | null {
 async function exists(root: string, path: string): Promise<boolean> {
   try { await access(await safePath(root, path)); return true; } catch (error) { if (isMissing(error)) return false; throw error; }
 }
+// Skills may be installed under a prefix, so match the folder by its ending.
+async function installedSkill(root: string, directory: string): Promise<boolean> {
+  try { return (await readdir(await safePath(root, directory))).some(name => name.endsWith('design-research')); } catch (error) { if (isMissing(error)) return false; throw error; }
+}
 export async function projectCommand(args: Arguments, root: string): Promise<unknown> {
   if (args.command === 'init') {
     let selected = flag(args, 'agents', 'codex');
@@ -45,7 +49,7 @@ export async function projectCommand(args: Arguments, root: string): Promise<unk
       await writeJSON(root, contextPath, context);
     }
     if (!await exists(root, '.tevra/memory.json')) await writeJSON(root, '.tevra/memory.json', { version: 1, revision: 0, entries: [] });
-    const installed = args.flags['skip-skills'] ? [] : await installSkills(root, targets);
+    const installed = args.flags['skip-skills'] ? [] : await installSkills(root, targets, false, flag(args, 'prefix', ''));
     return { root, installed: installed.length, inventory, message: 'Project-local setup complete. Review .tevra/config.json before capture. No git commit or upload was performed.' };
   }
   if (args.command === 'doctor') {
@@ -55,7 +59,7 @@ export async function projectCommand(args: Arguments, root: string): Promise<unk
     if (executable) await access(executable);
     let browserVersion: string | null = null;
     if (args.flags.launch) { const browser = await chromium.launch({ ...config.browser, headless: true }); try { browserVersion = browser.version(); } finally { await browser.close(); } }
-    const installations = await Promise.all(Object.entries(agentDirectories).map(async ([agent, directory]) => ({ agent, directory, installed: await exists(root, `${directory}/design-research/SKILL.md`) })));
+    const installations = await Promise.all(Object.entries(agentDirectories).map(async ([agent, directory]) => ({ agent, directory, installed: await installedSkill(root, directory) })));
     return { node: process.version, executable, launchVerified: Boolean(args.flags.launch), browserVersion, installations, limits: 'Filesystem checks do not establish agent activation; browser presence alone does not establish launch capability.' };
   }
   if (args.command === 'context show') return loadContext(root);

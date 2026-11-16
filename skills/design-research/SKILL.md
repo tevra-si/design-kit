@@ -15,7 +15,7 @@ Research product intent, UX patterns, information architecture, typography and c
 
 ## Inputs and outputs
 
-**Inputs:** Product brief, relevant repository/design artifacts, available user evidence and active design-system rules.
+**Inputs:** Product brief, relevant repository/design artifacts, available user evidence and active design system rules.
 
 **Outputs:** design-research.md plus recommendations.json with product category, recommendations, source, confidence and unresolved assumptions.
 

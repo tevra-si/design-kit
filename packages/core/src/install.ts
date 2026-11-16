@@ -19,9 +19,14 @@ async function filesBelow(directory: string): Promise<string[]> {
   }
   return found;
 }
-export async function installSkills(root: string, agents: Agent[], dryRun = false): Promise<string[]> {
+// A prefix lets Tevra skills sit beside project skills of the same name in agents that have no plugin namespace.
+export async function installSkills(root: string, agents: Agent[], dryRun = false, prefix = ''): Promise<string[]> {
+  if (prefix && !/^[a-z][a-z0-9]{0,19}-$/u.test(prefix)) throw new Error('Skill prefix must be lowercase letters or digits followed by a hyphen, such as "tevra-"');
   const source = resolve(kitRoot(), 'skills');
   const skills = await discoverSkills(source);
+  if (skills.some(skill => `${prefix}${skill.name}`.length > 64)) throw new Error('Skill prefix makes a skill name longer than 64 characters');
+  // Names followed by a file extension are artifact file names, not skill references.
+  const references = new RegExp(`(?<![a-z0-9-])(${skills.map(skill => skill.name).join('|')})(?![a-z0-9-]|\\.[a-z])`, 'gu');
   const writes: { name: string; bytes: Buffer }[] = [];
   for (const agent of new Set(agents)) {
     const base = agentDirectories[agent];
@@ -29,9 +34,10 @@ export async function installSkills(root: string, agents: Agent[], dryRun = fals
     for (const skill of skills) {
       const directory = resolve(source, skill.name);
       for (const file of await filesBelow(directory)) {
-        const name = `${base}/${skill.name}/${relative(directory, file).split('\\').join('/')}`;
+        const name = `${base}/${prefix}${skill.name}/${relative(directory, file).split('\\').join('/')}`;
         const destination = await safePath(root, name);
-        const bytes = await readFile(file);
+        const original = await readFile(file);
+        const bytes = prefix && file.endsWith('.md') ? Buffer.from(original.toString('utf8').replace(references, `${prefix}$1`)) : original;
         try {
           const existing = await lstat(destination);
           if (!existing.isFile() || !(await readFile(destination)).equals(bytes)) throw new Error(`Installation conflict; preserve local file: ${name}`);

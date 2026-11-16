@@ -31,6 +31,16 @@ tevra-design skills install --agents opencode --dry-run   # preview without writ
 
 Each skill folder is self-contained and carries its own references. The installer checks every destination first and aborts the whole install if any file differs from the bundled copy, so local edits are never lost.
 
+## Avoiding name clashes
+
+A project may already have a skill with the same folder name as a Tevra skill, for example `design-system`. The installer never overwrites it and stops with an installation conflict. Outside the Claude Code plugin, which namespaces skills as `tevra:<skill>`, install under a prefix instead:
+
+```sh
+tevra-design skills install --agents codex --prefix tevra-
+```
+
+Skills are then installed as `tevra-design-system`, `tevra-ui-builder` and so on. The installed copies have their `name` and their references to other Tevra skills renamed to match; the sources are unchanged. Use the same prefix on later installs, or a second unprefixed copy is added beside the first. `init` accepts `--prefix` too.
+
 ## Other skill sets
 
 Tevra skills can run next to Spec Kit and general process skills such as Superpowers. See [interop](interop.md).

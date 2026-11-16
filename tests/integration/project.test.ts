@@ -1,7 +1,7 @@
 import test from 'node:test';
 import type { TestContext } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { agentDirectories, installSkills, isAgent } from '../../packages/core/src/install.js';
@@ -9,6 +9,7 @@ import { discoverSkills } from '../../packages/core/src/skills.js';
 import { inspectMemory, resetMemory, updateMemory } from '../../packages/design-memory/src/index.js';
 import { createContext, contextPath } from '../../packages/design-context/src/index.js';
 import { safePath, withLock, writeJSON } from '../../packages/filesystem/src/index.js';
+import { kitRoot } from '../../packages/filesystem/src/resources.js';
 import { planWorkflow } from '../../packages/core/src/router.js';
 import { transitionPlan } from '../../packages/core/src/workflow.js';
 
@@ -20,6 +21,22 @@ test('every agent adapter installs thirteen self-contained skills and preserves 
   for (const directory of Object.values(agentDirectories)) assert.equal((await discoverSkills(resolve(root, directory))).length, 13);
   const local = resolve(root, '.agents/skills/design-research/SKILL.md'); await writeFile(local, 'local user edit');
   await assert.rejects(installSkills(root, ['codex']), /conflict/u); assert.equal(await readFile(local, 'utf8'), 'local user edit');
+});
+test('a prefix installs skills beside existing ones of the same name and renames every reference', async t => {
+  const root = await project(t); const foreign = resolve(root, '.agents/skills/design-system/SKILL.md');
+  await mkdir(resolve(root, '.agents/skills/design-system'), { recursive: true }); await writeFile(foreign, '---\nname: design-system\ndescription: Another kit\n---\n');
+  await assert.rejects(installSkills(root, ['codex']), /conflict/u);
+  await installSkills(root, ['codex'], false, 'tevra-');
+  assert.match(await readFile(foreign, 'utf8'), /Another kit/u);
+  const installed = await discoverSkills(resolve(root, '.agents/skills'));
+  assert.equal(installed.filter(skill => skill.name.startsWith('tevra-')).length, 13); assert.equal(installed.length, 14);
+  const names = (await discoverSkills(resolve(kitRoot(), 'skills'))).map(skill => skill.name);
+  const unprefixed = new RegExp(`(?<![a-z0-9-])(${names.join('|')})(?![a-z0-9-]|\\.[a-z])`, 'u');
+  for (const skill of installed.filter(candidate => candidate.name.startsWith('tevra-'))) assert.doesNotMatch(await readFile(skill.path, 'utf8'), unprefixed, skill.name);
+  assert.match(await readFile(resolve(root, '.agents/skills/tevra-frontend-review/references/guide.md'), 'utf8'), /tevra-ui-builder references/u);
+  assert.match(await readFile(resolve(root, '.agents/skills/tevra-design-research/SKILL.md'), 'utf8'), /design-research\.md/u);
+  await installSkills(root, ['codex'], false, 'tevra-');
+  for (const prefix of ['Tevra-', 'tevra', '../x-', '-']) await assert.rejects(installSkills(root, ['codex'], true, prefix), /prefix/iu);
 });
 test('installer dry run makes no agent directory and validates destinations first', async t => {
   const root = await project(t); const files = await installSkills(root, ['codex'], true); assert.ok(files.length > 9);

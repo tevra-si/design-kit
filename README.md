@@ -150,6 +150,7 @@ Useful variations:
 tevra-design init                                       # interactive
 tevra-design skills install --agents codex --dry-run    # preview only
 tevra-design init --yes --skip-skills                   # config and context only
+tevra-design skills install --agents codex --prefix tevra-   # when the project already has a skill with the same name
 ```
 
 The installer never overwrites a file you changed; on any conflict it stops without writing anything.
