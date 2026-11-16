@@ -72,7 +72,8 @@
           "licenseStatus": {
             "enum": [
               "metadata-only",
-              "root-text-verified-on-main"
+              "root-text-verified-on-main",
+              "root-text-verified-at-revision"
             ]
           },
           "copyright": {

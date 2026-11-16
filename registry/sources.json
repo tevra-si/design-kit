@@ -7,9 +7,9 @@
       "revision": "98565e65bc3274ddf6eb0838734341714057178b",
       "revisionStatus": "content-verified",
       "inspectedRef": "98565e65bc3274ddf6eb0838734341714057178b",
-      "inspectedAt": "2026-10-23",
+      "inspectedAt": "2026-11-16",
       "license": "MIT",
-      "licenseStatus": "root-text-verified-on-main",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "MIT",
       "copyright": "Copyright (c) 2026 Leonxlnx",
       "reuse": "inspiration",
@@ -35,11 +35,11 @@
       "id": "ui-ux-pro-max",
       "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "revision": "0720614e6e4e2c190f68ff4ab0a71faa0fa70b4a",
-      "revisionStatus": "discovered-content-unavailable",
-      "inspectedRef": "main",
-      "inspectedAt": "2026-10-23",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "0720614e6e4e2c190f68ff4ab0a71faa0fa70b4a",
+      "inspectedAt": "2026-11-16",
       "license": "MIT",
-      "licenseStatus": "root-text-verified-on-main",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "MIT",
       "copyright": "Copyright (c) 2024 Next Level Builder",
       "reuse": "adapted",
@@ -58,17 +58,16 @@
         "remote-assets"
       ],
       "limitations": [
-        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
-        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored."
       ]
     },
     {
       "id": "vercel-agent-skills",
       "repository": "https://github.com/vercel-labs/agent-skills",
       "revision": "050e24cd7b2d54cef2e9f2f6a39da152dd70fbb5",
-      "revisionStatus": "discovered-content-unavailable",
-      "inspectedRef": "main",
-      "inspectedAt": "2026-10-23",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "050e24cd7b2d54cef2e9f2f6a39da152dd70fbb5",
+      "inspectedAt": "2026-11-16",
       "license": null,
       "licenseStatus": "metadata-only",
       "declaredLicense": "MIT",
@@ -90,18 +89,18 @@
       ],
       "limitations": [
         "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
-        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+        "No root LICENSE file exists at this revision; the license is the one the repository declares."
       ]
     },
     {
       "id": "web-quality-skills",
       "repository": "https://github.com/addyosmani/web-quality-skills",
       "revision": "c3cd7e0443125c55237d50105cdc8454e9e8f83d",
-      "revisionStatus": "discovered-content-unavailable",
-      "inspectedRef": "main",
-      "inspectedAt": "2026-10-23",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "c3cd7e0443125c55237d50105cdc8454e9e8f83d",
+      "inspectedAt": "2026-11-16",
       "license": "MIT",
-      "licenseStatus": "root-text-verified-on-main",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "MIT",
       "copyright": "Copyright (c) 2026 Addy Osmani",
       "reuse": "inspiration",
@@ -120,19 +119,18 @@
         "remote-assets"
       ],
       "limitations": [
-        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
-        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored."
       ]
     },
     {
       "id": "playwright",
       "repository": "https://github.com/microsoft/playwright",
       "revision": "14c2dcf1ec955532aa861ecd039b23b9acc53a97",
-      "revisionStatus": "discovered-content-unavailable",
-      "inspectedRef": "main",
-      "inspectedAt": "2026-10-23",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "14c2dcf1ec955532aa861ecd039b23b9acc53a97",
+      "inspectedAt": "2026-11-16",
       "license": "Apache-2.0",
-      "licenseStatus": "root-text-verified-on-main",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "Apache-2.0",
       "copyright": "Copyright (c) Microsoft Corporation",
       "reuse": "dependency",
@@ -151,8 +149,7 @@
         "remote-assets"
       ],
       "limitations": [
-        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
-        "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
+        "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored."
       ]
     },
     {
@@ -163,9 +160,9 @@
       "inspectedRef": "v1.4.0",
       "inspectedAt": "2026-11-16",
       "license": "MIT",
-      "licenseStatus": "metadata-only",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "MIT",
-      "copyright": null,
+      "copyright": "Copyright GitHub, Inc.",
       "reuse": "integration",
       "excludedAssets": [
         "logos",
@@ -184,7 +181,6 @@
       ],
       "limitations": [
         "Paths are those generated in a project by specify init at v1.4.0; scripts were read, not executed.",
-        "License taken from repository metadata; root license text not inspected.",
         "Read-only interoperability with the on-disk layout. No Spec Kit code, templates or prompts are included."
       ]
     },
@@ -196,9 +192,9 @@
       "inspectedRef": "v7.0.2",
       "inspectedAt": "2026-11-16",
       "license": "MIT",
-      "licenseStatus": "metadata-only",
+      "licenseStatus": "root-text-verified-at-revision",
       "declaredLicense": "MIT",
-      "copyright": null,
+      "copyright": "Copyright (c) 2025 Jesse Vincent",
       "reuse": "integration",
       "excludedAssets": [
         "logos",
@@ -214,7 +210,6 @@
       ],
       "limitations": [
         "Only the list of skill names was inspected; skill contents were not read at this revision.",
-        "License taken from repository metadata; root license text not inspected.",
         "Tevra skills defer to a general process skill when one is active. No Superpowers text or code is included."
       ]
     }

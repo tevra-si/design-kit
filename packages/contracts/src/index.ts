@@ -53,7 +53,7 @@ export interface QualityReport {
   version: 1; createdAt: string; status: 'PASS' | 'FAIL'; score: number | null;
   blockers: string[]; missing: string[]; checks: Check[];
   limits: string[]; contextRevision: number;
-  criteria?: { id: string; text: string; status: CriterionStatus; checks: string[] }[];
+  criteria?: { id: string; text: string; status: CriterionStatus; checks: string[]; approvedBy?: string }[];
 }
 export interface Handoff {
   version: 1; taskId: string; objective: string; skill: SkillName; contextVersion: '2.0'; contextRevision: number;
@@ -65,5 +65,5 @@ export interface Plan {
   createdAt: string; budget: { maxSteps: number; maxMinutes: number; maxRefinements: number };
   steps: { skill: SkillName; dependsOn: SkillName[]; status: Status; attempts: number; evidence: string[] }[];
   approvalRequired: boolean; approvedBy: string | null; acceptance?: string[];
-  routing?: { rule: string; risk: Risk; selected: { skill: SkillName; reason: string }[]; excluded: { skill: SkillName; reason: string }[]; missingTools: { skill: SkillName; tool: string }[] };
+  routing?: { rule: string; risk: Risk; riskReason?: string; selected: { skill: SkillName; reason: string }[]; excluded: { skill: SkillName; reason: string }[]; missingTools: { skill: SkillName; tool: string }[] };
 }

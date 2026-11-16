@@ -7,16 +7,16 @@ const specs: Record<string, Record<string, typeof boolean | typeof string>> = {
   'skills list': { registry: string }, 'skills inspect': { registry: string }, 'skills validate': { registry: string }, 'skills graph': { registry: string }, 'skills check': {}, 'skills install': { agents: string, 'dry-run': boolean },
   validate: {}, 'context show': {}, 'context validate': {}, 'context migrate': { out: string, owner: string }, 'context update': { revision: string, 'approve-constraints': boolean },
   'memory inspect': {}, 'memory list': {}, 'memory update': { revision: string }, 'memory reset': { yes: boolean },
-  'workflow plan': { registry: string, mode: string, risk: string, acceptance: string, 'max-steps': string, 'max-minutes': string, 'max-refinements': string, out: string },
+  'workflow plan': { registry: string, mode: string, risk: string, acceptance: string, 'project-mode': string, 'changed-files': string, 'max-steps': string, 'max-minutes': string, 'max-refinements': string, out: string },
   'workflow run': { 'allow-network': boolean, 'allow-custom-browser': boolean },
-  plan: { registry: string, mode: string, risk: string, acceptance: string, 'max-steps': string, 'max-minutes': string, 'max-refinements': string, out: string },
+  plan: { registry: string, mode: string, risk: string, acceptance: string, 'project-mode': string, 'changed-files': string, 'max-steps': string, 'max-minutes': string, 'max-refinements': string, out: string },
   'workflow status': {}, 'workflow start': { skill: string }, 'workflow complete': { skill: string, evidence: string }, 'workflow fail': { skill: string, evidence: string }, 'workflow approve': { by: string, yes: boolean },
   'handoff validate': {}, 'handoff save': {}, search: { category: string, limit: string },
   'tokens generate': { 'new-system': boolean, brand: string }, 'tokens export': {},
   'test performance': { 'allow-network': boolean, 'allow-custom-browser': boolean, 'lcp-ms': string, cls: string, 'tbt-ms': string },
   'test browser': { 'allow-custom-browser': boolean }, 'test visual': { 'allow-custom-browser': boolean }, 'test accessibility': { 'allow-custom-browser': boolean },
   capture: { kind: string, 'approve-baseline': boolean, 'allow-custom-browser': boolean }, compare: {}, a11y: { 'allow-custom-browser': boolean },
-  report: { checks: string, out: string, plan: string, 'not-applicable': string }, review: { checks: string, out: string, plan: string, 'not-applicable': string, 'allow-custom-browser': boolean }, help: {}
+  report: { checks: string, out: string, plan: string, 'not-applicable': string, by: string }, review: { checks: string, out: string, plan: string, 'not-applicable': string, by: string, 'allow-custom-browser': boolean }, help: {}
 };
 export interface Arguments { command: string; positional: string[]; flags: Record<string, string | boolean | undefined> }
 export function parseCLI(argv: string[]): Arguments {

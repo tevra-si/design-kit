@@ -47,7 +47,7 @@ export async function visualCommand(args: Arguments, root: string): Promise<{ re
   for (const check of checks) for (const evidence of check.evidence) if (!(await stat(await safePath(root, evidence))).isFile()) throw new Error(`Evidence must refer to an existing local file: ${evidence}`);
   const acceptance = typeof args.flags.plan === 'string' ? validate<Plan>('plan.schema.json', await readJSON(root, args.flags.plan)).acceptance : undefined;
   if (args.flags['not-applicable'] && !acceptance) throw new Error('--not-applicable requires --plan with acceptance criteria');
-  const report = evaluateQuality(checks, config, context.revision, acceptance ? { acceptance, notApplicable: flag(args, 'not-applicable', '').split(',').filter(Boolean) } : undefined); const output = flag(args, 'out', '.tevra/reports/quality.md');
+  const report = evaluateQuality(checks, config, context.revision, acceptance ? { acceptance, notApplicable: flag(args, 'not-applicable', '').split(',').filter(Boolean), ...(typeof args.flags.by === 'string' ? { approvedBy: args.flags.by } : {}) } : undefined); const output = flag(args, 'out', '.tevra/reports/quality.md');
   await writeJSON(root, '.tevra/reports/quality.json', JSON.parse(redact(JSON.stringify(report))) as unknown);
   await writeAtomic(root, output, markdownReport(report));
   await writeAtomic(root, '.tevra/reports/quality.html', htmlReport(report));

@@ -33,7 +33,7 @@ tevra-design context update <candidate.json> --revision N [--approve-constraints
 tevra-design memory list|inspect|reset [--yes]
 tevra-design memory update <entry.json> --revision N
 tevra-design search "query" [--category ux --limit 5]
-tevra-design plan "request" [--mode quick|standard|full --risk low|medium|high --acceptance criteria.json --max-steps 12 --max-minutes 60 --max-refinements 2]
+tevra-design plan "request" [--mode quick|standard|full --risk low|medium|high --project-mode greenfield|existing --changed-files a.css,b.tsx --acceptance criteria.json --max-steps 12 --max-minutes 60 --max-refinements 2]
 tevra-design workflow plan "request" [--mode quick|standard|full --risk low|medium|high --acceptance criteria.json]
 tevra-design workflow run <plan.json> [--allow-network]
 tevra-design workflow status <plan.json>
@@ -47,7 +47,7 @@ tevra-design compare
 tevra-design test browser|visual|accessibility [--allow-custom-browser]
 tevra-design test performance --allow-network [--lcp-ms 2500 --cls 0.1 --tbt-ms 200]
 tevra-design a11y
-tevra-design report|review [--plan plan.json --not-applicable AC-003,AC-004 --checks checks.json --out .tevra/reports/quality.md]
+tevra-design report|review [--plan plan.json --not-applicable AC-003,AC-004 --by human-name --checks checks.json --out .tevra/reports/quality.md]
 
 Every command accepts --root <project-directory>. Paths are project-relative.
 Custom executable paths require --allow-custom-browser on doctor/capture/a11y/review.

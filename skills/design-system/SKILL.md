@@ -3,6 +3,8 @@ name: design-system
 description: Generate, extract or extend layered design tokens and documented component variants, reusing existing project systems and exporting portable CSS variables or Tailwind CSS adapters. Use when creating, extracting or extending tokens, themes, dark mode or component variants, or exporting them to CSS or Tailwind.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Design System

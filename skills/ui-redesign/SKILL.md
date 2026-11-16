@@ -3,6 +3,8 @@ name: ui-redesign
 description: Audit and improve an existing component or screen while preserving behavior, product identity and scoped public contracts, with conservative, balanced or transformative modes. Use when asked to improve, restyle, polish or fix the look of an existing screen or component without breaking its behavior.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # UI Redesign

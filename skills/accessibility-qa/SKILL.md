@@ -3,6 +3,8 @@ name: accessibility-qa
 description: Review and test web UI accessibility against WCAG 2.2 AA, covering code or rendered pages, forms, dialogs, keyboard and focus, labels, error messages, contrast and reduced motion, with axe where a browser is available. Use whenever someone asks whether a component, form or page is accessible or ready to ship, mentions a11y, WCAG, screen readers, keyboard navigation, focus, labels or color contrast, including when reviewing a code snippet.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Accessibility QA

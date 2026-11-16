@@ -8,8 +8,8 @@ Tevra Design Kit's TypeScript code and skill instructions are original work, lic
 | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | MIT, © 2024 Next Level Builder | Reference for search and domain organization. Three short UX records adapted with attribution |
 | Web Quality Skills (Addy Osmani) | MIT, © 2026 Addy Osmani | Inspiration only for performance guidance. Nothing redistributed |
 | Vercel React guidance | Declared MIT | Inspiration only. No rule files redistributed |
-| [github/spec-kit](https://github.com/github/spec-kit) | Declared MIT | Optional interoperability: Tevra reads a project's `.specify/feature.json` and feature `spec.md`. Nothing copied or bundled |
-| [obra/superpowers](https://github.com/obra/superpowers) | Declared MIT | Optional interoperability: skills defer to a general process skill when one is active. Nothing copied or bundled |
+| [github/spec-kit](https://github.com/github/spec-kit) | MIT, © GitHub, Inc. | Optional interoperability: Tevra reads a project's `.specify/feature.json` and feature `spec.md`. Nothing copied or bundled |
+| [obra/superpowers](https://github.com/obra/superpowers) | MIT, © 2025 Jesse Vincent | Optional interoperability: skills defer to a general process skill when one is active. Nothing copied or bundled |
 
 The three adapted records in `references/ux-patterns/catalog.json` have IDs starting with `upstream-` and carry their source URL, confidence and license. The full upstream MIT notice is at `references/ux-patterns/UPSTREAM-LICENSE.txt`. All other catalog records are Tevra guidance labeled `inferred`; they are not user-research data.
 

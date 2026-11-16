@@ -3,6 +3,8 @@ name: design-research
 description: Research product intent, UX patterns, information architecture, typography and color candidates using project evidence and local searchable guidance before designing or redesigning an interface. Use when a UI brief, user need, product category or current-screen problem is unclear and needs evidence before design or redesign.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Design Research

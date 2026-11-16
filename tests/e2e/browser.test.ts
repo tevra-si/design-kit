@@ -54,7 +54,7 @@ for (const [name, directory] of [['nextjs', 'examples/nextjs-dashboard/out'], ['
       { name: 'added', actions: [{ type: 'fill' as const, selector: '#task-title', value: 'Review browser evidence' }, { type: 'click' as const, selector: '.primary-button' }], masks: ['.workspace-label'], waitFor: '.task-list li:nth-child(4)' },
       { name: 'error', actions: [{ type: 'fill' as const, selector: '#task-title', value: 'x' }, { type: 'click' as const, selector: '.primary-button' }], masks: ['.workspace-label'], waitFor: '#task-error' }
     ] }] };
-    const baseline = await capture(artifactRoot, config, 'baseline', 0, true); assert.equal(baseline.entries.length, 12);
+    const baseline = await capture(artifactRoot, config, 'baseline', 0, true); assert.equal(baseline.entries.length, 15);
     await assert.rejects(capture(artifactRoot, config, 'baseline', 0, true), /already exists/u);
     const current = await capture(artifactRoot, config, 'current', 0); const matched = await compare(artifactRoot, config);
     assert.ok(matched.comparisons.every(result => result.passed)); assert.ok(current.entries.every(entry => !entry.axeViolations.length && !entry.pageErrors.length));

@@ -35,6 +35,7 @@ test('two deployed versions are compared route by route, including errors the ba
   const result = await compare(root, config);
   assert.ok(result.comparisons.every(comparison => comparison.passed));
   const runtime = result.checks.find(check => check.id === 'runtime-regressions');
-  assert.equal(runtime?.status, 'failed'); assert.match(runtime?.issue ?? '', /orders--default--mobile: orders failed to refresh/u);
+  assert.equal(runtime?.status, 'failed'); assert.match(runtime?.issue ?? '', /orders--default--mobile-small: orders failed to refresh/u);
+  assert.match(result.checks.find(check => check.id === 'runtime-regressions:orders--default--mobile-small')?.issue ?? '', /Actual: orders failed to refresh/u);
   assert.equal(result.checks.find(check => check.id === 'accessibility-regressions')?.status, 'passed');
 });

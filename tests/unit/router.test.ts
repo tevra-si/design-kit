@@ -48,6 +48,15 @@ test('risk selects the smallest safe mode and an explicit mode overrides it', ()
   assert.equal(planWorkflow('Adjust button spacing', { ...options, risk: 'high' }).mode, 'standard');
   assert.throws(() => planWorkflow('Adjust button spacing', { ...withoutMode, risk: 'severe' as 'high' }), /Risk/u);
 });
+test('changed shared design files raise the risk and greenfield projects skip rules that need existing UI', () => {
+  const { mode: _mode, ...withoutMode } = options;
+  const shared = planWorkflow('Adjust button spacing', { ...withoutMode, maxSteps: 12, changedFiles: ['src/styles/tokens.css', 'src/Button.tsx'] });
+  assert.equal(shared.mode, 'full'); assert.match(shared.routing?.riskReason ?? '', /src\/styles\/tokens\.css/u); assert.doesNotMatch(shared.routing?.riskReason ?? '', /Button/u);
+  assert.equal(planWorkflow('Adjust button spacing', { ...withoutMode, changedFiles: ['src/Button.tsx'] }).routing?.risk, 'medium');
+  assert.equal(planWorkflow('Adjust button spacing', { ...withoutMode, risk: 'low', changedFiles: ['src/styles/tokens.css'] }).mode, 'quick');
+  assert.equal(planWorkflow('Improve the pricing card', { ...options, projectMode: 'greenfield' }).routing?.rule, 'new-interface');
+  assert.equal(planWorkflow('Improve the pricing card', { ...options, projectMode: 'existing' }).routing?.rule, 'component-redesign');
+});
 test('plans explain selected and excluded skills and report unavailable tools', () => {
   const plan = planWorkflow('Build a dashboard', { ...options, mode: 'quick', availableTools: [] });
   assert.equal(plan.routing?.rule, 'new-interface');

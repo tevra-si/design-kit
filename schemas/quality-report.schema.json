@@ -179,6 +179,10 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "approvedBy": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }

@@ -44,19 +44,26 @@ export function compareImages(baseline: Buffer, current: Buffer, sensitivity: nu
 export function regressionChecks(baseline: CaptureManifest, current: CaptureManifest, config: Config): Check[] {
   const origins = [config.baseURL, ...(config.baselineURL ? [config.baselineURL] : [])].map(url => new URL(url).origin);
   const normalize = (values: string[] = []): string[] => values.map(value => origins.reduce((text, origin) => text.replaceAll(origin, ''), value));
-  const runtime: string[] = []; const accessibility: string[] = [];
+  const runtime: string[] = []; const accessibility: string[] = []; const findings: Check[] = [];
+  const evidence = ['.tevra/artifacts/baseline/manifest.json', '.tevra/artifacts/current/manifest.json'];
+  const finding = (id: string, category: Check['category'], entry: CaptureManifest['entries'][number], actual: string[], expected: string, correction: string): void => {
+    if (actual.length) findings.push({ id: `${id}:${entry.id}`, category, kind: 'deterministic', status: 'failed', severity: 'major', evidence: [...evidence, entry.file], component: `${entry.route} / ${entry.state} / ${entry.viewport.name} (${entry.viewport.width}×${entry.viewport.height})`, issue: `Expected: ${expected}. Actual: ${actual.join('; ')}`, correction });
+  };
   for (const entry of current.entries) {
     const original = baseline.entries.find(candidate => candidate.id === entry.id);
     if (!original) continue;
     const before = new Set([...normalize(original.pageErrors), ...normalize(original.consoleErrors), ...normalize(original.networkErrors)]);
-    for (const error of [...normalize(entry.pageErrors), ...normalize(entry.consoleErrors), ...normalize(entry.networkErrors)]) if (!before.has(error)) runtime.push(`${entry.id}: ${error}`);
-    for (const violation of entry.axeViolations) if (!original.axeViolations.some(known => known.id === violation.id)) accessibility.push(`${entry.id}: ${violation.id} (${violation.impact})`);
+    const errors = [...normalize(entry.pageErrors), ...normalize(entry.consoleErrors), ...normalize(entry.networkErrors)].filter(error => !before.has(error));
+    const violations = entry.axeViolations.filter(violation => !original.axeViolations.some(known => known.id === violation.id)).map(violation => `${violation.id} (${violation.impact})`);
+    runtime.push(...errors.map(error => `${entry.id}: ${error}`)); accessibility.push(...violations.map(violation => `${entry.id}: ${violation}`));
+    finding('runtime-regressions', 'functional', entry, errors, 'no page, console or network errors beyond the baseline', 'Resolve the errors introduced since the baseline.');
+    finding('accessibility-regressions', 'accessibility', entry, violations, 'no axe violations beyond the baseline', 'Resolve the axe violations introduced since the baseline.');
   }
-  const evidence = ['.tevra/artifacts/baseline/manifest.json', '.tevra/artifacts/current/manifest.json'];
   const check = (id: string, category: Check['category'], issues: string[], correction: string): Check => ({ id, category, kind: 'deterministic', status: issues.length ? 'failed' : 'passed', severity: 'major', evidence, issue: issues.length ? `Not present in the baseline: ${issues.join('; ')}` : 'No findings beyond those already in the baseline.', component: 'configured visual matrix', correction });
   return [
     check('runtime-regressions', 'functional', runtime, 'Resolve page, console and network errors introduced since the baseline.'),
-    check('accessibility-regressions', 'accessibility', accessibility, 'Resolve axe violations introduced since the baseline.')
+    check('accessibility-regressions', 'accessibility', accessibility, 'Resolve axe violations introduced since the baseline.'),
+    ...findings
   ];
 }
 export async function compare(root: string, config: Config): Promise<ComparisonResult> {

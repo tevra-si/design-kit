@@ -3,6 +3,8 @@ name: visual-review
 description: Review real rendered web interfaces using Playwright screenshots, baseline/diff evidence, overflow checks and an evidence-based rubric, with bounded targeted refinement. Use after a rendered UI change, or when asked to compare screenshots, approve baselines or score visual quality.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Visual Review

@@ -33,12 +33,16 @@ export async function workflowCommand(args: Arguments, root: string): Promise<un
     if (mode !== undefined && mode !== 'quick' && mode !== 'standard' && mode !== 'full') throw new Error('Mode must be quick, standard or full');
     const risk = flag(args, 'risk', 'medium');
     if (risk !== 'low' && risk !== 'medium' && risk !== 'high') throw new Error('Risk must be low, medium or high');
+    const projectMode = args.flags['project-mode'];
+    if (projectMode !== undefined && projectMode !== 'greenfield' && projectMode !== 'existing') throw new Error('Project mode must be greenfield or existing');
+    const changedFiles = flag(args, 'changed-files', '').split(',').filter(Boolean);
+    const explicitRisk = typeof args.flags.risk === 'string';
     const acceptance = typeof args.flags.acceptance === 'string' ? await readJSON(root, args.flags.acceptance) : undefined;
     if (acceptance !== undefined && (!Array.isArray(acceptance) || !acceptance.every((criterion): criterion is string => typeof criterion === 'string'))) throw new Error('--acceptance must be a JSON array of criteria such as "AC-001: text"');
     // Quick work never depends on Spec Kit, so a broken feature pointer cannot block a trivial change.
     const specKit = mode === 'quick' || (!mode && risk === 'low') ? null : await readSpecKit(root);
     const criteria = acceptance ?? (specKit?.acceptance.length ? specKit.acceptance : undefined);
-    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(criteria ? { acceptance: criteria } : {}), ...(specKit ? { specKit } : {}), risk, availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
+    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(criteria ? { acceptance: criteria } : {}), ...(specKit ? { specKit } : {}), ...(projectMode ? { projectMode } : {}), ...(changedFiles.length ? { changedFiles } : {}), ...(explicitRisk ? { risk } : {}), availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
     const output = flag(args, 'out', `.tevra/plans/${plan.id}.json`); await writeJSON(root, output, plan); return { path: output, plan };
   }
   if (args.command === 'workflow status') return validate<Plan>('plan.schema.json', await readJSON(root, inputPath(args)));

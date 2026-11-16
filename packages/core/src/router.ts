@@ -8,11 +8,12 @@ import type { Registry } from '../../registry/src/index.js';
 import { criterionIds } from '../../contracts/src/index.js';
 import type { Plan, Risk } from '../../contracts/src/index.js';
 
-interface RoutingRule { id: string; all: string[]; none: string[]; capabilities: string[] }
-interface Routing { version: 1; signals: Record<string, string>; rules: RoutingRule[] }
+interface RoutingRule { id: string; all: string[]; none: string[]; capabilities: string[]; requiresExistingUI?: boolean }
+interface Routing { version: 1; sharedFiles?: string; signals: Record<string, string>; rules: RoutingRule[] }
 export interface RouteOptions {
   mode?: Plan['mode']; risk?: Risk; availableTools?: string[]; acceptance?: string[];
   specKit?: { feature: string; hasSpec: boolean; hasPlan: boolean };
+  projectMode?: 'greenfield' | 'existing'; changedFiles?: string[];
   maxSteps: number; maxMinutes: number; maxRefinements: number; contextRevision: number; framework?: string; platform?: string;
 }
 
@@ -29,16 +30,19 @@ function loadRouting(): Routing {
 export function planWorkflow(request: string, options: RouteOptions, extensionRegistry?: Registry): Plan {
   if (!request.trim()) throw new Error('A non-empty user request is required');
   if (!Number.isInteger(options.maxSteps) || options.maxSteps < 1 || options.maxSteps > 100 || !Number.isInteger(options.contextRevision) || options.contextRevision < 0) throw new Error('Invalid step budget or context revision');
-  const risk = options.risk ?? 'medium';
+  const routing = loadRouting();
+  // A change to shared tokens or themes reaches every screen, so it is planned as high risk unless the caller says otherwise.
+  const shared = routing.sharedFiles ? (options.changedFiles ?? []).filter(file => new RegExp(routing.sharedFiles ?? '', 'iu').test(file.replaceAll('\\', '/'))) : [];
+  const risk = options.risk ?? (shared.length ? 'high' : 'medium');
   if (!(risk in modeForRisk)) throw new Error('Risk must be low, medium or high');
+  const riskReason = options.risk ? 'Requested' : shared.length ? `Changed shared design files: ${shared.join(', ')}` : 'Default';
   const mode = options.mode ?? modeForRisk[risk];
   if (options.acceptance) criterionIds(options.acceptance, true);
 
   const text = request.toLocaleLowerCase();
-  const routing = loadRouting();
   // Whole-word match so "form" does not fire on "performance" or "information".
   const matched = new Set(Object.entries(routing.signals).filter(([, terms]) => new RegExp(`(?<!\\p{L})(?:${terms})(?!\\p{L})`, 'u').test(text)).map(([signal]) => signal));
-  const rule = routing.rules.find(candidate => candidate.all.every(signal => matched.has(signal)) && !candidate.none.some(signal => matched.has(signal)));
+  const rule = routing.rules.find(candidate => !(candidate.requiresExistingUI && options.projectMode === 'greenfield') && candidate.all.every(signal => matched.has(signal)) && !candidate.none.some(signal => matched.has(signal)));
   if (!rule) throw new Error('No routing rule matches the request');
 
   let requested = rule.capabilities.map(capability => ({ capability, reason: `Rule ${rule.id} requests ${capability}` }));
@@ -86,5 +90,5 @@ export function planWorkflow(request: string, options: RouteOptions, extensionRe
     budget: { maxSteps: options.maxSteps, maxMinutes: options.maxMinutes, maxRefinements: mode === 'quick' ? 0 : options.maxRefinements },
     steps: skills.map((skill, index) => ({ skill, dependsOn: index > 0 ? skills.slice(index - 1, index) : [], status: 'pending', attempts: 0, evidence: [] })),
     approvalRequired: matched.has('high-impact'), approvedBy: null, ...(options.acceptance?.length ? { acceptance: options.acceptance } : {}),
-    routing: { rule: rule.id, risk, selected, excluded, missingTools } };
+    routing: { rule: rule.id, risk, riskReason, selected, excluded, missingTools } };
 }

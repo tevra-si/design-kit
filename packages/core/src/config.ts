@@ -5,7 +5,7 @@ import { readJSON } from '../../filesystem/src/index.js';
 
 export const defaultConfig: Config = {
   version: 1, baseURL: 'http://127.0.0.1:4173', permittedOrigins: ['http://127.0.0.1:4173'],
-  viewports: [{ name: 'mobile', width: 390, height: 844 }, { name: 'tablet', width: 768, height: 1024 }, { name: 'laptop', width: 1280, height: 800 }, { name: 'desktop', width: 1440, height: 900 }],
+  viewports: [{ name: 'mobile-small', width: 375, height: 812 }, { name: 'mobile', width: 390, height: 844 }, { name: 'tablet', width: 768, height: 1024 }, { name: 'laptop', width: 1280, height: 800 }, { name: 'desktop', width: 1440, height: 900 }],
   routes: [{ name: 'home', path: '/', states: [{ name: 'default', actions: [], masks: [] }] }],
   browser: {}, timeoutMs: 15000, thresholds: { diffRatio: 0.01, pixelSensitivity: 0.1, minScore: 75 },
   weights: { hierarchy: 15, typography: 10, layout: 15, consistency: 10, responsive: 15, accessibility: 15, interaction: 0, functional: 10, performance: 10 },

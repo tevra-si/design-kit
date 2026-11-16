@@ -36,6 +36,8 @@ tevra-design workflow plan "Improve this pricing card" --mode quick
 
 Leave out `--mode` and pass `--risk low|medium|high` to let the risk pick the mode (quick, standard, full). The default risk is `medium`. An explicit `--mode` always wins.
 
+Two optional hints refine the plan. `--changed-files src/styles/tokens.css,src/Button.tsx` raises the risk to `high` when a shared design file (tokens, theme, globals, design system, Tailwind config) is among them and no `--risk` was given. `--project-mode greenfield` skips rules that need existing UI, such as redesign and debugging.
+
 Plans record steps, dependencies, step/time/refinement budgets and the context revision. Under `routing` a plan also records the rule that matched, a reason for every selected and excluded skill, and any required tool (browser, Lighthouse) that is not available. Routing rules are data in `registry/routing.json`. Work that changes shared tokens or brand, or a transformative redesign, is marked `approvalRequired` and waits for a human.
 
 ## Research and design data
@@ -84,7 +86,7 @@ What each capture records:
 
 Comparison fails when the configuration, screenshot set, browser version or context revision does not match the baseline. Reports refuse stale comparisons or failed captures.
 
-**Comparing two deployments.** Set `baselineURL` in the config to capture the baseline from one deployment and the current screens from `baseURL`, for example before and after a migration. Give a route a `baselinePath` when its path changed. `compare` then reports the pixel diff together with `runtime-regressions` and `accessibility-regressions`: page, console and network errors and axe violations that only the current deployment has. Matching screenshots alone do not show that two versions behave the same.
+**Comparing two deployments.** Set `baselineURL` in the config to capture the baseline from one deployment and the current screens from `baseURL`, for example before and after a migration. Give a route a `baselinePath` when its path changed. `compare` then reports the pixel diff together with `runtime-regressions` and `accessibility-regressions`: page, console and network errors and axe violations that only the current deployment has. Each affected capture also gets its own finding, such as `runtime-regressions:orders--default--mobile`, naming the route, state and viewport with the expected and actual result and the screenshot as evidence. Matching screenshots alone do not show that two versions behave the same.
 
 **Baselines are protected.** They are created only with `--approve-baseline` and never overwritten by `compare`. To replace one, archive the baseline folder yourself after review, then capture again.
 
@@ -109,7 +111,7 @@ Give each criterion a stable ID as a prefix and pass them when planning:
 ```sh
 # criteria.json: ["AC-001: Form submits with valid input", "AC-002: Invalid fields show an announced error"]
 tevra-design workflow plan "Build the signup form" --acceptance criteria.json
-tevra-design report --plan .tevra/plans/PLAN.json --checks review-checks.json --not-applicable AC-005
+tevra-design report --plan .tevra/plans/PLAN.json --checks review-checks.json --not-applicable AC-005 --by "Product owner"
 ```
 
 A check lists the criteria it covers in `criteria`, for example `"criteria": ["AC-001"]`. With `--plan`, the report adds one status per criterion:
@@ -120,7 +122,7 @@ A check lists the criteria it covers in `criteria`, for example `"criteria": ["A
 | `FAIL` | A covering check failed. Blocks the report |
 | `BLOCKED` | A covering check is unverified, for example the browser was unavailable. Counts as missing evidence |
 | `SKIPPED` | No check covers it. Counts as missing evidence |
-| `NOT_APPLICABLE` | Listed in `--not-applicable`. Recorded in the report, not counted against it |
+| `NOT_APPLICABLE` | Listed in `--not-applicable`, which requires `--by` naming the human who approved it. The name is recorded in the report; it is not authentication |
 
 The report itself stays `PASS` or `FAIL`. Plans, handoffs and checks without IDs keep working. In a Spec Kit project the criteria come from the active feature; see [interop](interop.md).
 

@@ -3,6 +3,8 @@ name: ui-builder
 description: Implement functional React, Next.js, SvelteKit, Vue or React Native/Expo interfaces using approved project components and tokens, including real state handling and accessible interactions. Use when building or changing a real screen, component, route or form against an approved direction or existing conventions.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # UI Builder

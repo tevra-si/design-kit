@@ -44,4 +44,7 @@ test('comparison reports only errors and violations that the baseline did not ha
   assert.match(regressed.find(check => check.id === 'runtime-regressions')?.issue ?? '', /home--default--mobile: TypeError/u);
   assert.match(regressed.find(check => check.id === 'accessibility-regressions')?.issue ?? '', /color-contrast/u);
   assert.doesNotMatch(regressed.find(check => check.id === 'accessibility-regressions')?.issue ?? '', /label/u);
+  const finding = regressed.find(check => check.id === 'runtime-regressions:home--default--mobile');
+  assert.equal(finding?.component, 'home / default / mobile-small (375×812)'); assert.match(finding?.issue ?? '', /^Expected: no page.*Actual: TypeError/u); assert.ok(finding?.evidence.includes('screen.png'));
+  assert.equal(new Set(regressed.map(check => check.id)).size, regressed.length);
 });

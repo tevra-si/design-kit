@@ -35,7 +35,9 @@ test('acceptance criteria trace to checks and block the gate until each has pass
   const checks = scored(); const first = checks[0]; assert.ok(first); first.criteria = ['AC-001'];
   checks.push({ id: 'error-announcement', category: 'accessibility', kind: 'deterministic', status: 'failed', severity: 'minor', evidence: ['axe.json'], issue: 'Error is not announced', component: 'form', correction: 'Add a live region', criteria: ['AC-002'] });
   checks.push({ id: 'narrow-viewport', category: 'responsive', kind: 'deterministic', status: 'unverified', severity: 'minor', evidence: [], issue: 'Browser unavailable', component: 'form', correction: '', criteria: ['AC-003'] });
-  const report = evaluateQuality(checks, config, 0, { acceptance, notApplicable: ['AC-005'] });
+  const report = evaluateQuality(checks, config, 0, { acceptance, notApplicable: ['AC-005'], approvedBy: 'Product owner' });
+  assert.equal(report.criteria?.[4]?.approvedBy, 'Product owner');
+  assert.throws(() => evaluateQuality(checks, config, 0, { acceptance, notApplicable: ['AC-005'] }), /named human approver/u);
   assert.deepEqual(report.criteria?.map(criterion => criterion.status), ['PASS', 'FAIL', 'BLOCKED', 'SKIPPED', 'NOT_APPLICABLE']);
   assert.equal(report.status, 'FAIL'); assert.ok(report.blockers.includes('criterion:AC-002'));
   assert.ok(report.missing.includes('criterion:AC-003')); assert.ok(report.missing.includes('criterion:AC-004'));
@@ -44,7 +46,7 @@ test('acceptance criteria trace to checks and block the gate until each has pass
   assert.equal(passing.status, 'PASS');
   assert.throws(() => evaluateQuality([{ ...first, criteria: ['AC-009'] }], config, 0, { acceptance }), /Unknown acceptance criterion/u);
   assert.throws(() => evaluateQuality(scored(), config, 0, { acceptance: ['Form submits'] }), /AC-/u);
-  assert.throws(() => evaluateQuality(scored(), config, 0, { acceptance, notApplicable: ['AC-009'] }), /Unknown acceptance criterion/u);
+  assert.throws(() => evaluateQuality(scored(), config, 0, { acceptance, notApplicable: ['AC-009'], approvedBy: 'Product owner' }), /Unknown acceptance criterion/u);
   assert.equal(evaluateQuality(scored(), config, 0).criteria, undefined);
 });
 test('config rejects remote routes, invalid weights, duplicate viewports and incomplete actions', () => {

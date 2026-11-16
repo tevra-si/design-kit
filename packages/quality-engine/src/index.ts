@@ -3,10 +3,12 @@ import type { Check, Config, QualityReport } from '../../contracts/src/index.js'
 import { validate } from '../../design-context/src/validation.js';
 import { redact } from '../../filesystem/src/index.js';
 
-export interface CriteriaTrace { acceptance: string[]; notApplicable?: string[] }
+export interface CriteriaTrace { acceptance: string[]; notApplicable?: string[]; approvedBy?: string }
 function traceCriteria(checks: Check[], trace: CriteriaTrace): NonNullable<QualityReport['criteria']> {
   const ids = criterionIds(trace.acceptance, true);
   const notApplicable = trace.notApplicable ?? [];
+  const approvedBy = trace.approvedBy?.trim();
+  if (notApplicable.length && !approvedBy) throw new Error('Marking a criterion not applicable requires a named human approver');
   for (const id of [...notApplicable, ...checks.flatMap(check => check.criteria ?? [])]) if (!ids.includes(id)) throw new Error(`Unknown acceptance criterion: ${id}`);
   return trace.acceptance.map((text, index) => {
     const id = ids[index] ?? '';
@@ -15,7 +17,7 @@ function traceCriteria(checks: Check[], trace: CriteriaTrace): NonNullable<Quali
       : !covering.length ? 'SKIPPED'
       : covering.some(check => check.status === 'failed') ? 'FAIL'
       : covering.some(check => check.status === 'unverified') ? 'BLOCKED' : 'PASS';
-    return { id, text, status, checks: covering.map(check => check.id) };
+    return { id, text, status, checks: covering.map(check => check.id), ...(status === 'NOT_APPLICABLE' && approvedBy ? { approvedBy } : {}) };
   });
 }
 export function evaluateQuality(input: unknown, config: Config, contextRevision: number, trace?: CriteriaTrace): QualityReport {
@@ -50,5 +52,5 @@ export function evaluateQuality(input: unknown, config: Config, contextRevision:
 function cell(value: string): string { return redact(value).replace(/([\\|\[\]()`])/gu, '\\$1').replace(/</gu, '&lt;').replace(/>/gu, '&gt;').replace(/[\r\n]/gu, ' '); }
 export function markdownReport(report: QualityReport): string {
   const rows = report.checks.map(check => `| ${cell(check.id)} | ${check.kind} | ${check.status} | ${check.severity} | ${cell(check.component)} | ${cell(check.issue)} | ${cell(check.evidence.join(', '))} | ${cell(check.correction)} |`);
-  return redact(`# Tevra quality report\n\nStatus: **${report.status}** · Context revision: ${report.contextRevision}\n\nWeighted score: ${report.score === null ? 'unscored / incomplete evidence' : `${report.score}/100 (evidence-labeled judgment)`}\n\nBlockers: ${report.blockers.join(', ') || 'none'}\n\nMissing required evidence: ${report.missing.join(', ') || 'none'}\n\n| Check | Evidence kind | Status | Severity | Component | Issue | Evidence | Correction |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n${rows.join('\n')}\n${report.criteria ? `\n## Acceptance criteria\n\n| Criterion | Status | Checks |\n| --- | --- | --- |\n${report.criteria.map(criterion => `| ${cell(criterion.text)} | ${criterion.status} | ${cell(criterion.checks.join(', ') || 'none')} |`).join('\n')}\n` : ''}\n## Verification limits\n\n${report.limits.map(limit => `- ${limit}`).join('\n')}\n`);
+  return redact(`# Tevra quality report\n\nStatus: **${report.status}** · Context revision: ${report.contextRevision}\n\nWeighted score: ${report.score === null ? 'unscored / incomplete evidence' : `${report.score}/100 (evidence-labeled judgment)`}\n\nBlockers: ${report.blockers.join(', ') || 'none'}\n\nMissing required evidence: ${report.missing.join(', ') || 'none'}\n\n| Check | Evidence kind | Status | Severity | Component | Issue | Evidence | Correction |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n${rows.join('\n')}\n${report.criteria ? `\n## Acceptance criteria\n\n| Criterion | Status | Checks |\n| --- | --- | --- |\n${report.criteria.map(criterion => `| ${cell(criterion.text)} | ${criterion.status}${criterion.approvedBy ? ` (approved by ${cell(criterion.approvedBy)})` : ''} | ${cell(criterion.checks.join(', ') || 'none')} |`).join('\n')}\n` : ''}\n## Verification limits\n\n${report.limits.map(limit => `- ${limit}`).join('\n')}\n`);
 }

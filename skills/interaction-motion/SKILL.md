@@ -3,6 +3,8 @@ name: interaction-motion
 description: Design and implement purposeful hover, press, loading, transition, gesture and spring feedback with accessible reduced-motion alternatives and minimal dependencies. Use when adding or fixing hover/press feedback, loading or success transitions, animations, gestures or reduced-motion behavior.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Interaction Motion

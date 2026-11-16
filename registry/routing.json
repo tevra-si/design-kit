@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "sharedFiles": "(^|/)(tokens?|themes?|globals?|design[-_.]?system|tailwind\\.config)[^/]*\\.(css|scss|json|ts|js|mjs|cjs)$",
   "signals": {
     "performance": "performance|lighthouse|web vitals|core web vitals|hiệu năng",
     "browser-testing": "browser tests?|browser testing|e2e|functional regression",
@@ -24,10 +25,10 @@
     { "id": "responsive", "all": ["responsive"], "none": [], "capabilities": ["responsive.design", "frontend.implementation", "visual.regression", "accessibility"] },
     { "id": "design-system", "all": ["tokens"], "none": [], "capabilities": ["ux.research", "visual.direction", "design.tokens"] },
     { "id": "screenshot-to-code", "all": ["screenshot"], "none": [], "capabilities": ["visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
-    { "id": "accessibility-remediation", "all": ["accessibility", "redesign"], "none": [], "capabilities": ["frontend.implementation", "visual.regression", "accessibility"] },
-    { "id": "debugging", "all": ["bug"], "none": [], "capabilities": ["frontend.debugging"] },
-    { "id": "component-redesign", "all": ["redesign", "component"], "none": [], "capabilities": ["ui.redesign", "frontend.implementation", "visual.regression"] },
-    { "id": "screen-redesign", "all": ["redesign"], "none": [], "capabilities": ["ui.redesign", "visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
+    { "id": "accessibility-remediation", "requiresExistingUI": true, "all": ["accessibility", "redesign"], "none": [], "capabilities": ["frontend.implementation", "visual.regression", "accessibility"] },
+    { "id": "debugging", "requiresExistingUI": true, "all": ["bug"], "none": [], "capabilities": ["frontend.debugging"] },
+    { "id": "component-redesign", "requiresExistingUI": true, "all": ["redesign", "component"], "none": [], "capabilities": ["ui.redesign", "frontend.implementation", "visual.regression"] },
+    { "id": "screen-redesign", "requiresExistingUI": true, "all": ["redesign"], "none": [], "capabilities": ["ui.redesign", "visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
     { "id": "review", "all": ["review"], "none": [], "capabilities": ["visual.regression", "accessibility"] },
     { "id": "new-interface", "all": [], "none": [], "capabilities": ["ux.research", "visual.direction", "design.tokens", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] }
   ]

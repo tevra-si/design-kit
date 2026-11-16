@@ -3,6 +3,8 @@ name: responsive-design
 description: Fix and verify layouts across phone, tablet and desktop widths, including horizontal scrolling, overflow, breakpoints, container queries, wide tables, navigation on small screens and safe areas. Use whenever a page scrolls sideways, breaks or looks wrong on mobile or at a specific width, or when making a layout responsive.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Responsive Design

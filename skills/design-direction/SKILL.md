@@ -3,6 +3,8 @@ name: design-direction
 description: Choose and document a distinctive, implementable visual direction from a brief, research or screenshot while preserving the active project design system. Use before substantial new UI or a redesign, or when turning a screenshot or brief into a visual direction.
 license: MIT
 compatibility: Compatible coding agent; Tevra CLI and local browser needed only for automated checks.
+metadata:
+  version: "1.2.0"
 ---
 
 # Design Direction
