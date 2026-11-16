@@ -25,6 +25,36 @@ test('routing matches whole words and keeps the owning skill in quick mode', () 
   assert.deepEqual(skills('improve the information panel'), ['ui-redesign', 'design-direction', 'ui-builder', 'responsive-design', 'visual-review', 'accessibility-qa']);
   assert.deepEqual(skills('restyle the pricing cards'), ['ui-redesign', 'ui-builder', 'visual-review']);
 });
+test('routing rules cover common frontend requests', () => {
+  const skills = (request: string, extra: Partial<Parameters<typeof planWorkflow>[1]> = {}): string[] => planWorkflow(request, { ...options, ...extra }).steps.map(step => step.skill);
+  assert.deepEqual(skills('Redesign the React dashboard', { framework: 'react' }), ['ui-redesign', 'design-direction', 'ui-builder', 'responsive-design', 'visual-review', 'accessibility-qa']);
+  assert.ok(skills('Create a Svelte 5 card component', { framework: 'sveltekit' }).includes('ui-builder'));
+  assert.deepEqual(skills('Adjust button spacing'), ['ui-redesign', 'ui-builder', 'visual-review']);
+  assert.equal(skills('Convert this screenshot to code')[0], 'design-direction');
+  assert.deepEqual(skills('Compare the old and new site after migration'), ['visual-review', 'accessibility-qa']);
+  assert.deepEqual(skills('Fix accessibility issues on the checkout form'), ['ui-builder', 'visual-review', 'accessibility-qa']);
+  assert.deepEqual(skills('Optimize performance of the landing page'), ['performance-qa']);
+  assert.deepEqual(skills('cải thiện nút thanh toán'), ['ui-redesign', 'ui-builder', 'visual-review']);
+});
+test('risk selects the smallest safe mode and an explicit mode overrides it', () => {
+  const { mode: _mode, ...withoutMode } = options;
+  assert.equal(planWorkflow('Adjust button spacing', { ...withoutMode, risk: 'low' }).mode, 'quick');
+  assert.equal(planWorkflow('Adjust button spacing', withoutMode).mode, 'standard');
+  const form = planWorkflow('Implement an authentication form', { ...withoutMode, risk: 'high', maxSteps: 12 });
+  assert.equal(form.mode, 'full'); assert.ok(form.steps.some(step => step.skill === 'browser-testing'));
+  assert.equal(planWorkflow('Adjust button spacing', { ...options, risk: 'high' }).mode, 'standard');
+  assert.throws(() => planWorkflow('Adjust button spacing', { ...withoutMode, risk: 'severe' as 'high' }), /Risk/u);
+});
+test('plans explain selected and excluded skills and report unavailable tools', () => {
+  const plan = planWorkflow('Build a dashboard', { ...options, mode: 'quick', availableTools: [] });
+  assert.equal(plan.routing?.rule, 'new-interface');
+  assert.deepEqual(plan.routing?.selected.map(entry => entry.skill), plan.steps.map(step => step.skill));
+  assert.match(plan.routing?.excluded.find(entry => entry.skill === 'design-research')?.reason ?? '', /quick mode/iu);
+  assert.match(plan.routing?.excluded.find(entry => entry.skill === 'performance-qa')?.reason ?? '', /new-interface/u);
+  assert.deepEqual(plan.routing?.missingTools, [{ skill: 'visual-review', tool: 'browser' }]);
+  assert.deepEqual(planWorkflow('Optimize performance', { ...options, availableTools: ['browser'] }).routing?.missingTools, [{ skill: 'performance-qa', tool: 'lighthouse' }]);
+  assert.deepEqual(planWorkflow('Build a dashboard', options).routing?.missingTools, []);
+});
 test('CLI rejects unknown commands, flags, boolean values and missing command groups', () => {
   assert.throws(() => parseCLI(['deploy'])); assert.throws(() => parseCLI(['capture', '--pretend-success'])); assert.throws(() => parseCLI(['init', '--yes=false']));
   assert.throws(() => parseCLI(['skills'])); assert.equal(parseCLI(['capture', '--root', '/tmp/project', '--kind', 'current']).flags.kind, 'current');

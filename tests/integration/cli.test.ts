@@ -29,6 +29,10 @@ test('CLI setup, validation, tokens, memory, routing and strict failures execute
     const result = cli(root, ...argv); assert.equal(result.status, 0, `${argv.join(' ')}: ${result.stderr}`);
   }
   assert.equal(cli(root, 'tokens', 'generate', '--new-system').status, 2);
+  const risky = cli(root, 'plan', 'Adjust button spacing', '--risk', 'low'); assert.equal(risky.status, 0, risky.stderr);
+  const planned: { plan: { mode: string; routing: { rule: string; risk: string } } } = JSON.parse(risky.stdout);
+  assert.equal(planned.plan.mode, 'quick'); assert.equal(planned.plan.routing.rule, 'component-redesign'); assert.equal(planned.plan.routing.risk, 'low');
+  assert.notEqual(cli(root, 'plan', 'Adjust button spacing', '--risk', 'severe').status, 0);
   const entry = { id: 'direction', kind: 'direction', text: 'Preserve current brand', approved: true, owner: 'human', updatedAt: new Date().toISOString() };
   await writeJSON(root, 'entry.json', entry); assert.equal(cli(root, 'memory', 'update', 'entry.json', '--revision', '0').status, 0);
   assert.match(cli(root, 'memory', 'inspect').stdout, /Preserve current brand/u);

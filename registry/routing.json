@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "signals": {
+    "performance": "performance|lighthouse|web vitals|core web vitals|hiệu năng",
+    "browser-testing": "browser tests?|browser testing|e2e|functional regression",
+    "source-review": "source review|code review|frontend review",
+    "accessibility": "accessib\\p{L}*|wcag|a11y|truy cập",
+    "motion": "motion|animations?|micro.interactions?|chuyển động",
+    "responsive": "responsive|overflow|mobile layout|di động",
+    "tokens": "tokens?|design system|hệ thống thiết kế",
+    "screenshot": "screenshots?|ảnh chụp|reference images?",
+    "redesign": "redesign|improve|fix|restyle|adjust|tweak|polish|cải thiện|thiết kế lại|sửa",
+    "component": "cards?|buttons?|headers?|navigation|forms?|tables?|components?|thẻ|nút|biểu mẫu",
+    "review": "review|compare|audit|kiểm tra",
+    "high-impact": "transformative|shared tokens|brand migration|đổi thương hiệu"
+  },
+  "rules": [
+    { "id": "performance", "all": ["performance"], "none": [], "capabilities": ["performance"] },
+    { "id": "browser-testing", "all": ["browser-testing"], "none": [], "capabilities": ["browser.testing"] },
+    { "id": "source-review", "all": ["source-review"], "none": [], "capabilities": ["frontend.review"] },
+    { "id": "accessibility-audit", "all": ["accessibility"], "none": ["redesign"], "capabilities": ["accessibility"] },
+    { "id": "motion", "all": ["motion"], "none": [], "capabilities": ["interaction.motion", "frontend.implementation", "visual.regression", "accessibility"] },
+    { "id": "responsive", "all": ["responsive"], "none": [], "capabilities": ["responsive.design", "frontend.implementation", "visual.regression", "accessibility"] },
+    { "id": "design-system", "all": ["tokens"], "none": [], "capabilities": ["ux.research", "visual.direction", "design.tokens"] },
+    { "id": "screenshot-to-code", "all": ["screenshot"], "none": [], "capabilities": ["visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
+    { "id": "accessibility-remediation", "all": ["accessibility", "redesign"], "none": [], "capabilities": ["frontend.implementation", "visual.regression", "accessibility"] },
+    { "id": "component-redesign", "all": ["redesign", "component"], "none": [], "capabilities": ["ui.redesign", "frontend.implementation", "visual.regression"] },
+    { "id": "screen-redesign", "all": ["redesign"], "none": [], "capabilities": ["ui.redesign", "visual.direction", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] },
+    { "id": "review", "all": ["review"], "none": [], "capabilities": ["visual.regression", "accessibility"] },
+    { "id": "new-interface", "all": [], "none": [], "capabilities": ["ux.research", "visual.direction", "design.tokens", "frontend.implementation", "responsive.design", "visual.regression", "accessibility"] }
+  ]
+}

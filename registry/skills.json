@@ -622,7 +622,8 @@
         "contextTokens": 1500
       },
       "requiredTools": [
-        "browser"
+        "browser",
+        "lighthouse"
       ],
       "validation": [
         "artifact-evidence",

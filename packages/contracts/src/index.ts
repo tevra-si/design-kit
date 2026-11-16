@@ -1,5 +1,6 @@
 export const skillNames = ['design-research', 'design-direction', 'design-system', 'ui-builder', 'ui-redesign', 'responsive-design', 'interaction-motion', 'visual-review', 'accessibility-qa', 'performance-qa', 'browser-testing', 'frontend-review'] as const;
 export type SkillName = string;
+export type Risk = 'low' | 'medium' | 'high';
 export type EvidenceKind = 'deterministic' | 'heuristic' | 'ai' | 'human';
 export type Status = 'pending' | 'running' | 'awaiting-approval' | 'passed' | 'failed' | 'blocked' | 'skipped';
 export interface Evidence { source: string; claim: string; confidence: 'observed' | 'reported' | 'inferred' | 'unknown' }
@@ -50,4 +51,5 @@ export interface Plan {
   createdAt: string; budget: { maxSteps: number; maxMinutes: number; maxRefinements: number };
   steps: { skill: SkillName; dependsOn: SkillName[]; status: Status; attempts: number; evidence: string[] }[];
   approvalRequired: boolean; approvedBy: string | null;
+  routing?: { rule: string; risk: Risk; selected: { skill: SkillName; reason: string }[]; excluded: { skill: SkillName; reason: string }[]; missingTools: { skill: SkillName; tool: string }[] };
 }

@@ -1,6 +1,8 @@
-import { readdir } from 'node:fs/promises';
+import { access, readdir } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
-import type { Handoff, Plan, SkillName } from '../../contracts/src/index.js';
+import type { Config, Handoff, Plan, SkillName } from '../../contracts/src/index.js';
+import { resolveLighthouseCli } from '../../performance-qa/src/index.js';
+import { browserExecutable } from './project-commands.js';
 import { loadRegistry } from '../../registry/src/index.js';
 import { planWorkflow } from '../../core/src/router.js';
 import { assertHandoff, transitionPlan } from '../../core/src/workflow.js';
@@ -15,12 +17,22 @@ function skill(args: Arguments): SkillName {
   const selected = flag(args, 'skill');
   if (!/^[a-z][a-z0-9-]{0,63}$/u.test(selected)) throw new Error(`Invalid skill: ${selected}`); return selected;
 }
+async function availableTools(config: Config): Promise<string[]> {
+  const tools: string[] = [];
+  const executable = browserExecutable(config);
+  try { if (executable) await access(executable); tools.push('browser'); } catch (error) { if (!isMissing(error)) throw error; }
+  try { resolveLighthouseCli(); tools.push('lighthouse'); } catch (error) { if (!(error instanceof Error) || !error.message.startsWith('Lighthouse is not installed')) throw error; }
+  return tools;
+}
 export async function workflowCommand(args: Arguments, root: string): Promise<unknown> {
   const context = await loadContext(root);
   if (args.command === 'plan' || args.command === 'workflow plan') {
     const configuration = await loadConfig(root);
-    const mode = flag(args, 'mode', 'standard'); if (!['quick', 'standard', 'full'].includes(mode)) throw new Error('Mode must be quick, standard or full');
-    const plan = planWorkflow(args.positional.join(' '), { mode: mode === 'quick' ? 'quick' : mode === 'full' ? 'full' : 'standard', maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
+    const mode = args.flags.mode === undefined ? undefined : flag(args, 'mode');
+    if (mode !== undefined && mode !== 'quick' && mode !== 'standard' && mode !== 'full') throw new Error('Mode must be quick, standard or full');
+    const risk = flag(args, 'risk', 'medium');
+    if (risk !== 'low' && risk !== 'medium' && risk !== 'high') throw new Error('Risk must be low, medium or high');
+    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), risk, availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
     const output = flag(args, 'out', `.tevra/plans/${plan.id}.json`); await writeJSON(root, output, plan); return { path: output, plan };
   }
   if (args.command === 'workflow status') return validate<Plan>('plan.schema.json', await readJSON(root, inputPath(args)));

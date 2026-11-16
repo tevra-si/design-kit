@@ -4,6 +4,7 @@ import { createInterface } from 'node:readline/promises';
 import { chromium } from 'playwright';
 import { agentDirectories, installSkills, isAgent } from '../../core/src/install.js';
 import type { Agent } from '../../core/src/install.js';
+import type { Config } from '../../contracts/src/index.js';
 import { analyzeProject } from '../../core/src/analyze.js';
 import { defaultConfig, loadConfig, validateConfig } from '../../core/src/config.js';
 import { createContext, contextPath, loadContext, updateContext } from '../../design-context/src/index.js';
@@ -18,6 +19,10 @@ import type { Arguments } from './arguments.js';
 export function agents(value: string): Agent[] {
   const list = value.split(',');
   return list.map(name => { if (isAgent(name)) return name; throw new Error(`Unknown agent: ${name}. Supported: ${Object.keys(agentDirectories).join(',')}`); });
+}
+// Outside macOS Playwright resolves the Chrome channel path itself; only a real launch verifies it.
+export function browserExecutable(config: Config): string | null {
+  return config.browser.executablePath ?? (config.browser.channel !== 'chrome' ? chromium.executablePath() : process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : null);
 }
 async function exists(root: string, path: string): Promise<boolean> {
   try { await access(await safePath(root, path)); return true; } catch (error) { if (isMissing(error)) return false; throw error; }
@@ -46,8 +51,7 @@ export async function projectCommand(args: Arguments, root: string): Promise<unk
   if (args.command === 'doctor') {
     const config = await loadConfig(root); await loadContext(root);
     if (config.browser.executablePath && !args.flags['allow-custom-browser']) throw new Error('Custom executable requires --allow-custom-browser after reviewing its provenance');
-    // Outside macOS Playwright resolves the Chrome channel path itself; --launch verifies it.
-    const executable = config.browser.executablePath ?? (config.browser.channel !== 'chrome' ? chromium.executablePath() : process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : null);
+    const executable = browserExecutable(config);
     if (executable) await access(executable);
     let browserVersion: string | null = null;
     if (args.flags.launch) { const browser = await chromium.launch({ ...config.browser, headless: true }); try { browserVersion = browser.version(); } finally { await browser.close(); } }

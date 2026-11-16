@@ -121,6 +121,43 @@
     },
     "contextVersion": {
       "const": "2.0"
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rule", "risk", "selected", "excluded", "missingTools"],
+      "properties": {
+        "rule": { "type": "string", "minLength": 1 },
+        "risk": { "enum": ["low", "medium", "high"] },
+        "selected": { "$ref": "#/$defs/skillReasons" },
+        "excluded": { "$ref": "#/$defs/skillReasons" },
+        "missingTools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["skill", "tool"],
+            "properties": {
+              "skill": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
+              "tool": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "skillReasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["skill", "reason"],
+        "properties": {
+          "skill": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
     }
   },
   "required": [

@@ -2,14 +2,14 @@ import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { isMissing, safePath } from '../../filesystem/src/index.js';
 
-export async function analyzeProject(root: string): Promise<{ framework: string; styling: string[]; systemFiles: string[]; instructions: string[] }> {
+export async function analyzeProject(root: string): Promise<{ framework: string; frameworkVersion: string | null; styling: string[]; systemFiles: string[]; instructions: string[] }> {
   let manifest: unknown = {};
   try { manifest = JSON.parse(await readFile(await safePath(root, 'package.json'), 'utf8')); } catch (error) { if (!isMissing(error)) throw error; }
-  const dependencies = new Set<string>();
+  const dependencies = new Map<string, unknown>();
   if (manifest && typeof manifest === 'object') for (const section of ['dependencies', 'devDependencies']) {
     if (section in manifest) {
       const value: unknown = Reflect.get(manifest, section);
-      if (value && typeof value === 'object') for (const key of Object.keys(value)) dependencies.add(key);
+      if (value && typeof value === 'object') for (const [key, range] of Object.entries(value)) dependencies.set(key, range);
     }
   }
   const framework = ['next', '@sveltejs/kit', 'expo', 'react-native', 'vue', 'react'].find(name => dependencies.has(name)) ?? 'unknown';
@@ -26,5 +26,6 @@ export async function analyzeProject(root: string): Promise<{ framework: string;
     }
   }
   await scan(root, 0);
-  return { framework: framework === 'next' ? 'nextjs' : framework === '@sveltejs/kit' ? 'sveltekit' : framework, styling: styling.length ? styling : ['inspect-css'], systemFiles, instructions };
+  const declared = dependencies.get(framework);
+  return { frameworkVersion: typeof declared === 'string' ? declared : null, framework: framework === 'next' ? 'nextjs' : framework === '@sveltejs/kit' ? 'sveltekit' : framework, styling: styling.length ? styling : ['inspect-css'], systemFiles, instructions };
 }
