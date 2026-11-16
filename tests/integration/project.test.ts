@@ -5,6 +5,7 @@ import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { agentDirectories, installSkills, isAgent } from '../../packages/core/src/install.js';
+import { exportAgentForgeSkills } from '../../packages/core/src/agentforge.js';
 import { discoverSkills } from '../../packages/core/src/skills.js';
 import { inspectMemory, resetMemory, updateMemory } from '../../packages/design-memory/src/index.js';
 import { createContext, contextPath } from '../../packages/design-context/src/index.js';
@@ -65,4 +66,35 @@ test('workflow enforces dependencies, evidence, approval and bounded retries', a
   await assert.rejects(transitionPlan(root, path, 'ui-redesign', 'running', [], 0), /refinement/u);
   const highImpact = planWorkflow('Transformative redesign', { mode: 'full', maxSteps: 9, maxMinutes: 60, maxRefinements: 2, contextRevision: 0 }); await writeJSON(root, path, highImpact);
   const first = highImpact.steps[0]; assert.ok(first); await assert.rejects(transitionPlan(root, path, first.skill, 'running', [], 0), /approval/u);
+});
+test('AgentForge export flattens each skill into one bounded instruction file and merges the project manifest', async t => {
+  const root = await project(t); await mkdir(resolve(root, '.agentforge/skills'), { recursive: true });
+  const foreign = { id: 'house-rules', name: 'House rules', version: '1.0.0', description: 'Project conventions', providers: ['claude_code'], permission: 'read_only' };
+  await writeJSON(root, '.agentforge/skills.json', { schemaVersion: 1, skills: [foreign] });
+  assert.equal((await exportAgentForgeSkills(root, true)).length, 14);
+  await assert.rejects(readFile(resolve(root, '.agentforge/skills/tevra-ui-builder.md')));
+  await exportAgentForgeSkills(root);
+  const manifest = JSON.parse(await readFile(resolve(root, '.agentforge/skills.json'), 'utf8')) as { schemaVersion: number; skills: { id: string; name: string; version: string; description: string; providers: string[]; permission: string }[] };
+  assert.equal(manifest.schemaVersion, 1); assert.equal(manifest.skills.length, 14); assert.deepEqual(manifest.skills[0], foreign);
+  const names = (await discoverSkills(resolve(kitRoot(), 'skills'))).map(skill => skill.name);
+  const unprefixed = new RegExp(`(?<![a-z0-9-])(${names.join('|')})(?![a-z0-9-]|\\.[a-z])`, 'u');
+  for (const skill of manifest.skills.slice(1)) {
+    assert.match(skill.id, /^tevra-[a-z0-9-]{1,42}$/u); assert.ok(skill.name.length <= 80 && skill.name.startsWith('Tevra '));
+    assert.match(skill.version, /^[A-Za-z0-9.+-]{1,40}$/u); assert.ok(Array.from(skill.description).length <= 240 && skill.description.length > 20, skill.id);
+    assert.equal(skill.permission, 'read_only'); assert.equal(skill.providers.length, 9);
+    const content = await readFile(resolve(root, `.agentforge/skills/${skill.id}.md`), 'utf8');
+    assert.ok(Buffer.byteLength(content) <= 32 * 1024 && content.startsWith('# '), skill.id);
+    assert.doesNotMatch(content, /\]\(references\//u); assert.doesNotMatch(content, unprefixed, skill.id);
+  }
+  assert.match(await readFile(resolve(root, '.agentforge/skills/tevra-frontend-debugging.md'), 'utf8'), /\[evidence guidance\]\(#reference-guide\)[\s\S]*## Reference: guide/u);
+  await exportAgentForgeSkills(root);
+  assert.equal((JSON.parse(await readFile(resolve(root, '.agentforge/skills.json'), 'utf8')) as { skills: unknown[] }).skills.length, 14);
+  await writeFile(resolve(root, '.agentforge/skills/tevra-ui-builder.md'), 'edited in AgentForge');
+  await assert.rejects(exportAgentForgeSkills(root), /conflict/u);
+  const full = await project(t); await writeJSON(full, '.agentforge/skills.json', { schemaVersion: 1, skills: Array.from({ length: 20 }, (_, index) => ({ ...foreign, id: `skill-${index}` })) });
+  await assert.rejects(exportAgentForgeSkills(full), /at most 32/u);
+  const fresh = await project(t); assert.equal((await exportAgentForgeSkills(fresh)).length, 14);
+  assert.equal((JSON.parse(await readFile(resolve(fresh, '.agentforge/skills.json'), 'utf8')) as { skills: unknown[] }).skills.length, 13);
+  const broken = await project(t); await writeJSON(broken, '.agentforge/skills.json', { schemaVersion: 2, skills: [] });
+  await assert.rejects(exportAgentForgeSkills(broken), /Unsupported AgentForge skill manifest/u);
 });

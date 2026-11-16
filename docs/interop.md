@@ -1,6 +1,6 @@
-# Working with Spec Kit and Superpowers
+# Working with Spec Kit, Superpowers and AgentForge
 
-Tevra owns design, UI implementation and frontend QA. It does not own product specification or general engineering process. When a project already uses a tool for those, Tevra cooperates with it instead of duplicating it. Both integrations are optional: Tevra installs, bundles and modifies nothing from either project, and works the same without them.
+Tevra owns design, UI implementation and frontend QA. It does not own product specification or general engineering process. When a project already uses a tool for those, Tevra cooperates with it instead of duplicating it. These integrations are optional: Tevra bundles and modifies nothing from the other projects, and works the same without them.
 
 | Concern | Tool present | Tool absent |
 | --- | --- | --- |
@@ -36,6 +36,23 @@ tevra-design report --plan .tevra/plans/PLAN.json --checks review-checks.json
 ```
 
 See [usage](usage.md#acceptance-criteria) for how checks reference criteria.
+
+## AgentForge
+
+AgentForge is a desktop app that runs agents on a mission inside isolated worktrees. It has its own project skill format: one Markdown file per skill under `.agentforge/skills/`, listed in `.agentforge/skills.json`, selected per mission and added to the prompt.
+
+```sh
+tevra-design skills agentforge              # add --dry-run to preview
+```
+
+- Each Tevra skill is exported as `tevra-<name>`: its `SKILL.md` body with its reference files appended, so the single file is self-contained. Links to references become in-page anchors and references to other Tevra skills use the prefixed names.
+- The manifest is merged. Skills that are not `tevra-*` are kept; a project may hold at most 32 skills and each instruction file at most 32 KiB, which the export checks.
+- Every exported skill is marked `read_only` and compatible with every provider, so it can be selected on any step. It is guidance and grants nothing.
+- An exported file that was edited afterwards is not overwritten; the export stops with an installation conflict.
+
+A mission is not the place to run `tevra-design capture`, `compare` or `review`: most AgentForge agents run in modes that deny shell commands, and a fresh mission worktree has no installed dependencies or running app. Produce that evidence yourself on the mission branch after approving it, before you merge. AgentForge needs a clean working tree: commit or ignore `.agentforge/`, and keep `.tevra/` ignored.
+
+The manifest fields and limits were taken from the AgentForge source. The export has not been loaded in the AgentForge app itself.
 
 ## Superpowers and other process skills
 

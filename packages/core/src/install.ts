@@ -19,14 +19,15 @@ async function filesBelow(directory: string): Promise<string[]> {
   }
   return found;
 }
+// Names followed by a file extension are artifact file names, not skill references.
+export function skillReferences(names: string[]): RegExp { return new RegExp(`(?<![a-z0-9-])(${names.join('|')})(?![a-z0-9-]|\\.[a-z])`, 'gu'); }
 // A prefix lets Tevra skills sit beside project skills of the same name in agents that have no plugin namespace.
 export async function installSkills(root: string, agents: Agent[], dryRun = false, prefix = ''): Promise<string[]> {
   if (prefix && !/^[a-z][a-z0-9]{0,19}-$/u.test(prefix)) throw new Error('Skill prefix must be lowercase letters or digits followed by a hyphen, such as "tevra-"');
   const source = resolve(kitRoot(), 'skills');
   const skills = await discoverSkills(source);
   if (skills.some(skill => `${prefix}${skill.name}`.length > 64)) throw new Error('Skill prefix makes a skill name longer than 64 characters');
-  // Names followed by a file extension are artifact file names, not skill references.
-  const references = new RegExp(`(?<![a-z0-9-])(${skills.map(skill => skill.name).join('|')})(?![a-z0-9-]|\\.[a-z])`, 'gu');
+  const references = skillReferences(skills.map(skill => skill.name));
   const writes: { name: string; bytes: Buffer }[] = [];
   for (const agent of new Set(agents)) {
     const base = agentDirectories[agent];
