@@ -48,7 +48,7 @@ tevra-design skills agentforge              # add --dry-run to preview
 - Each Tevra skill is exported as `tevra-<name>`: its `SKILL.md` body with its reference files appended, so the single file is self-contained. Links to references become in-page anchors and references to other Tevra skills use the prefixed names.
 - The manifest is merged. Skills that are not `tevra-*` are kept; a project may hold at most 32 skills and each instruction file at most 32 KiB, which the export checks.
 - Every exported skill is marked `read_only` and compatible with every provider, so it can be selected on any step. It is guidance and grants nothing.
-- An exported file that was edited afterwards is not overwritten; the export stops with an installation conflict.
+- An exported file that was edited afterwards is not overwritten; the export stops with an installation conflict. `--replace` overwrites edited `tevra-*` files and lists them in `replaced` (combine with `--dry-run` to preview); files that are not `tevra-*` are never touched.
 
 A mission is not the place to run `tevra-design capture`, `compare` or `review`: most AgentForge agents run in modes that deny shell commands, and a fresh mission worktree has no installed dependencies or running app. Produce that evidence yourself on the mission branch after approving it, before you merge. AgentForge needs a clean working tree: commit or ignore `.agentforge/`, and keep `.tevra/` ignored.
 

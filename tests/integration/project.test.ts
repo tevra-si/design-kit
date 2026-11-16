@@ -91,6 +91,12 @@ test('AgentForge export flattens each skill into one bounded instruction file an
   assert.equal((JSON.parse(await readFile(resolve(root, '.agentforge/skills.json'), 'utf8')) as { skills: unknown[] }).skills.length, 14);
   await writeFile(resolve(root, '.agentforge/skills/tevra-ui-builder.md'), 'edited in AgentForge');
   await assert.rejects(exportAgentForgeSkills(root), /conflict/u);
+  const preview: string[] = []; await exportAgentForgeSkills(root, true, preview);
+  assert.deepEqual(preview, ['.agentforge/skills/tevra-ui-builder.md']); assert.equal(await readFile(resolve(root, '.agentforge/skills/tevra-ui-builder.md'), 'utf8'), 'edited in AgentForge');
+  await writeFile(resolve(root, '.agentforge/skills/house-rules.md'), 'mine');
+  const replaced: string[] = []; await exportAgentForgeSkills(root, false, replaced);
+  assert.deepEqual(replaced, ['.agentforge/skills/tevra-ui-builder.md']); assert.match(await readFile(resolve(root, '.agentforge/skills/tevra-ui-builder.md'), 'utf8'), /^# /u);
+  assert.equal(await readFile(resolve(root, '.agentforge/skills/house-rules.md'), 'utf8'), 'mine');
   const full = await project(t); await writeJSON(full, '.agentforge/skills.json', { schemaVersion: 1, skills: Array.from({ length: 20 }, (_, index) => ({ ...foreign, id: `skill-${index}` })) });
   await assert.rejects(exportAgentForgeSkills(full), /at most 32/u);
   const fresh = await project(t); assert.equal((await exportAgentForgeSkills(fresh)).length, 14);

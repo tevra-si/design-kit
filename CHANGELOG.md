@@ -16,6 +16,7 @@ All notable changes to Tevra Design Kit are documented here. The project follows
 - Each skill declares an optional `agentRole` (`planner`, `developer` or `reviewer`) in the registry, a suggestion for tools that assign skills to agents by role. It grants no permission: `skills agentforge` still exports every skill as read-only.
 - `workflow plan --format agentforge` writes a role-based workflow draft (`schemas/agentforge-draft.schema.json`): at most one plan, develop and review step, each with suggested `tevra-*` skills and the routing reason. A plan with no developer skill is refused.
 - `quality.json` records `subject: { commit, branch }`, read from `.git` without spawning a process, so a report can be tied to the commit it describes. The field is absent outside a git repository and for older reports.
+- `skills agentforge --replace` updates `tevra-*` skills that were edited or came from an older kit, and lists the files it replaced. Without the flag an edited file still stops the export.
 - `skills agentforge` exports the skills as AgentForge project skills (`.agentforge/skills.json` and one self-contained Markdown file per skill).
 - `skills install --prefix tevra-` and `init --prefix tevra-` install skills under prefixed names, so they can sit beside project skills that share a name in agents without a plugin namespace.
 - `workflow plan --changed-files` raises the risk to high when shared design files changed, and `--project-mode greenfield` skips rules that need existing UI.

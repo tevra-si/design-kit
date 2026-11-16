@@ -32,7 +32,8 @@ async function readManifest(root: string): Promise<ForgeManifest> {
 }
 
 // AgentForge injects one Markdown file per skill into the prompt, so each skill is flattened with its references.
-export async function exportAgentForgeSkills(root: string, dryRun = false): Promise<string[]> {
+// Passing `replaced` opts into overwriting edited tevra-* files and receives their paths; without it an edited file stops the export.
+export async function exportAgentForgeSkills(root: string, dryRun = false, replaced?: string[]): Promise<string[]> {
   const source = resolve(kitRoot(), 'skills');
   const skills = await discoverSkills(source); const registry = await loadRegistry();
   const references = skillReferences(skills.map(skill => skill.name));
@@ -50,8 +51,12 @@ export async function exportAgentForgeSkills(root: string, dryRun = false): Prom
     if (Buffer.byteLength(content) > maxInstructionBytes) throw new Error(`Skill exceeds AgentForge's 32 KiB instruction limit: ${skill.name}`);
     const id = `${prefix}${skill.name}`;
     const name = `${id}.md`;
-    try { if (await readFile(await safePath(root, `.agentforge/skills/${name}`), 'utf8') !== content) throw new Error(`Installation conflict; preserve local file: .agentforge/skills/${name}`); }
-    catch (error) { if (!isMissing(error)) throw error; }
+    let existing: string | null = null;
+    try { existing = await readFile(await safePath(root, `.agentforge/skills/${name}`), 'utf8'); } catch (error) { if (!isMissing(error)) throw error; }
+    if (existing !== null && existing !== content) {
+      if (!replaced) throw new Error(`Installation conflict; preserve local file: .agentforge/skills/${name} (run with --replace to overwrite edited tevra-* skills)`);
+      replaced.push(`.agentforge/skills/${name}`);
+    }
     // Guidance only: read_only keeps the skill selectable on every node and grants nothing.
     const metadata: ForgeSkill = { id, name: `Tevra ${title}`.slice(0, 80), version: entry.version, description: shorten(entry.description), providers, permission: 'read_only' };
     manifest.skills = [...manifest.skills.filter(existing => existing.id !== id), metadata];

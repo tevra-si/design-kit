@@ -4,7 +4,7 @@ const boolean = { type: 'boolean' } as const;
 const string = { type: 'string' } as const;
 const specs: Record<string, Record<string, typeof boolean | typeof string>> = {
   init: { agents: string, yes: boolean, 'skip-skills': boolean, prefix: string }, doctor: { launch: boolean, 'allow-custom-browser': boolean }, analyze: {},
-  'skills list': { registry: string }, 'skills inspect': { registry: string }, 'skills validate': { registry: string }, 'skills graph': { registry: string }, 'skills check': {}, 'skills agentforge': { 'dry-run': boolean }, 'skills install': { agents: string, 'dry-run': boolean, prefix: string },
+  'skills list': { registry: string }, 'skills inspect': { registry: string }, 'skills validate': { registry: string }, 'skills graph': { registry: string }, 'skills check': {}, 'skills agentforge': { 'dry-run': boolean, replace: boolean }, 'skills install': { agents: string, 'dry-run': boolean, prefix: string },
   validate: {}, 'context show': {}, 'context validate': {}, 'context migrate': { out: string, owner: string }, 'context update': { revision: string, 'approve-constraints': boolean },
   'memory inspect': {}, 'memory list': {}, 'memory update': { revision: string }, 'memory reset': { yes: boolean },
   'workflow plan': { registry: string, mode: string, risk: string, acceptance: string, 'project-mode': string, 'changed-files': string, 'max-steps': string, 'max-minutes': string, 'max-refinements': string, out: string, format: string },
