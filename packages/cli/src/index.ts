@@ -36,7 +36,7 @@ tevra-design memory list|inspect|reset [--yes]
 tevra-design memory update <entry.json> --revision N
 tevra-design search "query" [--category ux --limit 5]
 tevra-design plan "request" [--mode quick|standard|full --risk low|medium|high --project-mode greenfield|existing --changed-files a.css,b.tsx --acceptance criteria.json --max-steps 12 --max-minutes 60 --max-refinements 2]
-tevra-design workflow plan "request" [--mode quick|standard|full --risk low|medium|high --acceptance criteria.json]
+tevra-design workflow plan "request" [--mode quick|standard|full --risk low|medium|high --acceptance criteria.json --format agentforge --out draft.json]
 tevra-design workflow run <plan.json> [--allow-network]
 tevra-design workflow status <plan.json>
 tevra-design workflow start|complete|fail <plan.json> --skill name [--evidence file1,file2]

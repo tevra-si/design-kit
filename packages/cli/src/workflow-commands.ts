@@ -4,6 +4,7 @@ import type { Config, Handoff, Plan, SkillName } from '../../contracts/src/index
 import { resolveLighthouseCli } from '../../performance-qa/src/index.js';
 import { browserExecutable } from './project-commands.js';
 import { loadRegistry } from '../../registry/src/index.js';
+import { agentForgeDraft } from '../../core/src/agentforge-draft.js';
 import { planWorkflow } from '../../core/src/router.js';
 import { readSpecKit } from '../../core/src/spec-kit.js';
 import { assertHandoff, transitionPlan } from '../../core/src/workflow.js';
@@ -29,6 +30,8 @@ export async function workflowCommand(args: Arguments, root: string): Promise<un
   const context = await loadContext(root);
   if (args.command === 'plan' || args.command === 'workflow plan') {
     const configuration = await loadConfig(root);
+    const format = args.flags.format === undefined ? undefined : flag(args, 'format');
+    if (format !== undefined && format !== 'agentforge') throw new Error('Format must be agentforge');
     const mode = args.flags.mode === undefined ? undefined : flag(args, 'mode');
     if (mode !== undefined && mode !== 'quick' && mode !== 'standard' && mode !== 'full') throw new Error('Mode must be quick, standard or full');
     const risk = flag(args, 'risk', 'medium');
@@ -42,7 +45,12 @@ export async function workflowCommand(args: Arguments, root: string): Promise<un
     // Quick work never depends on Spec Kit, so a broken feature pointer cannot block a trivial change.
     const specKit = mode === 'quick' || (!mode && risk === 'low') ? null : await readSpecKit(root);
     const criteria = acceptance ?? (specKit?.acceptance.length ? specKit.acceptance : undefined);
-    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(criteria ? { acceptance: criteria } : {}), ...(specKit ? { specKit } : {}), ...(projectMode ? { projectMode } : {}), ...(changedFiles.length ? { changedFiles } : {}), ...(explicitRisk ? { risk } : {}), availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
+    const registry = await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []);
+    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(criteria ? { acceptance: criteria } : {}), ...(specKit ? { specKit } : {}), ...(projectMode ? { projectMode } : {}), ...(changedFiles.length ? { changedFiles } : {}), ...(explicitRisk ? { risk } : {}), availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, registry);
+    if (format === 'agentforge') {
+      const draft = await agentForgeDraft(plan, registry); const output = flag(args, 'out', `.tevra/plans/${plan.id}.agentforge.json`);
+      await writeJSON(root, `.tevra/plans/${plan.id}.json`, plan); await writeJSON(root, output, draft); return { path: output, draft };
+    }
     const output = flag(args, 'out', `.tevra/plans/${plan.id}.json`); await writeJSON(root, output, plan); return { path: output, plan };
   }
   if (args.command === 'workflow status') return validate<Plan>('plan.schema.json', await readJSON(root, inputPath(args)));
