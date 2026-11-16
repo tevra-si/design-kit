@@ -29,6 +29,24 @@ test('explicitly zero score threshold allows automation-only gates while preserv
   const config = { ...defaultConfig, requiredChecks: [], thresholds: { ...defaultConfig.thresholds, minScore: 0 } };
   const report = evaluateQuality([], config, 0); assert.equal(report.status, 'PASS'); assert.equal(report.score, null);
 });
+test('acceptance criteria trace to checks and block the gate until each has passing evidence', () => {
+  const config = { ...defaultConfig, requiredChecks: [] };
+  const acceptance = ['AC-001: Form submits', 'AC-002: Errors are announced', 'AC-003: Works at 375px', 'AC-004: Dark mode', 'AC-005: Native share sheet'];
+  const checks = scored(); const first = checks[0]; assert.ok(first); first.criteria = ['AC-001'];
+  checks.push({ id: 'error-announcement', category: 'accessibility', kind: 'deterministic', status: 'failed', severity: 'minor', evidence: ['axe.json'], issue: 'Error is not announced', component: 'form', correction: 'Add a live region', criteria: ['AC-002'] });
+  checks.push({ id: 'narrow-viewport', category: 'responsive', kind: 'deterministic', status: 'unverified', severity: 'minor', evidence: [], issue: 'Browser unavailable', component: 'form', correction: '', criteria: ['AC-003'] });
+  const report = evaluateQuality(checks, config, 0, { acceptance, notApplicable: ['AC-005'] });
+  assert.deepEqual(report.criteria?.map(criterion => criterion.status), ['PASS', 'FAIL', 'BLOCKED', 'SKIPPED', 'NOT_APPLICABLE']);
+  assert.equal(report.status, 'FAIL'); assert.ok(report.blockers.includes('criterion:AC-002'));
+  assert.ok(report.missing.includes('criterion:AC-003')); assert.ok(report.missing.includes('criterion:AC-004'));
+  assert.match(markdownReport(report), /AC-004: Dark mode \| SKIPPED/u);
+  const passing = evaluateQuality([{ ...first, criteria: ['AC-001'] }, ...scored().slice(1)], config, 0, { acceptance: ['AC-001: Form submits'] });
+  assert.equal(passing.status, 'PASS');
+  assert.throws(() => evaluateQuality([{ ...first, criteria: ['AC-009'] }], config, 0, { acceptance }), /Unknown acceptance criterion/u);
+  assert.throws(() => evaluateQuality(scored(), config, 0, { acceptance: ['Form submits'] }), /AC-/u);
+  assert.throws(() => evaluateQuality(scored(), config, 0, { acceptance, notApplicable: ['AC-009'] }), /Unknown acceptance criterion/u);
+  assert.equal(evaluateQuality(scored(), config, 0).criteria, undefined);
+});
 test('config rejects remote routes, invalid weights, duplicate viewports and incomplete actions', () => {
   assert.throws(() => validateConfig({ ...defaultConfig, permittedOrigins: ['https://other.example'] }), /permitted/u);
   assert.throws(() => validateConfig({ ...defaultConfig, weights: { ...defaultConfig.weights, layout: 40 } }), /sum/u);

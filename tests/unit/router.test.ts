@@ -75,6 +75,14 @@ test('failed and passed handoffs require error details or validation evidence', 
   assert.throws(() => assertHandoff({ ...handoff('a'), status: 'failed' }, 0, []), /error/u);
   assert.throws(() => assertHandoff({ ...handoff('a'), status: 'passed' }, 0, []), /evidence/u);
 });
+test('acceptance criteria keep stable unique IDs in plans and handoffs', () => {
+  assert.deepEqual(planWorkflow('Adjust button spacing', { ...options, acceptance: ['AC-001: Spacing matches the token'] }).acceptance, ['AC-001: Spacing matches the token']);
+  assert.equal(planWorkflow('Adjust button spacing', options).acceptance, undefined);
+  assert.throws(() => planWorkflow('Adjust button spacing', { ...options, acceptance: ['Spacing matches'] }), /AC-/u);
+  assert.throws(() => planWorkflow('Adjust button spacing', { ...options, acceptance: ['AC-001: One', 'AC-001: Two'] }), /Duplicate/u);
+  assert.throws(() => assertHandoff({ ...handoff('a'), acceptance: ['AC-001: One', 'AC-001: Two'] }, 0, []), /Duplicate/u);
+  assert.equal(assertHandoff({ ...handoff('a'), acceptance: ['AC-001: One', 'Legacy criterion without an ID'] }, 0, []).taskId, 'a');
+});
 test('handoff paths reject traversal, canonicalize Windows claims and prevent task-owner takeover', () => {
   assert.throws(() => assertHandoff({ ...handoff('a'), files: ['../secret'] }, 0, []), /Unsafe/u);
   assert.throws(() => assertHandoff({ ...handoff('b'), files: ['src\\card.tsx'] }, 0, [handoff('a')]), /Conflicting/u);

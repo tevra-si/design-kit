@@ -65,6 +65,14 @@
       },
       "correction": {
         "type": "string"
+      },
+      "criteria": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^AC-\\d{3,}$"
+        },
+        "uniqueItems": true
       }
     },
     "required": [

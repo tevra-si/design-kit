@@ -125,24 +125,60 @@
     "routing": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["rule", "risk", "selected", "excluded", "missingTools"],
+      "required": [
+        "rule",
+        "risk",
+        "selected",
+        "excluded",
+        "missingTools"
+      ],
       "properties": {
-        "rule": { "type": "string", "minLength": 1 },
-        "risk": { "enum": ["low", "medium", "high"] },
-        "selected": { "$ref": "#/$defs/skillReasons" },
-        "excluded": { "$ref": "#/$defs/skillReasons" },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "risk": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "selected": {
+          "$ref": "#/$defs/skillReasons"
+        },
+        "excluded": {
+          "$ref": "#/$defs/skillReasons"
+        },
         "missingTools": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["skill", "tool"],
+            "required": [
+              "skill",
+              "tool"
+            ],
             "properties": {
-              "skill": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
-              "tool": { "type": "string", "minLength": 1 }
+              "skill": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,63}$"
+              },
+              "tool": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           }
         }
+      }
+    },
+    "acceptance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^AC-\\d{3,}: \\S"
       }
     }
   },
@@ -152,10 +188,19 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["skill", "reason"],
+        "required": [
+          "skill",
+          "reason"
+        ],
         "properties": {
-          "skill": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
-          "reason": { "type": "string", "minLength": 1 }
+          "skill": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,63}$"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }

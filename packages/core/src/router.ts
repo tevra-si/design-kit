@@ -5,12 +5,13 @@ import { kitRoot } from '../../filesystem/src/resources.js';
 import { validate } from '../../design-context/src/validation.js';
 import { selectCapabilities, validateRegistry } from '../../registry/src/index.js';
 import type { Registry } from '../../registry/src/index.js';
+import { criterionIds } from '../../contracts/src/index.js';
 import type { Plan, Risk } from '../../contracts/src/index.js';
 
 interface RoutingRule { id: string; all: string[]; none: string[]; capabilities: string[] }
 interface Routing { version: 1; signals: Record<string, string>; rules: RoutingRule[] }
 export interface RouteOptions {
-  mode?: Plan['mode']; risk?: Risk; availableTools?: string[];
+  mode?: Plan['mode']; risk?: Risk; availableTools?: string[]; acceptance?: string[];
   maxSteps: number; maxMinutes: number; maxRefinements: number; contextRevision: number; framework?: string; platform?: string;
 }
 
@@ -30,6 +31,7 @@ export function planWorkflow(request: string, options: RouteOptions, extensionRe
   const risk = options.risk ?? 'medium';
   if (!(risk in modeForRisk)) throw new Error('Risk must be low, medium or high');
   const mode = options.mode ?? modeForRisk[risk];
+  if (options.acceptance) criterionIds(options.acceptance, true);
 
   const text = request.toLocaleLowerCase();
   const routing = loadRouting();
@@ -78,6 +80,6 @@ export function planWorkflow(request: string, options: RouteOptions, extensionRe
   return { version: 1, id: randomUUID(), request, mode, contextVersion: '2.0', contextRevision: options.contextRevision, createdAt: new Date().toISOString(),
     budget: { maxSteps: options.maxSteps, maxMinutes: options.maxMinutes, maxRefinements: mode === 'quick' ? 0 : options.maxRefinements },
     steps: skills.map((skill, index) => ({ skill, dependsOn: index > 0 ? skills.slice(index - 1, index) : [], status: 'pending', attempts: 0, evidence: [] })),
-    approvalRequired: matched.has('high-impact'), approvedBy: null,
+    approvalRequired: matched.has('high-impact'), approvedBy: null, ...(options.acceptance?.length ? { acceptance: options.acceptance } : {}),
     routing: { rule: rule.id, risk, selected, excluded, missingTools } };
 }

@@ -1,4 +1,5 @@
 import { stat } from 'node:fs/promises';
+import { criterionIds } from '../../contracts/src/index.js';
 import type { Handoff, Plan, SkillName, Status } from '../../contracts/src/index.js';
 import { validate } from '../../design-context/src/validation.js';
 import { readJSON, safePath, withLock, writeJSON } from '../../filesystem/src/index.js';
@@ -12,6 +13,7 @@ export function assertHandoff(value: unknown, contextRevision: number, active: H
     return normalized;
   };
   handoff.files = handoff.files.map(canonical); handoff.inputs = handoff.inputs.map(canonical); handoff.outputs = handoff.outputs.map(canonical); handoff.evidence = handoff.evidence.map(canonical);
+  criterionIds(handoff.acceptance, false);
   if (handoff.contextRevision !== contextRevision) throw new Error('Handoff context revision is stale');
   if (active.some(existing => existing.taskId === handoff.taskId && existing.owner !== handoff.owner)) throw new Error('Task ownership transfer requires explicit coordination');
   for (const existing of active.filter(task => ['pending', 'running', 'awaiting-approval', 'blocked'].includes(task.status) && task.taskId !== handoff.taskId)) {

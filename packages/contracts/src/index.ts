@@ -1,5 +1,14 @@
 export const skillNames = ['design-research', 'design-direction', 'design-system', 'ui-builder', 'ui-redesign', 'responsive-design', 'interaction-motion', 'visual-review', 'accessibility-qa', 'performance-qa', 'browser-testing', 'frontend-review'] as const;
 export type SkillName = string;
+export type CriterionStatus = 'PASS' | 'FAIL' | 'SKIPPED' | 'BLOCKED' | 'NOT_APPLICABLE';
+// An acceptance criterion carries its stable ID as a prefix: "AC-001: text".
+export function criterionId(criterion: string): string | null { return /^(AC-\d{3,}): \S/u.exec(criterion)?.[1] ?? null; }
+export function criterionIds(acceptance: string[], requireAll: boolean): string[] {
+  const ids = acceptance.map(criterionId).filter(id => id !== null);
+  if (requireAll && ids.length !== acceptance.length) throw new Error('Each acceptance criterion needs a stable ID such as "AC-001: text"');
+  if (new Set(ids).size !== ids.length) throw new Error('Duplicate acceptance criterion ID');
+  return ids;
+}
 export type Risk = 'low' | 'medium' | 'high';
 export type EvidenceKind = 'deterministic' | 'heuristic' | 'ai' | 'human';
 export type Status = 'pending' | 'running' | 'awaiting-approval' | 'passed' | 'failed' | 'blocked' | 'skipped';
@@ -34,12 +43,13 @@ export interface Config {
 }
 export interface Check {
   id: string; category: Category; kind: EvidenceKind; status: 'passed' | 'failed' | 'unverified';
-  severity: 'critical' | 'major' | 'minor'; score?: number; evidence: string[]; issue: string; component: string; correction: string;
+  severity: 'critical' | 'major' | 'minor'; score?: number; evidence: string[]; issue: string; component: string; correction: string; criteria?: string[];
 }
 export interface QualityReport {
   version: 1; createdAt: string; status: 'PASS' | 'FAIL'; score: number | null;
   blockers: string[]; missing: string[]; checks: Check[];
   limits: string[]; contextRevision: number;
+  criteria?: { id: string; text: string; status: CriterionStatus; checks: string[] }[];
 }
 export interface Handoff {
   version: 1; taskId: string; objective: string; skill: SkillName; contextVersion: '2.0'; contextRevision: number;
@@ -50,6 +60,6 @@ export interface Plan {
   version: 1; id: string; request: string; mode: 'quick' | 'standard' | 'full'; contextVersion: '2.0'; contextRevision: number;
   createdAt: string; budget: { maxSteps: number; maxMinutes: number; maxRefinements: number };
   steps: { skill: SkillName; dependsOn: SkillName[]; status: Status; attempts: number; evidence: string[] }[];
-  approvalRequired: boolean; approvedBy: string | null;
+  approvalRequired: boolean; approvedBy: string | null; acceptance?: string[];
   routing?: { rule: string; risk: Risk; selected: { skill: SkillName; reason: string }[]; excluded: { skill: SkillName; reason: string }[]; missingTools: { skill: SkillName; tool: string }[] };
 }

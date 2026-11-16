@@ -107,6 +107,14 @@
           },
           "correction": {
             "type": "string"
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^AC-\\d{3,}$"
+            },
+            "uniqueItems": true
           }
         },
         "required": [
@@ -135,6 +143,45 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 1000000
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text",
+          "status",
+          "checks"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AC-\\d{3,}$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "SKIPPED",
+              "BLOCKED",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
     }
   },
   "required": [

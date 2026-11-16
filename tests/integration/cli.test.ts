@@ -33,6 +33,10 @@ test('CLI setup, validation, tokens, memory, routing and strict failures execute
   const planned: { plan: { mode: string; routing: { rule: string; risk: string } } } = JSON.parse(risky.stdout);
   assert.equal(planned.plan.mode, 'quick'); assert.equal(planned.plan.routing.rule, 'component-redesign'); assert.equal(planned.plan.routing.risk, 'low');
   assert.notEqual(cli(root, 'plan', 'Adjust button spacing', '--risk', 'severe').status, 0);
+  await writeJSON(root, 'acceptance.json', ['AC-001: Spacing matches the token']);
+  assert.match(cli(root, 'plan', 'Adjust button spacing', '--acceptance', 'acceptance.json').stdout, /AC-001: Spacing matches the token/u);
+  await writeJSON(root, 'unnumbered.json', ['Spacing matches the token']);
+  assert.notEqual(cli(root, 'plan', 'Adjust button spacing', '--acceptance', 'unnumbered.json').status, 0);
   const entry = { id: 'direction', kind: 'direction', text: 'Preserve current brand', approved: true, owner: 'human', updatedAt: new Date().toISOString() };
   await writeJSON(root, 'entry.json', entry); assert.equal(cli(root, 'memory', 'update', 'entry.json', '--revision', '0').status, 0);
   assert.match(cli(root, 'memory', 'inspect').stdout, /Preserve current brand/u);
