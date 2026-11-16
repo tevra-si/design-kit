@@ -30,16 +30,20 @@ export interface DesignContext {
 export interface Viewport { name: string; width: number; height: number }
 export interface Action { type: 'click' | 'fill' | 'press' | 'check' | 'expect-visible' | 'expect-hidden' | 'expect-text' | 'expect-checked'; selector: string; value?: string }
 export interface ScreenState { name: string; actions: Action[]; masks: string[]; waitFor?: string }
-export interface VisualRoute { name: string; path: string; states: ScreenState[] }
+export interface VisualRoute { name: string; path: string; baselinePath?: string; states: ScreenState[] }
 export const categories = ['hierarchy', 'typography', 'layout', 'consistency', 'responsive', 'accessibility', 'interaction', 'functional', 'performance'] as const;
 export type Category = typeof categories[number];
 export interface Config {
-  version: 1; baseURL: string; permittedOrigins: string[]; viewports: Viewport[]; routes: VisualRoute[];
+  version: 1; baseURL: string; baselineURL?: string; permittedOrigins: string[]; viewports: Viewport[]; routes: VisualRoute[];
   browser: { channel?: string; executablePath?: string }; timeoutMs: number;
   colorScheme?: 'light' | 'dark' | 'no-preference'; reducedMotion?: 'reduce' | 'no-preference';
   readySelector?: string;
   thresholds: { diffRatio: number; pixelSensitivity: number; minScore: number };
   weights: Record<Exclude<Category, 'functional'>, number> & { functional?: number }; requiredChecks: string[]; maxRefinements: number;
+}
+// A baseline may live at another URL or path, so two deployed versions can be compared route by route.
+export function captureURL(config: Config, route: VisualRoute, kind: 'baseline' | 'current'): string {
+  return kind === 'baseline' ? new URL(route.baselinePath ?? route.path, config.baselineURL ?? config.baseURL).href : new URL(route.path, config.baseURL).href;
 }
 export interface Check {
   id: string; category: Category; kind: EvidenceKind; status: 'passed' | 'failed' | 'unverified';

@@ -72,7 +72,8 @@
               "responsive",
               "accessibility",
               "interaction",
-              "performance"
+              "performance",
+              "functional"
             ]
           },
           "kind": {

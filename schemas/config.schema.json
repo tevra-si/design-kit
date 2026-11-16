@@ -124,6 +124,10 @@
               ]
             },
             "minItems": 1
+          },
+          "baselinePath": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [
@@ -277,6 +281,10 @@
       ]
     },
     "readySelector": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baselineURL": {
       "type": "string",
       "minLength": 1
     }

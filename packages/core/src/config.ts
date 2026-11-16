@@ -1,3 +1,4 @@
+import { captureURL } from '../../contracts/src/index.js';
 import type { Config } from '../../contracts/src/index.js';
 import { validate } from '../../design-context/src/validation.js';
 import { readJSON } from '../../filesystem/src/index.js';
@@ -12,11 +13,14 @@ export const defaultConfig: Config = {
 };
 export function validateConfig(value: unknown): Config {
   const config = validate<Config>('config.schema.json', value);
-  const base = new URL(config.baseURL);
-  if (!['http:', 'https:'].includes(base.protocol) || base.username || base.password || base.search || base.hash) throw new Error('baseURL must be an HTTP(S) URL without credentials, query or fragment');
+  const bases = [['baseURL', config.baseURL], ...(config.baselineURL ? [['baselineURL', config.baselineURL]] : [])].map(([label, value]) => {
+    const base = new URL(value ?? '');
+    if (!['http:', 'https:'].includes(base.protocol) || base.username || base.password || base.search || base.hash) throw new Error(`${label} must be an HTTP(S) URL without credentials, query or fragment`);
+    return { label, base };
+  });
   for (const origin of config.permittedOrigins) if (new URL(origin).origin !== origin) throw new Error(`Expected exact permitted origin: ${origin}`);
-  if (!config.permittedOrigins.includes(base.origin)) throw new Error('baseURL origin is not explicitly permitted');
-  for (const route of config.routes) if (!config.permittedOrigins.includes(new URL(route.path, config.baseURL).origin)) throw new Error(`Route escapes permitted origins: ${route.name}`);
+  for (const { label, base } of bases) if (!config.permittedOrigins.includes(base.origin)) throw new Error(`${label} origin is not explicitly permitted`);
+  for (const route of config.routes) for (const kind of ['baseline', 'current'] as const) if (!config.permittedOrigins.includes(new URL(captureURL(config, route, kind)).origin)) throw new Error(`Route escapes permitted origins: ${route.name}`);
   for (const [label, names] of [['viewport', config.viewports.map(viewport => viewport.name)], ['route', config.routes.map(route => route.name)], ...config.routes.map(route => [`state in ${route.name}`, route.states.map(state => state.name)] as const)] as const) {
     if (new Set(names).size !== names.length) throw new Error(`Duplicate ${label} names`);
   }

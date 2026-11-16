@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { createHash } from 'node:crypto';
-import type { Config } from '../../contracts/src/index.js';
+import type { Check, Config } from '../../contracts/src/index.js';
 import { readJSON, safePath, withLock, writeAtomic, writeJSON } from '../../filesystem/src/index.js';
 import type { CaptureManifest, Comparison, ComparisonResult } from './types.js';
 import { validate } from '../../design-context/src/validation.js';
@@ -40,6 +40,25 @@ export function compareImages(baseline: Buffer, current: Buffer, sensitivity: nu
   const ratio = differentPixels / (width * height); const sizeMismatch = left.width !== right.width || left.height !== right.height;
   return { png: PNG.sync.write(diff), differentPixels, ratio, sizeMismatch, passed: !sizeMismatch && ratio <= limit };
 }
+// Errors are compared without their origin so the same failure on two deployments is not reported as new.
+export function regressionChecks(baseline: CaptureManifest, current: CaptureManifest, config: Config): Check[] {
+  const origins = [config.baseURL, ...(config.baselineURL ? [config.baselineURL] : [])].map(url => new URL(url).origin);
+  const normalize = (values: string[] = []): string[] => values.map(value => origins.reduce((text, origin) => text.replaceAll(origin, ''), value));
+  const runtime: string[] = []; const accessibility: string[] = [];
+  for (const entry of current.entries) {
+    const original = baseline.entries.find(candidate => candidate.id === entry.id);
+    if (!original) continue;
+    const before = new Set([...normalize(original.pageErrors), ...normalize(original.consoleErrors), ...normalize(original.networkErrors)]);
+    for (const error of [...normalize(entry.pageErrors), ...normalize(entry.consoleErrors), ...normalize(entry.networkErrors)]) if (!before.has(error)) runtime.push(`${entry.id}: ${error}`);
+    for (const violation of entry.axeViolations) if (!original.axeViolations.some(known => known.id === violation.id)) accessibility.push(`${entry.id}: ${violation.id} (${violation.impact})`);
+  }
+  const evidence = ['.tevra/artifacts/baseline/manifest.json', '.tevra/artifacts/current/manifest.json'];
+  const check = (id: string, category: Check['category'], issues: string[], correction: string): Check => ({ id, category, kind: 'deterministic', status: issues.length ? 'failed' : 'passed', severity: 'major', evidence, issue: issues.length ? `Not present in the baseline: ${issues.join('; ')}` : 'No findings beyond those already in the baseline.', component: 'configured visual matrix', correction });
+  return [
+    check('runtime-regressions', 'functional', runtime, 'Resolve page, console and network errors introduced since the baseline.'),
+    check('accessibility-regressions', 'accessibility', accessibility, 'Resolve axe violations introduced since the baseline.')
+  ];
+}
 export async function compare(root: string, config: Config): Promise<ComparisonResult> {
   return withLock(root, '.tevra/visual.lock', async () => {
     const baseline = validate<CaptureManifest>('capture-manifest.schema.json', await readJSON(root, '.tevra/artifacts/baseline/manifest.json'));
@@ -59,7 +78,7 @@ export async function compare(root: string, config: Config): Promise<ComparisonR
       comparisons.push({ id: entry.id, ratio: result.ratio, differentPixels: result.differentPixels, sizeMismatch: result.sizeMismatch, passed: result.passed, diff });
     }
     const evidence = comparisons.map(comparison => comparison.diff);
-    const result: ComparisonResult = { version: 1, createdAt: new Date().toISOString(), settingsHash: comparisonSettingsHash(config), currentManifestHash: manifestHash(current), comparisons, checks: [{ id: 'visual-diff', category: 'consistency', kind: 'deterministic', status: comparisons.every(value => value.passed) ? 'passed' : 'failed', severity: 'major', evidence, component: 'configured visual matrix', issue: 'Changed-pixel ratio and screenshot dimensions compared to baseline.', correction: 'Inspect generated differences; obtain approval for intended changes before replacing baselines.' }] };
+    const result: ComparisonResult = { version: 1, createdAt: new Date().toISOString(), settingsHash: comparisonSettingsHash(config), currentManifestHash: manifestHash(current), comparisons, checks: [{ id: 'visual-diff', category: 'consistency', kind: 'deterministic', status: comparisons.every(value => value.passed) ? 'passed' : 'failed', severity: 'major', evidence, component: 'configured visual matrix', issue: 'Changed-pixel ratio and screenshot dimensions compared to baseline.', correction: 'Inspect generated differences; obtain approval for intended changes before replacing baselines.' }, ...regressionChecks(baseline, current, config)] };
     await writeJSON(root, '.tevra/artifacts/comparison.json', result); return result;
   });
 }

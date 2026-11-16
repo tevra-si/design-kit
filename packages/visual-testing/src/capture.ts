@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import axe from 'axe-core';
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, stat } from 'node:fs/promises';
+import { captureURL } from '../../contracts/src/index.js';
 import type { Config } from '../../contracts/src/index.js';
 import { isMissing, redact, safePath, withLock, writeJSON } from '../../filesystem/src/index.js';
 import type { CaptureManifest } from './types.js';
@@ -9,7 +10,7 @@ import type { CaptureManifest } from './types.js';
 declare global { interface Window { axe: typeof axe } }
 
 export function configHash(config: Config): string {
-  return createHash('sha256').update(JSON.stringify({ baseURL: config.baseURL, origins: config.permittedOrigins, browser: config.browser, viewports: config.viewports, routes: config.routes, readySelector: config.readySelector, colorScheme: config.colorScheme ?? 'light', reducedMotion: config.reducedMotion ?? 'reduce' })).digest('hex');
+  return createHash('sha256').update(JSON.stringify({ baseURL: config.baseURL, baselineURL: config.baselineURL, origins: config.permittedOrigins, browser: config.browser, viewports: config.viewports, routes: config.routes, readySelector: config.readySelector, colorScheme: config.colorScheme ?? 'light', reducedMotion: config.reducedMotion ?? 'reduce' })).digest('hex');
 }
 export function manifestHash(manifest: CaptureManifest): string { return createHash('sha256').update(JSON.stringify(manifest)).digest('hex'); }
 export function comparisonSettingsHash(config: Config): string { return createHash('sha256').update(JSON.stringify({ diffRatio: config.thresholds.diffRatio, pixelSensitivity: config.thresholds.pixelSensitivity })).digest('hex'); }
@@ -48,7 +49,7 @@ export async function capture(root: string, config: Config, kind: CaptureManifes
           page.on('requestfailed', request => networkErrors.push(redact(`${request.method()} ${request.url()}: ${request.failure()?.errorText ?? 'failed'}`)));
           page.on('response', response => { if (response.status() >= 400) networkErrors.push(redact(`HTTP ${response.status()} ${response.url()}`)); });
           const pageErrors: string[] = []; page.on('pageerror', error => pageErrors.push(redact(error.message)));
-          const response = await page.goto(new URL(route.path, config.baseURL).href, { waitUntil: 'load', timeout: config.timeoutMs });
+          const response = await page.goto(captureURL(config, route, kind), { waitUntil: 'load', timeout: config.timeoutMs });
           if (!response?.ok()) throw new Error(`Route failed with HTTP ${response?.status() ?? 'no response'}: ${route.name}`);
           if (!config.permittedOrigins.includes(new URL(page.url()).origin)) throw new Error(`Redirect outside permitted origins: ${route.name}`);
           if (config.readySelector) await page.locator(config.readySelector).waitFor({ state: 'attached' });

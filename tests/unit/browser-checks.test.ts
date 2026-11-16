@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { validateConfig, defaultConfig } from '../../packages/core/src/config.js';
+import { captureURL } from '../../packages/contracts/src/index.js';
+import { configHash } from '../../packages/visual-testing/src/capture.js';
+import { regressionChecks } from '../../packages/visual-testing/src/compare.js';
 import { captureChecks } from '../../packages/visual-testing/src/checks.js';
 import type { CaptureManifest } from '../../packages/visual-testing/src/types.js';
 
@@ -17,4 +20,28 @@ test('browser assertions are validated and console/network failures remain separ
   assert.equal(checks.find(check => check.id === 'functional-tests')?.status, 'unverified');
   const entry = manifest.entries[0]; assert.ok(entry); entry.assertions = 1;
   checks = captureChecks(manifest); assert.equal(checks.find(check => check.id === 'functional-tests')?.status, 'passed');
+});
+test('a baseline URL must be permitted and changes the capture identity', () => {
+  const twoSites = { ...defaultConfig, baselineURL: 'http://127.0.0.1:4174', permittedOrigins: [...defaultConfig.permittedOrigins, 'http://127.0.0.1:4174'] };
+  assert.ok(validateConfig(twoSites));
+  assert.throws(() => validateConfig({ ...defaultConfig, baselineURL: 'http://127.0.0.1:4174' }), /baselineURL origin is not explicitly permitted/u);
+  assert.throws(() => validateConfig({ ...twoSites, baselineURL: 'http://user:secret@127.0.0.1:4174' }), /baselineURL must be/u);
+  const renamed = { ...twoSites, routes: [{ name: 'home', path: '/start', baselinePath: '/index', states: [{ name: 'default', actions: [], masks: [] }] }] };
+  const route = renamed.routes[0]; assert.ok(route);
+  assert.equal(captureURL(renamed, route, 'baseline'), 'http://127.0.0.1:4174/index');
+  assert.equal(captureURL(renamed, route, 'current'), 'http://127.0.0.1:4173/start');
+  assert.throws(() => validateConfig({ ...renamed, routes: [{ ...route, baselinePath: 'https://other.example/' }] }), /escapes/u);
+  assert.notEqual(configHash(twoSites), configHash(defaultConfig));
+});
+test('comparison reports only errors and violations that the baseline did not have', () => {
+  const config = { ...defaultConfig, baselineURL: 'http://127.0.0.1:4174', permittedOrigins: [...defaultConfig.permittedOrigins, 'http://127.0.0.1:4174'] };
+  const viewport = defaultConfig.viewports[0]; assert.ok(viewport);
+  const entry = { id: 'home--default--mobile', route: 'home', state: 'default', viewport, file: 'screen.png', imageHash: 'a'.repeat(64), masks: [], overflow: [], smallTargets: [], axeViolations: [{ id: 'label', impact: 'critical', targets: ['input'], help: 'Label' }], incompleteRules: [], pageErrors: [], consoleErrors: [], networkErrors: ['HTTP 404 http://127.0.0.1:4174/logo.png'] };
+  const manifest = (kind: 'baseline' | 'current', entries: CaptureManifest['entries']): CaptureManifest => ({ version: 1, kind, runId: kind, createdAt: new Date().toISOString(), configHash: 'fixture', contextRevision: 0, browserVersion: 'fixture', entries });
+  const same = regressionChecks(manifest('baseline', [entry]), manifest('current', [{ ...entry, networkErrors: ['HTTP 404 http://127.0.0.1:4173/logo.png'] }]), config);
+  assert.deepEqual(same.map(check => check.status), ['passed', 'passed']);
+  const regressed = regressionChecks(manifest('baseline', [entry]), manifest('current', [{ ...entry, consoleErrors: ['TypeError: orders is undefined'], axeViolations: [...entry.axeViolations, { id: 'color-contrast', impact: 'serious', targets: ['p'], help: 'Contrast' }] }]), config);
+  assert.match(regressed.find(check => check.id === 'runtime-regressions')?.issue ?? '', /home--default--mobile: TypeError/u);
+  assert.match(regressed.find(check => check.id === 'accessibility-regressions')?.issue ?? '', /color-contrast/u);
+  assert.doesNotMatch(regressed.find(check => check.id === 'accessibility-regressions')?.issue ?? '', /label/u);
 });
