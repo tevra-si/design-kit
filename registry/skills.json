@@ -61,7 +61,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/design-research/SKILL.md"
+      "entrypoint": "skills/design-research/SKILL.md",
+      "agentRole": "planner"
     },
     {
       "id": "tevra.design-direction",
@@ -123,7 +124,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/design-direction/SKILL.md"
+      "entrypoint": "skills/design-direction/SKILL.md",
+      "agentRole": "planner"
     },
     {
       "id": "tevra.design-system",
@@ -185,7 +187,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/design-system/SKILL.md"
+      "entrypoint": "skills/design-system/SKILL.md",
+      "agentRole": "developer"
     },
     {
       "id": "tevra.ui-builder",
@@ -250,7 +253,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/ui-builder/SKILL.md"
+      "entrypoint": "skills/ui-builder/SKILL.md",
+      "agentRole": "developer"
     },
     {
       "id": "tevra.ui-redesign",
@@ -312,7 +316,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/ui-redesign/SKILL.md"
+      "entrypoint": "skills/ui-redesign/SKILL.md",
+      "agentRole": "developer"
     },
     {
       "id": "tevra.responsive-design",
@@ -374,7 +379,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/responsive-design/SKILL.md"
+      "entrypoint": "skills/responsive-design/SKILL.md",
+      "agentRole": "developer"
     },
     {
       "id": "tevra.interaction-motion",
@@ -436,7 +442,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/interaction-motion/SKILL.md"
+      "entrypoint": "skills/interaction-motion/SKILL.md",
+      "agentRole": "developer"
     },
     {
       "id": "tevra.visual-review",
@@ -501,7 +508,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/visual-review/SKILL.md"
+      "entrypoint": "skills/visual-review/SKILL.md",
+      "agentRole": "reviewer"
     },
     {
       "id": "tevra.accessibility-qa",
@@ -563,7 +571,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/accessibility-qa/SKILL.md"
+      "entrypoint": "skills/accessibility-qa/SKILL.md",
+      "agentRole": "reviewer"
     },
     {
       "id": "tevra.performance-qa",
@@ -629,7 +638,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/performance-qa/SKILL.md"
+      "entrypoint": "skills/performance-qa/SKILL.md",
+      "agentRole": "reviewer"
     },
     {
       "id": "tevra.browser-testing",
@@ -694,7 +704,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/browser-testing/SKILL.md"
+      "entrypoint": "skills/browser-testing/SKILL.md",
+      "agentRole": "reviewer"
     },
     {
       "id": "tevra.frontend-review",
@@ -759,7 +770,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/frontend-review/SKILL.md"
+      "entrypoint": "skills/frontend-review/SKILL.md",
+      "agentRole": "reviewer"
     },
     {
       "id": "tevra.frontend-debugging",
@@ -821,7 +833,8 @@
         "artifact-evidence",
         "scope-preserved"
       ],
-      "entrypoint": "skills/frontend-debugging/SKILL.md"
+      "entrypoint": "skills/frontend-debugging/SKILL.md",
+      "agentRole": "developer"
     }
   ]
 }

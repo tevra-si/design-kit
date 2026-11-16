@@ -10,6 +10,7 @@ export interface RegistrySkill {
   source: { type: string; references: string[] }; license: string; priority: number;
   estimatedCost: { minutes: number; contextTokens: number }; requiredTools: string[];
   validation: string[]; entrypoint: string;
+  agentRole?: 'planner' | 'developer' | 'reviewer';
 }
 export interface Registry { version: 1; skills: RegistrySkill[] }
 export interface Selection { skills: RegistrySkill[]; owners: Record<string, string>; duplicates: Record<string, string[]> }

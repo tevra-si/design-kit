@@ -34,3 +34,14 @@ test('capability selection handles extensions, deterministic ties, overrides and
   const conflict = { ...extension, dependencies: [builder.id], conflicts: [builder.id] };
   assert.throws(() => selectCapabilities({ ...registry, skills: [...registry.skills, conflict] }, ['frontend.implementation']), /conflict/u);
 });
+test('every skill suggests the agent role that should run it, and an unknown role is rejected', async () => {
+  const registry = await loadRegistry();
+  const roles = Object.fromEntries(registry.skills.map(skill => [skill.name, skill.agentRole]));
+  assert.deepEqual(roles, {
+    'design-research': 'planner', 'design-direction': 'planner',
+    'design-system': 'developer', 'ui-builder': 'developer', 'ui-redesign': 'developer', 'responsive-design': 'developer', 'interaction-motion': 'developer', 'frontend-debugging': 'developer',
+    'frontend-review': 'reviewer', 'accessibility-qa': 'reviewer', 'visual-review': 'reviewer', 'browser-testing': 'reviewer', 'performance-qa': 'reviewer',
+  });
+  const first = registry.skills[0]; assert.ok(first);
+  assert.throws(() => validateRegistry({ version: 1, skills: [{ ...first, agentRole: 'owner' }] }));
+});

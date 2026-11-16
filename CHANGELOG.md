@@ -13,6 +13,7 @@ All notable changes to Tevra Design Kit are documented here. The project follows
 - Comparing two deployments: `baselineURL` in the config and `baselinePath` on a route capture the baseline from another URL. `compare` reports `runtime-regressions` and `accessibility-regressions`, the errors and axe violations that the baseline did not have.
 - Optional Spec Kit interoperability: in a project with an active Spec Kit feature, plans skip research that the spec already covers and import its acceptance scenarios as criteria. Read-only; see `docs/interop.md`.
 - `analyze` reports the declared framework version.
+- Each skill declares an optional `agentRole` (`planner`, `developer` or `reviewer`) in the registry, a suggestion for tools that assign skills to agents by role. It grants no permission: `skills agentforge` still exports every skill as read-only.
 - `skills agentforge` exports the skills as AgentForge project skills (`.agentforge/skills.json` and one self-contained Markdown file per skill).
 - `skills install --prefix tevra-` and `init --prefix tevra-` install skills under prefixed names, so they can sit beside project skills that share a name in agents without a plugin namespace.
 - `workflow plan --changed-files` raises the risk to high when shared design files changed, and `--project-mode greenfield` skips rules that need existing UI.

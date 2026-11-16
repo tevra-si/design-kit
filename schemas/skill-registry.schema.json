@@ -61,6 +61,13 @@
             "type": "string",
             "minLength": 1
           },
+          "agentRole": {
+            "enum": [
+              "planner",
+              "developer",
+              "reviewer"
+            ]
+          },
           "entrypoint": {
             "type": "string",
             "minLength": 1
