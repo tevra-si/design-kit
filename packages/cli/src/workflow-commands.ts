@@ -5,6 +5,7 @@ import { resolveLighthouseCli } from '../../performance-qa/src/index.js';
 import { browserExecutable } from './project-commands.js';
 import { loadRegistry } from '../../registry/src/index.js';
 import { planWorkflow } from '../../core/src/router.js';
+import { readSpecKit } from '../../core/src/spec-kit.js';
 import { assertHandoff, transitionPlan } from '../../core/src/workflow.js';
 import { loadContext } from '../../design-context/src/index.js';
 import { validate } from '../../design-context/src/validation.js';
@@ -34,7 +35,10 @@ export async function workflowCommand(args: Arguments, root: string): Promise<un
     if (risk !== 'low' && risk !== 'medium' && risk !== 'high') throw new Error('Risk must be low, medium or high');
     const acceptance = typeof args.flags.acceptance === 'string' ? await readJSON(root, args.flags.acceptance) : undefined;
     if (acceptance !== undefined && (!Array.isArray(acceptance) || !acceptance.every((criterion): criterion is string => typeof criterion === 'string'))) throw new Error('--acceptance must be a JSON array of criteria such as "AC-001: text"');
-    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(acceptance ? { acceptance } : {}), risk, availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
+    // Quick work never depends on Spec Kit, so a broken feature pointer cannot block a trivial change.
+    const specKit = mode === 'quick' || (!mode && risk === 'low') ? null : await readSpecKit(root);
+    const criteria = acceptance ?? (specKit?.acceptance.length ? specKit.acceptance : undefined);
+    const plan = planWorkflow(args.positional.join(' '), { ...(mode ? { mode } : {}), ...(criteria ? { acceptance: criteria } : {}), ...(specKit ? { specKit } : {}), risk, availableTools: await availableTools(configuration), maxSteps: numeric(args, 'max-steps', 12), maxMinutes: numeric(args, 'max-minutes', 60), maxRefinements: numeric(args, 'max-refinements', configuration.maxRefinements), contextRevision: context.revision, platform: ['react-native', 'expo'].includes(context.project.framework) ? 'native' : 'web', ...(context.project.framework === 'unknown' ? {} : { framework: context.project.framework }) }, await loadRegistry(typeof args.flags.registry === 'string' ? [await safePath(root, args.flags.registry)] : []));
     const output = flag(args, 'out', `.tevra/plans/${plan.id}.json`); await writeJSON(root, output, plan); return { path: output, plan };
   }
   if (args.command === 'workflow status') return validate<Plan>('plan.schema.json', await readJSON(root, inputPath(args)));

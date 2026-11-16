@@ -12,6 +12,7 @@ interface RoutingRule { id: string; all: string[]; none: string[]; capabilities:
 interface Routing { version: 1; signals: Record<string, string>; rules: RoutingRule[] }
 export interface RouteOptions {
   mode?: Plan['mode']; risk?: Risk; availableTools?: string[]; acceptance?: string[];
+  specKit?: { feature: string; hasSpec: boolean; hasPlan: boolean };
   maxSteps: number; maxMinutes: number; maxRefinements: number; contextRevision: number; framework?: string; platform?: string;
 }
 
@@ -42,6 +43,8 @@ export function planWorkflow(request: string, options: RouteOptions, extensionRe
 
   let requested = rule.capabilities.map(capability => ({ capability, reason: `Rule ${rule.id} requests ${capability}` }));
   const trimmed = new Set<string>();
+  const specKit = mode !== 'quick' && options.specKit?.hasSpec ? options.specKit : undefined;
+  if (specKit) requested = requested.filter(({ capability }) => capability !== 'ux.research');
   // Quick mode trims supporting steps but keeps responsive design when it owns the request.
   if (mode === 'quick') requested = requested.filter(({ capability }, index) => {
     const keep = capability !== 'ux.research' && (capability !== 'responsive.design' || index === 0);
@@ -72,7 +75,9 @@ export function planWorkflow(request: string, options: RouteOptions, extensionRe
 
   const excluded = registry.skills.filter(skill => !added.has(skill.id)).map(skill => ({
     skill: skill.name,
-    reason: skill.capabilities.some(capability => trimmed.has(capability)) ? 'Quick mode trims supporting steps' : `Rule ${rule.id} does not request ${skill.capabilities.join(', ')}`
+    reason: skill.capabilities.some(capability => trimmed.has(capability)) ? 'Quick mode trims supporting steps'
+      : specKit && skill.capabilities.includes('ux.research') && rule.capabilities.includes('ux.research') ? `Spec Kit feature ${specKit.feature} already has spec.md`
+      : `Rule ${rule.id} does not request ${skill.capabilities.join(', ')}`
   }));
   const available = options.availableTools;
   const missingTools = available ? resolution.skills.filter(skill => added.has(skill.id)).flatMap(skill => skill.requiredTools.filter(tool => !available.includes(tool)).map(tool => ({ skill: skill.name, tool }))) : [];

@@ -154,6 +154,69 @@
         "Full recursive file-level license audit unavailable; no upstream assets or scripts vendored.",
         "Pinned raw content returned cache miss; main inspection is not attributed to this SHA."
       ]
+    },
+    {
+      "id": "spec-kit",
+      "repository": "https://github.com/github/spec-kit",
+      "revision": "0019fa14d12f45edabc2cc3176c9168a68bd0f97",
+      "revisionStatus": "content-verified",
+      "inspectedRef": "v1.4.0",
+      "inspectedAt": "2026-11-16",
+      "license": "MIT",
+      "licenseStatus": "metadata-only",
+      "declaredLicense": "MIT",
+      "copyright": null,
+      "reuse": "integration",
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "inspectedPaths": [
+        ".specify/feature.json",
+        ".specify/scripts/bash/common.sh",
+        ".specify/scripts/bash/create-new-feature.sh",
+        ".specify/templates/spec-template.md"
+      ],
+      "evidence": [
+        "https://github.com/github/spec-kit/releases/tag/v1.4.0"
+      ],
+      "limitations": [
+        "Paths are those generated in a project by specify init at v1.4.0; scripts were read, not executed.",
+        "License taken from repository metadata; root license text not inspected.",
+        "Read-only interoperability with the on-disk layout. No Spec Kit code, templates or prompts are included."
+      ]
+    },
+    {
+      "id": "superpowers",
+      "repository": "https://github.com/obra/superpowers",
+      "revision": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "revisionStatus": "discovered-content-unavailable",
+      "inspectedRef": "v7.0.2",
+      "inspectedAt": "2026-11-16",
+      "license": "MIT",
+      "licenseStatus": "metadata-only",
+      "declaredLicense": "MIT",
+      "copyright": null,
+      "reuse": "integration",
+      "excludedAssets": [
+        "logos",
+        "screenshots",
+        "fonts",
+        "remote-assets"
+      ],
+      "inspectedPaths": [
+        "skills"
+      ],
+      "evidence": [
+        "https://github.com/obra/superpowers/releases/tag/v7.0.2"
+      ],
+      "limitations": [
+        "Only the list of skill names was inspected; skill contents were not read at this revision.",
+        "License taken from repository metadata; root license text not inspected.",
+        "Tevra skills defer to a general process skill when one is active. No Superpowers text or code is included."
+      ]
     }
   ]
 }
